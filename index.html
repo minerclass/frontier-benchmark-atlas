@@ -118,10 +118,10 @@ footer{font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
     <span class="eyebrow">Contributing</span>
     <h2 id="h-add">Adding a harness</h2>
     <ol>
-      <li>Give the harness the brief in <a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/PROMPT.md">PROMPT.md</a> unchanged.</li>
-      <li>It writes <code>index.html</code>, <code>data.json</code> (format in <a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/SCHEMA.md">SCHEMA.md</a>) and <code>COMPILATION.md</code> under <code>harnesses/&lt;id&gt;/</code>.</li>
-      <li>It adds or updates its entry in <code>harnesses/manifest.json</code>.</li>
-      <li><code>python tools/validate.py</code> checks the format and lists disagreements with other harnesses.</li>
+      <li>Paste <a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/HARNESS.md">HARNESS.md</a> into the harness. It carries Micah's request verbatim and the sourcing rules.</li>
+      <li>The harness compiles independently and publishes a page, a data file and compilation notes, in its own repository or a folder Micah names.</li>
+      <li>It gets a hub entry in <code>harnesses/manifest.json</code>, through a pull request or the inbox thread, with Micah's approval. The hub then loads its data live.</li>
+      <li>Every Monday each harness checks for new releases and updates its own compilation.</li>
     </ol>
   </section>
 

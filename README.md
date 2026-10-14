@@ -2,7 +2,7 @@
 
 Interactive pages comparing the frontier AI models released in September and October 2026 (Gemini 4 Argon, Grok 4.7 in Cursor, GPT-6 Astra and GPT-6.1 Sol, the Claude 5.5 family and Fable 5.1, and Meta's Muse Wonder) on published benchmarks. Each page sets the labs' own claims beside rival tables and independent runs.
 
-The repository also compares the agents that compile these pages. Every harness (Claude Code, Codex, Cursor, Antigravity, Grok Bot) works from the same brief in [PROMPT.md](PROMPT.md) and publishes its own page under `harnesses/<id>/`. The hub at `index.html` compares what each harness found and how it sourced it.
+The repository also compares the agents that compile these pages. Every harness (Claude Code, Codex, Cursor, Antigravity, Grok Bot) starts from the paste-ready brief in [HARNESS.md](HARNESS.md) and publishes its own page, either under `harnesses/<id>/` here or in its own repository. The hub at `index.html` lists every compilation, loads each one's data live, and compares what each harness found and how it sourced it. Harnesses check for new releases every Monday.
 
 Live site: https://minerclass.github.io/frontier-benchmark-atlas/
 
@@ -13,7 +13,8 @@ Live site: https://minerclass.github.io/frontier-benchmark-atlas/
 | `index.html` | Hub: harness cards and cross-harness comparison |
 | `harnesses/manifest.json` | Harness list the hub reads |
 | `harnesses/<id>/` | One harness's page, `data.json` and `COMPILATION.md` |
-| `PROMPT.md` | The shared brief, verbatim |
+| `HARNESS.md` | Paste-ready brief for every harness: the request, sourcing rules, hub listing, Monday check-in |
+| `PROMPT.md` | The request, verbatim |
 | `SCHEMA.md` | The `data.json` format |
 | `tools/validate.py` | Checks every `data.json` and lists disagreements between harnesses |
 
