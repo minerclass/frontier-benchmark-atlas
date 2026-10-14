@@ -188,6 +188,17 @@ const LOADERS = {
     return fromBriefRecords(d.records, r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publisher,
       kind:r.publisher_type, setting:r.setting, note:r.note, url:r.source_url, read:r.read_myself===true}));
   },
+  "codex-frontier-observatory-v1": async h => {
+    const d = await getJSON(h.data);
+    // Settings are objects ({effort, harness, tools, passK, fallback}); records marked unavailable have no value and are skipped.
+    const flat = s => !s || typeof s !== "object" ? s : Object.entries(s).filter(([,v])=>v!=null && v!=="").map(([k,v])=>`${k} ${v}`).join(", ");
+    const res = fromBriefRecords(d.records.filter(r=>typeof r.value === "number"), r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publisher,
+      kind:r.sourceType, setting:flat(r.setting), note:(r.origin?"origin "+r.origin:"")+(r.note?"; "+r.note:""), url:r.sourceUrl, read:r.sourceRead===true}));
+    res.models = d.models.map(m=>({id:m.slug, name:m.name}));
+    const skipped = d.records.length - d.records.filter(r=>typeof r.value === "number").length;
+    if(skipped) res.sourceNote += ` · ${skipped} recorded as unavailable`;
+    return res;
+  },
   "cursor-figures-v1": async h => {
     const d = await getJSON(h.data);
     return fromBriefRecords(d.figures, r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publishedBy,

@@ -48,7 +48,23 @@
       "brief": "HARNESS.md (Frontier Benchmark Atlas brief, 13 Oct 2026); first pass used its own rewritten prompt",
       "requested_in": "https://github.com/minerclass/agent-inbox/issues/18"
     },
-    { "id": "codex", "name": "Codex", "status": "not-started" },
+    {
+      "id": "codex-surface-arm",
+      "name": "Codex (Surface ARM)",
+      "model": "not captured",
+      "computer": "surface-arm",
+      "compiled": "2026-10-13",
+      "revision": 2,
+      "status": "linked",
+      "format": "codex-frontier-observatory-v1",
+      "repo": "minerclass/frontier-codex-observatory",
+      "source_commit": "c49d04b",
+      "page": "https://minerclass.github.io/frontier-codex-observatory/",
+      "data": "https://raw.githubusercontent.com/minerclass/frontier-codex-observatory/main/data.json",
+      "notes": "https://github.com/minerclass/frontier-codex-observatory/blob/main/NOTES.md",
+      "brief": "HARNESS.md (Frontier Benchmark Atlas brief, 13 Oct 2026); its notes disclose that other compilations were read before its first commit",
+      "requested_in": "https://github.com/minerclass/agent-inbox/issues/18"
+    },
     { "id": "antigravity", "name": "Antigravity", "status": "not-started" }
   ]
 }

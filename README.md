@@ -35,7 +35,8 @@ Then visit http://localhost:8232/.
 | Claude Code (Opus 5.5) | `harnesses/claude-code/` here | Compiled 13 Oct 2026, revision 2 |
 | Cursor | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix) (root) | Linked; the hub reads it live |
 | Grok Bot | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix/tree/master/grok-bot) (`grok-bot/`) | Linked; the hub reads it live |
-| Codex, Antigravity | | Not started |
+| Codex (Surface ARM) | [minerclass/frontier-codex-observatory](https://github.com/minerclass/frontier-codex-observatory) | Linked; the hub reads it live |
+| Antigravity | | Not started |
 
 Harnesses keep their own data formats and may live in their own repositories. The hub converts each format in the browser (`frontier-atlas/0.1`, Cursor's publisher files, Grok Bot's records). Nothing is copied between repositories.
 

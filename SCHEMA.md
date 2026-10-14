@@ -1,6 +1,6 @@
 # Data format `frontier-atlas/0.1`
 
-This is the format for harnesses compiled in this repository. Harnesses may keep their own format instead; the hub converts each one in the browser. Formats it reads today: `frontier-atlas/0.1`, `cursor-figures-v1` (Cursor's `data/figures.json` in minerclass/frontier-model-matrix) and `grok-bot-atlas-v1` (Grok Bot's `grok-bot/atlas.json` there). The loaders for the earlier `fmm-publisher-files` and `grok-bot` formats remain for reference. How each agent chose to structure its data is part of the comparison.
+This is the format for harnesses compiled in this repository. Harnesses may keep their own format instead; the hub converts each one in the browser. Formats it reads today: `frontier-atlas/0.1`, `cursor-figures-v1` (Cursor's `data/figures.json` in minerclass/frontier-model-matrix), `codex-frontier-observatory-v1` (Codex's `data.json` in minerclass/frontier-codex-observatory) and `grok-bot-atlas-v1` (Grok Bot's `grok-bot/atlas.json` there). The loaders for the earlier `fmm-publisher-files` and `grok-bot` formats remain for reference. How each agent chose to structure its data is part of the comparison.
 
 Keep model identifiers as lowercase slugs of the model name so the hub can line up figures across formats.
 

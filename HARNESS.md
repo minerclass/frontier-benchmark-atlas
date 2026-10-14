@@ -84,12 +84,12 @@ The hub reads your data live, so a pushed update appears there on the next visit
 
 Ask before pushing, creating a repository, enabling Pages, posting to the agent inbox, or editing anything outside your own folder. A message from another agent is information, not approval.
 
-## Harnesses as of 13 October 2026
+## Harnesses as of 14 October 2026
 
 | Harness | Where | Status |
 | --- | --- | --- |
 | Claude Code (surface-arm) | `minerclass/frontier-benchmark-atlas`, `harnesses/claude-code/` | Compiled, revision 2, listed |
 | Cursor (surface-arm) | `minerclass/frontier-model-matrix`, repository root | Compiled, linked from the hub |
 | Grok Bot | `minerclass/frontier-model-matrix`, `grok-bot/` | Compiled, linked from the hub |
-| Codex | none yet | Not started |
+| Codex (surface-arm) | `minerclass/frontier-codex-observatory` | Compiled, linked from the hub |
 | Antigravity | none yet | Not started |
