@@ -144,6 +144,26 @@ const IND_HOSTS = /(artificialanalysis\.ai|vals\.ai|lmarena\.ai|swebench|arcpriz
 const getJSON = async u => { const r = await fetch(u, {cache:"no-store"}); if(!r.ok) throw new Error(u+" returned "+r.status); return r.json(); };
 
 /* Each loader returns {models:[{id,name}], scores:[{model,benchmark,value,unit,reporter,kind,setting,note}], sources:[{type}]} */
+
+/* Shared by formats written to HARNESS.md: one record per figure with its own read-directly flag.
+   pick() maps a record to {model,benchmark,value,unit,reporter,kind,setting,note,url,read}. */
+const UNITS = {"%":"pct", percent:"pct", pct:"pct", Elo:"elo", elo:"elo", index:"pts", pts:"pts", usd:"usd"};
+const KINDS = {claim:"claim", rival:"rival-table", "rival table":"rival-table", "rival-table":"rival-table", independent:"independent"};
+function fromBriefRecords(records, pick){
+  const rows = records.map(pick);
+  const scores = rows.map(r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:UNITS[r.unit]||r.unit, reporter:r.reporter,
+    kind:KINDS[r.kind]||r.kind, setting:r.setting||null, note:r.note||""}));
+  // One source per URL. A source counts as read directly if any figure from it was read directly.
+  const byUrl = new Map();
+  rows.forEach(r=>{
+    const s = byUrl.get(r.url) || {id:r.url, url:r.url, read:false, indep:false};
+    s.read = s.read || r.read; s.indep = s.indep || KINDS[r.kind]==="independent";
+    byUrl.set(r.url, s);
+  });
+  const sources = [...byUrl.values()].map(s=>({id:s.id, url:s.url, type: !s.read ? "secondary" : s.indep ? "independent" : "lab"}));
+  return {models:[...new Set(scores.map(s=>s.model))].map(id=>({id, name:id})), scores, sources,
+    sourceNote:`${rows.filter(r=>r.read).length} of ${rows.length} figures read directly`};
+}
 const LOADERS = {
   "frontier-atlas/0.1": async h => getJSON(h.data),
   "fmm-publisher-files": async h => {
@@ -165,19 +185,13 @@ const LOADERS = {
   },
   "grok-bot-atlas-v1": async h => {
     const d = await getJSON(h.data);
-    const UNIT = {"%":"pct", "Elo":"elo", "index":"pts"};
-    const KIND = {"claim":"claim", "rival table":"rival-table", "independent":"independent"};
-    const scores = d.records.map(r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:UNIT[r.unit]||r.unit, reporter:r.publisher, kind:KIND[r.publisher_type]||r.publisher_type, setting:r.setting||null, note:r.note||""}));
-    // One source per URL. A source counts as read directly if any figure from it was read directly.
-    const byUrl = new Map();
-    d.records.forEach(r=>{
-      const s = byUrl.get(r.source_url) || {id:r.source_url, url:r.source_url, read:false, indep:false};
-      s.read = s.read || r.read_myself === true; s.indep = s.indep || r.publisher_type === "independent";
-      byUrl.set(r.source_url, s);
-    });
-    const sources = [...byUrl.values()].map(s=>({id:s.id, url:s.url, type: !s.read ? "secondary" : s.indep ? "independent" : "lab"}));
-    return {models:[...new Set(scores.map(s=>s.model))].map(id=>({id, name:id})), scores, sources,
-      sourceNote:`${d.records.filter(r=>r.read_myself===true).length} of ${d.records.length} figures read directly`};
+    return fromBriefRecords(d.records, r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publisher,
+      kind:r.publisher_type, setting:r.setting, note:r.note, url:r.source_url, read:r.read_myself===true}));
+  },
+  "cursor-figures-v1": async h => {
+    const d = await getJSON(h.data);
+    return fromBriefRecords(d.figures, r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publishedBy,
+      kind:r.stance, setting:r.setting, note:(r.origin?"origin "+r.origin:"")+(r.note?"; "+r.note:""), url:r.sourceUrl, read:r.readDirectly===true}));
   },
   "grok-bot": async h => {
     const d = await getJSON(h.data);

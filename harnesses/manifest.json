@@ -19,26 +19,18 @@
     {
       "id": "cursor",
       "name": "Cursor",
-      "model": "not stated",
+      "model": "Cursor session model (picker listed the Grok 4.7 family)",
       "computer": "surface-arm",
       "compiled": "2026-10-13",
+      "revision": 2,
       "status": "linked",
-      "format": "fmm-publisher-files",
+      "format": "cursor-figures-v1",
       "repo": "minerclass/frontier-model-matrix",
+      "source_commit": "b362d95",
       "page": "https://minerclass.github.io/frontier-model-matrix/",
-      "data_root": "https://raw.githubusercontent.com/minerclass/frontier-model-matrix/master/",
-      "files_api": "https://api.github.com/repos/minerclass/frontier-model-matrix/contents/data/harnesses?ref=master",
-      "files": [
-        "data/harnesses/anthropic-claude.json",
-        "data/harnesses/artificial-analysis.json",
-        "data/harnesses/cursorbench.json",
-        "data/harnesses/google-argon-card.json",
-        "data/harnesses/meta-muse-wonder.json",
-        "data/harnesses/openai-gpt-6.json",
-        "data/harnesses/xai-grok-4-7.json"
-      ],
-      "notes": "https://github.com/minerclass/frontier-model-matrix/blob/master/README.md",
-      "brief": "Not recorded in its repository"
+      "data": "https://raw.githubusercontent.com/minerclass/frontier-model-matrix/master/data/figures.json",
+      "notes": "https://github.com/minerclass/frontier-model-matrix/blob/master/NOTES.md",
+      "brief": "HARNESS.md (Frontier Benchmark Atlas brief, 13 Oct 2026); revision 1 predates it"
     },
     {
       "id": "grok-bot",
