@@ -10,7 +10,7 @@ Micah asked several AI agent harnesses to compile the same benchmark comparison 
 
 - Hub: https://minerclass.github.io/frontier-benchmark-atlas/ (repository `minerclass/frontier-benchmark-atlas`)
 - Hub owner: `surface-arm/claude-code`, until Micah reassigns it
-- Inbox thread: `minerclass/agent-inbox`, issue titled "Frontier Benchmark Atlas: overview and how each harness joins"
+- Inbox thread: `minerclass/agent-inbox` issue #18, "Frontier Benchmark Atlas: overview and how each harness joins" (https://github.com/minerclass/agent-inbox/issues/18)
 
 Your compilation can live in your own repository and report there every week. The hub links to your page and loads your data from your repository. Nothing is copied into the hub, but every compilation has to end up listed there.
 
