@@ -42,16 +42,19 @@
     },
     {
       "id": "grok-bot",
-      "name": "Grok Bot",
-      "model": "not stated",
+      "name": "Grok Bot (Research Bot)",
+      "model": "Grok Bot",
+      "computer": "cloud",
       "compiled": "2026-10-13",
       "status": "linked",
-      "format": "grok-bot",
+      "format": "grok-bot-atlas-v1",
       "repo": "minerclass/frontier-model-matrix",
+      "source_commit": "c3067a1",
       "page": "https://minerclass.github.io/frontier-model-matrix/grok-bot/",
-      "data": "https://raw.githubusercontent.com/minerclass/frontier-model-matrix/master/grok-bot/data.json",
-      "notes": "https://github.com/minerclass/frontier-model-matrix/tree/master/grok-bot",
-      "brief": "Its own rewritten prompt: grok-bot/PROMPT.md in minerclass/frontier-model-matrix"
+      "data": "https://raw.githubusercontent.com/minerclass/frontier-model-matrix/master/grok-bot/atlas.json",
+      "notes": "https://github.com/minerclass/frontier-model-matrix/blob/master/grok-bot/NOTES.md",
+      "brief": "HARNESS.md (Frontier Benchmark Atlas brief, 13 Oct 2026); first pass used its own rewritten prompt",
+      "requested_in": "https://github.com/minerclass/agent-inbox/issues/18"
     },
     { "id": "codex", "name": "Codex", "status": "not-started" },
     { "id": "antigravity", "name": "Antigravity", "status": "not-started" }

@@ -163,6 +163,22 @@ const LOADERS = {
     return {models:Object.entries(models).map(([id,m])=>({id,name:m.name})), scores,
       sources:pubs.map(p=>({id:p.id, title:p.title, url:p.url, type: ind(p.publisher)?"independent":"lab"}))};
   },
+  "grok-bot-atlas-v1": async h => {
+    const d = await getJSON(h.data);
+    const UNIT = {"%":"pct", "Elo":"elo", "index":"pts"};
+    const KIND = {"claim":"claim", "rival table":"rival-table", "independent":"independent"};
+    const scores = d.records.map(r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:UNIT[r.unit]||r.unit, reporter:r.publisher, kind:KIND[r.publisher_type]||r.publisher_type, setting:r.setting||null, note:r.note||""}));
+    // One source per URL. A source counts as read directly if any figure from it was read directly.
+    const byUrl = new Map();
+    d.records.forEach(r=>{
+      const s = byUrl.get(r.source_url) || {id:r.source_url, url:r.source_url, read:false, indep:false};
+      s.read = s.read || r.read_myself === true; s.indep = s.indep || r.publisher_type === "independent";
+      byUrl.set(r.source_url, s);
+    });
+    const sources = [...byUrl.values()].map(s=>({id:s.id, url:s.url, type: !s.read ? "secondary" : s.indep ? "independent" : "lab"}));
+    return {models:[...new Set(scores.map(s=>s.model))].map(id=>({id, name:id})), scores, sources,
+      sourceNote:`${d.records.filter(r=>r.read_myself===true).length} of ${d.records.length} figures read directly`};
+  },
   "grok-bot": async h => {
     const d = await getJSON(h.data);
     const ids = Object.fromEntries(d.models.map(m=>[m.id, slug(m.name)]));
@@ -213,7 +229,7 @@ function renderCards(list, loaded){
       <div class="stack" role="img" aria-label="Sources: ${st.lab} lab pages, ${st.independent} independent, ${st.secondary} second-hand">
         <i style="width:${st.lab/n*100}%; background:var(--s-lab)"></i><i style="width:${st.independent/n*100}%; background:var(--s-indep)"></i><i style="width:${st.secondary/n*100}%; background:var(--s-sec)"></i>
       </div>
-      <p class="small">${Object.entries(kinds).map(([k,v])=>`${v} ${KINDLABEL[k]||k}`).join(" · ")}${d.sourceTypesInferred?" · source types inferred from URL":""}</p>
+      <p class="small">${Object.entries(kinds).map(([k,v])=>`${v} ${KINDLABEL[k]||k}`).join(" · ")}${d.sourceTypesInferred?" · source types inferred from URL":""}${d.sourceNote?" · "+esc(d.sourceNote):""}</p>
       <p class="small">Brief: ${esc(h.brief||"not recorded")}</p>
       <div class="links"><a href="${esc(h.page)}">Open page</a>${h.notes?`<a href="${esc(h.notes)}">How it was compiled</a>`:""}${dataLink?`<a href="${esc(dataLink)}">Data</a>`:""}</div>
     </article>`;
