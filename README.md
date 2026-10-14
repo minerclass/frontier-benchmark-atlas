@@ -29,10 +29,13 @@ Then visit http://localhost:8232/.
 
 ## Status
 
-| Harness | Status |
-| --- | --- |
-| Claude Code (Opus 5.5) | Compiled 13 Oct 2026 |
-| frontier-model-matrix | In progress locally; moves here when finished |
-| Codex, Cursor, Antigravity, Grok Bot | Not started |
+| Harness | Where | Status |
+| --- | --- | --- |
+| Claude Code (Opus 5.5) | `harnesses/claude-code/` here | Compiled 13 Oct 2026, revision 2 |
+| Cursor | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix) (root) | Linked; the hub reads it live |
+| Grok Bot | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix/tree/master/grok-bot) (`grok-bot/`) | Linked; the hub reads it live |
+| Codex, Antigravity | | Not started |
+
+Harnesses keep their own data formats and may live in their own repositories. The hub converts each format in the browser (`frontier-atlas/0.1`, Cursor's publisher files, Grok Bot's records). Nothing is copied between repositories.
 
 Figures belong to their publishers. Numbers reflect what was published by the compile date and will change as evaluators rerun models.

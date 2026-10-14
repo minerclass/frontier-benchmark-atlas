@@ -1,6 +1,8 @@
 # Data format `frontier-atlas/0.1`
 
-Each harness writes one `data.json`. The hub reads these files to compare harnesses, so keep identifiers consistent.
+This is the format for harnesses compiled in this repository. Harnesses may keep their own format instead; the hub converts each one in the browser. Formats it reads today: `frontier-atlas/0.1`, `fmm-publisher-files` (Cursor's record in minerclass/frontier-model-matrix) and `grok-bot` (Grok Bot's `grok-bot/data.json` there). How each agent chose to structure its data is part of the comparison.
+
+Keep model identifiers as lowercase slugs of the model name so the hub can line up figures across formats.
 
 ```json
 {
@@ -18,7 +20,7 @@ Each harness writes one `data.json`. The hub reads these files to compare harnes
 | --- | --- |
 | `models[].id` | Lowercase API-style slug: `claude-opus-5-5`, `gpt-6-astra`, `gpt-6-1-sol`, `gemini-4-argon`, `grok-4-7`, `muse-wonder-full`. |
 | `scores[].benchmark` | The name the publisher printed, with its version: `Terminal-Bench 4.0`, `OSWorld 2.1 (partial)`, `AA Intelligence Index v4.3`. |
-| `scores[].unit` | `pct`, `elo` or `pts`. |
+| `scores[].unit` | `pct`, `elo`, `pts` or `usd`. |
 | `scores[].kind` | `claim` (the model's own lab), `rival-table` (another lab's table), `independent` (an evaluator such as Artificial Analysis) or `variant-map` (a figure placed to show benchmark variants). |
 | `scores[].setting` | Effort level, harness or tool setting when the source states one; otherwise `null`. |
 | `scores[].source` | An `id` from `sources`. |

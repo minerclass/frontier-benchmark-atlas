@@ -415,7 +415,7 @@
       "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
       "model": "gpt-6-astra",
       "benchmark": "Terminal-Bench 4.0",
-      "value": 57.7,
+      "value": 57.9,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
@@ -3865,70 +3865,114 @@
       "source": null
     },
     {
-      "setting": null,
-      "note": "Anthropic, Opus 5.5 page",
+      "setting": "Max",
+      "note": "Max effort. Anthropic's table prints the same figure",
       "model": "claude-opus-5-5",
       "benchmark": "CursorBench 4.0",
       "value": 57.8,
       "unit": "pct",
-      "reporter": "Anthropic",
-      "kind": "claim",
-      "source": "anthOpus"
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
     },
     {
-      "setting": null,
-      "note": "Anthropic, Sonnet 5.5 page",
+      "setting": "Max",
+      "note": "Max effort. Anthropic's table prints the same figure",
       "model": "claude-sonnet-5-5",
       "benchmark": "CursorBench 4.0",
       "value": 55.5,
       "unit": "pct",
-      "reporter": "Anthropic",
-      "kind": "claim",
-      "source": "anthSonnet"
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
     },
     {
-      "setting": null,
-      "note": "Anthropic and SpaceXAI tables agree (Max)",
+      "setting": "High",
+      "note": "High effort",
+      "model": "gemini-4-argon",
+      "benchmark": "CursorBench 4.0",
+      "value": 52.9,
+      "unit": "pct",
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
+    },
+    {
+      "setting": "Max",
+      "note": "Max effort. Anthropic and SpaceXAI tables print the same figure",
       "model": "claude-fable-5-1",
       "benchmark": "CursorBench 4.0",
       "value": 51.8,
       "unit": "pct",
-      "reporter": "Anthropic and SpaceXAI tables agree (Max)",
-      "kind": "claim",
-      "source": "anthOpus"
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
     },
     {
-      "setting": null,
-      "note": "Cursor page, xHigh",
+      "setting": "Max",
+      "note": "Max effort",
+      "model": "claude-haiku-5-5",
+      "benchmark": "CursorBench 4.0",
+      "value": 48.4,
+      "unit": "pct",
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
+    },
+    {
+      "setting": "Extra High",
+      "note": "Extra High effort. SpaceXAI's table prints the same figure",
       "model": "grok-4-7",
       "benchmark": "CursorBench 4.0",
       "value": 46.3,
       "unit": "pct",
-      "reporter": "Cursor page",
-      "kind": "claim",
-      "source": "cursor"
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
     },
     {
-      "setting": null,
-      "note": "Anthropic and SpaceXAI tables agree",
+      "setting": "Max",
+      "note": "Max effort",
       "model": "gpt-5-6-sol",
       "benchmark": "CursorBench 4.0",
       "value": 41.7,
       "unit": "pct",
-      "reporter": "Anthropic and SpaceXAI tables agree",
-      "kind": "rival-table",
-      "source": "anthOpus"
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
+    },
+    {
+      "setting": "Max",
+      "note": "Max effort",
+      "model": "muse-spark-1-3",
+      "benchmark": "CursorBench 4.0",
+      "value": 41.6,
+      "unit": "pct",
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
+    },
+    {
+      "setting": "Extra High",
+      "note": "Extra High effort. SpaceXAI's table lists 40.4 at High",
+      "model": "grok-4-6",
+      "benchmark": "CursorBench 4.0",
+      "value": 41.4,
+      "unit": "pct",
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
     },
     {
       "setting": null,
-      "note": "Cursor page, High",
-      "model": "grok-4-6",
+      "note": "No effort setting listed",
+      "model": "cursor-composer-2-5",
       "benchmark": "CursorBench 4.0",
-      "value": 40.4,
+      "value": 27.7,
       "unit": "pct",
-      "reporter": "Cursor page",
-      "kind": "claim",
-      "source": "cursor"
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
     },
     {
       "setting": "Muse Code + Wonder Full",
@@ -4027,6 +4071,13 @@
       "title": "Cursor · Grok 4.7 page",
       "url": "https://cursor.com/grok",
       "type": "lab",
+      "retrieved_directly": true
+    },
+    {
+      "id": "cursorBoard",
+      "title": "Cursor · CursorBench 4.0 public board",
+      "url": "https://cursor.com/cursorbench",
+      "type": "independent",
       "retrieved_directly": true
     },
     {

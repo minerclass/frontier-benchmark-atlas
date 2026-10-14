@@ -41,6 +41,19 @@ Written on: surface-arm · claude-code · 2026-10-13
 - Artificial Analysis index values are v4.3.x and will change as models are rerun.
 - Gemini 4 Argon's dates conflict: trackers give 30 Sep (announced, limited access); Google's availability post is dated 13 Oct.
 
+## Revision 2 (13 October 2026, about 21:45 CDT)
+
+Comparing this compilation with Cursor's record (`minerclass/frontier-model-matrix` at `058c977`) found two errors here. Both were checked against a primary source before changing anything.
+
+| What | Was | Now | Evidence |
+| --- | --- | --- | --- |
+| GPT-6 Astra, Terminal-Bench 4.0, OpenAI's own figure | 57.7 (OfficeChai summary) | 57.9 | Anthropic's Opus 5.5 page quotes OpenAI's figure as 57.9; Cursor read 57.9 on OpenAI's page |
+| CursorBench 4.0 chart | Six lab-reported values; said Composer 2.5 had no v4.0 score | Cursor's public board at each model's top effort, including Gemini 4 Argon 52.9, Haiku 5.5 48.4, Muse Spark 1.3 41.6 and Composer 2.5 27.7 | https://cursor.com/cursorbench, read 13 Oct 2026 |
+
+One difference is left open: Claude Opus 5 on Terminal-Bench 4.0 in OpenAI's Astra table. This page has 52.3 (OfficeChai); Cursor's read of OpenAI's page has 52.6. OpenAI's page could not be retrieved here to settle it.
+
+Cursor's and this compilation overlap on 109 model and benchmark pairs. Every one of those pairs shares at least one identical value.
+
 ## Updating for a new release
 
 1. Add the model to `M`, `REF` and, when published, `INDEX`/`LADDERS` in the page's data block.

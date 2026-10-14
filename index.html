@@ -105,7 +105,7 @@ footer{font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
   <section class="sheet" aria-labelledby="h-compare">
     <span class="eyebrow">Cross-check</span>
     <h2 id="h-compare">Compare compilations</h2>
-    <p class="sub">Pick a benchmark to see every figure each harness recorded for it. Cells outlined in amber differ between harnesses for the same model, publisher and setting.</p>
+    <p class="sub">Pick a benchmark to see every figure each harness recorded for it, grouped by model and by who published the number. Cells outlined in amber have no value in common across harnesses. Linked harnesses load live from their own repositories, so a change there shows up here on the next visit.</p>
     <div class="controls">
       <label for="bench">Benchmark</label>
       <select id="bench"></select>
@@ -133,22 +133,62 @@ footer{font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
 "use strict";
 const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const norm = s => String(s==null?"":s).toLowerCase().replace(/[^a-z0-9]+/g,"");
-const fmt = (v,u) => u==="elo" ? Math.round(v).toLocaleString("en-US") : (Number.isInteger(v)?String(v):v.toFixed(1));
-const STATUS = {compiled:"compiled", incoming:"incoming", "not-started":"not started"};
+const slug = s => String(s==null?"":s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const REPORTER = {googledeepmind:"google", google:"google", xai:"xai", spacexai:"xai", spacexaixaicursor:"xai", artificialanalysis:"artificialanalysis"};
+const rep = s => REPORTER[norm(s)] || norm(s);
+const fmt = (v,u) => u==="elo" ? Math.round(v).toLocaleString("en-US") : u==="usd" ? "$"+v.toFixed(2) : (Number.isInteger(v)?String(v):v.toFixed(1));
+const STATUS = {compiled:"compiled here", linked:"linked repo", incoming:"incoming", "not-started":"not started"};
 const KINDLABEL = {claim:"own claim","rival-table":"rival table",independent:"independent","variant-map":"variant"};
+const LAB_HOSTS = /(anthropic\.com|openai\.com|blog\.google|deepmind\.google|x\.ai|cursor\.com|meta\.ai|ai\.meta\.com|about\.fb\.com)/;
+const IND_HOSTS = /(artificialanalysis\.ai|vals\.ai|lmarena\.ai|swebench|arcprize|epoch\.ai|scale\.com|tbench|terminal-bench)/;
+const getJSON = async u => { const r = await fetch(u, {cache:"no-store"}); if(!r.ok) throw new Error(u+" returned "+r.status); return r.json(); };
+
+/* Each loader returns {models:[{id,name}], scores:[{model,benchmark,value,unit,reporter,kind,setting,note}], sources:[{type}]} */
+const LOADERS = {
+  "frontier-atlas/0.1": async h => getJSON(h.data),
+  "fmm-publisher-files": async h => {
+    let files = h.files || [];
+    try { const list = await getJSON(h.files_api); const f = list.filter(x=>x.name.endsWith(".json")).map(x=>x.path); if(f.length) files = f; } catch(e){}
+    const models = (await getJSON(h.data_root+"data/models.json")).models;
+    const pubs = await Promise.all(files.map(f=>getJSON(h.data_root+f)));
+    const UNIT = {percent:"pct", elo:"elo", index:"pts", usd:"usd"};
+    const ind = p => p==="Artificial Analysis" || p==="Cursor";
+    const scores = [];
+    pubs.forEach(p=>p.benchmarks.forEach(b=>b.rows.forEach(r=>{
+      const lab = (models[r.modelId]||{}).lab || "";
+      const own = rep(lab).startsWith(rep(p.publisher)) || rep(p.publisher).startsWith(rep(lab));
+      const kind = ind(p.publisher) ? "independent" : own ? "claim" : "rival-table";
+      scores.push({model:r.modelId, benchmark:b.name, value:r.score, unit:UNIT[b.unit]||b.unit, reporter:p.publisher, kind, setting:r.effort||null, note:"origin "+r.origin+(r.note?"; "+r.note:"")});
+    })));
+    return {models:Object.entries(models).map(([id,m])=>({id,name:m.name})), scores,
+      sources:pubs.map(p=>({id:p.id, title:p.title, url:p.url, type: ind(p.publisher)?"independent":"lab"}))};
+  },
+  "grok-bot": async h => {
+    const d = await getJSON(h.data);
+    const ids = Object.fromEntries(d.models.map(m=>[m.id, slug(m.name)]));
+    const UNIT = {"%":"pct", "Elo":"elo", "index":"pts"};
+    const KIND = {claim:"claim", "vendor-table":"rival-table", independent:"independent"};
+    const scores = d.records.map(r=>({model:ids[r.model]||slug(r.model), benchmark:r.benchmark, value:r.value, unit:UNIT[r.unit]||r.unit, reporter:r.reporter, kind:KIND[r.type]||r.type, setting:r.setting||null, note:r.note||""}));
+    const sources = Object.entries(d.sources||{}).map(([id,s])=>({id, title:s.title, url:s.url, type: LAB_HOSTS.test(s.url||"")?"lab":IND_HOSTS.test(s.url||"")?"independent":"secondary"}));
+    return {models:d.models.map(m=>({id:ids[m.id], name:m.name})), scores, sources, sourceTypesInferred:true};
+  }
+};
 
 async function load(){
   let manifest;
-  try { manifest = await (await fetch("harnesses/manifest.json")).json(); }
+  try { manifest = await getJSON("harnesses/manifest.json"); }
   catch(e){
     document.getElementById("cards").innerHTML = `<p class="empty">The harness list could not load. If you opened this file directly, serve the folder instead: <code>python -m http.server 8232</code>.</p>`;
     return;
   }
   const loaded = [];
-  for(const h of manifest.harnesses){
-    if(!h.data) continue;
-    try { const d = await (await fetch(h.data)).json(); loaded.push({h, d}); } catch(e){ h.error = true; }
-  }
+  await Promise.all(manifest.harnesses.map(async h=>{
+    const L = LOADERS[h.format];
+    if(!L || !(h.data || h.data_root)) return;
+    try { loaded.push({h, d: await L(h)}); } catch(e){ h.error = String(e.message||e); }
+  }));
+  const order = manifest.harnesses.map(h=>h.id);
+  loaded.sort((a,b)=>order.indexOf(a.h.id)-order.indexOf(b.h.id));
   renderCards(manifest.harnesses, loaded);
   renderCompare(loaded);
 }
@@ -158,22 +198,24 @@ function renderCards(list, loaded){
   document.getElementById("cards").innerHTML = list.map(h=>{
     const d = byId[h.id];
     if(!d){
-      return `<article class="card off"><div class="top"><h3>${esc(h.name)}</h3><span class="pill">${esc(h.error?"data unreadable":STATUS[h.status]||h.status)}</span></div>${h.note?`<p class="small">${esc(h.note)}</p>`:""}</article>`;
+      return `<article class="card off"><div class="top"><h3>${esc(h.name)}</h3><span class="pill">${esc(h.error?"data unreadable":STATUS[h.status]||h.status)}</span></div>${h.note?`<p class="small">${esc(h.note)}</p>`:""}${h.error?`<p class="small">${esc(h.error)}</p>`:""}</article>`;
     }
     const st = {lab:0, independent:0, secondary:0};
     d.sources.forEach(s=>{ if(s.type in st) st[s.type]++; });
     const n = d.sources.length || 1;
     const kinds = {};
     d.scores.forEach(s=>{ kinds[s.kind]=(kinds[s.kind]||0)+1; });
+    const dataLink = h.data || (h.repo ? `https://github.com/${h.repo}/tree/master/data` : "");
     return `<article class="card">
       <div class="top"><h3>${esc(h.name)}</h3><span class="pill on">${esc(STATUS[h.status]||h.status)}</span></div>
-      <div class="meta"><span>model · ${esc(h.model||d.harness.model)}</span><span>computer · ${esc(h.computer||d.harness.computer)}</span><span>compiled · ${esc(h.compiled||d.harness.compiled)}</span></div>
+      <div class="meta"><span>model · ${esc(h.model||"not stated")}</span>${h.computer?`<span>computer · ${esc(h.computer)}</span>`:""}<span>compiled · ${esc(h.compiled||"")}${h.revision?` · revision ${h.revision}`:""}</span>${h.repo?`<span>repo · ${esc(h.repo)}</span>`:""}<span>format · ${esc(h.format)}</span></div>
       <div class="nums"><div><b>${d.models.length}</b><span>models</span></div><div><b>${d.scores.length}</b><span>figures</span></div><div><b>${d.sources.length}</b><span>sources</span></div></div>
       <div class="stack" role="img" aria-label="Sources: ${st.lab} lab pages, ${st.independent} independent, ${st.secondary} second-hand">
         <i style="width:${st.lab/n*100}%; background:var(--s-lab)"></i><i style="width:${st.independent/n*100}%; background:var(--s-indep)"></i><i style="width:${st.secondary/n*100}%; background:var(--s-sec)"></i>
       </div>
-      <p class="small">${Object.entries(kinds).map(([k,v])=>`${v} ${KINDLABEL[k]||k}`).join(" · ")}</p>
-      <div class="links"><a href="${esc(h.page)}">Open page</a>${h.notes?`<a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/${esc(h.notes)}">How it was compiled</a>`:""}<a href="${esc(h.data)}">data.json</a></div>
+      <p class="small">${Object.entries(kinds).map(([k,v])=>`${v} ${KINDLABEL[k]||k}`).join(" · ")}${d.sourceTypesInferred?" · source types inferred from URL":""}</p>
+      <p class="small">Brief: ${esc(h.brief||"not recorded")}</p>
+      <div class="links"><a href="${esc(h.page)}">Open page</a>${h.notes?`<a href="${esc(h.notes)}">How it was compiled</a>`:""}${dataLink?`<a href="${esc(dataLink)}">Data</a>`:""}</div>
     </article>`;
   }).join("");
 }
@@ -181,45 +223,40 @@ function renderCards(list, loaded){
 function renderCompare(loaded){
   const sel = document.getElementById("bench"), out = document.getElementById("compare"), agree = document.getElementById("agree");
   if(!loaded.length){ out.innerHTML = `<p class="empty">No harness data yet.</p>`; return; }
-  const benches = new Map();
-  loaded.forEach(({d})=>d.scores.forEach(s=>{ const k=norm(s.benchmark); if(!benches.has(k)) benches.set(k, s.benchmark); }));
-  const counts = {};
-  loaded.forEach(({d})=>d.scores.forEach(s=>{ const k=norm(s.benchmark); counts[k]=(counts[k]||0)+1; }));
-  const keys = [...benches.keys()].sort((a,b)=>counts[b]-counts[a]);
-  sel.innerHTML = keys.map(k=>`<option value="${esc(k)}">${esc(benches.get(k))} (${counts[k]})</option>`).join("");
-  const start = keys.find(k=>k===norm("Terminal-Bench 4.0")) || keys[0];
-  sel.value = start;
+  const label = new Map(), harnessesFor = {};
+  loaded.forEach(({h,d})=>d.scores.forEach(s=>{ const k=norm(s.benchmark); if(!label.has(k)) label.set(k, s.benchmark); (harnessesFor[k]=harnessesFor[k]||new Set()).add(h.id); }));
+  const keys = [...label.keys()].sort((a,b)=>harnessesFor[b].size-harnessesFor[a].size || label.get(a).localeCompare(label.get(b)));
+  sel.innerHTML = keys.map(k=>`<option value="${esc(k)}">${esc(label.get(k))} · ${harnessesFor[k].size} of ${loaded.length} harnesses</option>`).join("");
+  sel.value = keys.find(k=>k===norm("Terminal-Bench 4.0")) || keys[0];
   const draw = () => {
-    const bk = sel.value;
-    const rows = new Map();
-    const names = {};
+    const bk = sel.value, rows = new Map(), names = {};
     loaded.forEach(({h,d})=>{
       d.models.forEach(m=>{ names[m.id]=names[m.id]||m.name; });
       d.scores.filter(s=>norm(s.benchmark)===bk).forEach(s=>{
-        const rk = [s.model, norm(s.reporter), norm(s.setting)].join("|");
-        if(!rows.has(rk)) rows.set(rk, {model:s.model, reporter:s.reporter, setting:s.setting, kind:s.kind, unit:s.unit, vals:{}});
-        const r = rows.get(rk);
-        (r.vals[h.id] = r.vals[h.id] || []).push(s);
+        const rk = s.model+"|"+rep(s.reporter);
+        if(!rows.has(rk)) rows.set(rk, {model:s.model, reporter:s.reporter, kind:s.kind, vals:{}});
+        (rows.get(rk).vals[h.id] = rows.get(rk).vals[h.id] || []).push(s);
       });
     });
-    const list = [...rows.values()].sort((a,b)=>String(names[a.model]).localeCompare(String(names[b.model])) || String(a.reporter).localeCompare(String(b.reporter)));
+    const list = [...rows.values()].sort((a,b)=>String(names[a.model]||a.model).localeCompare(String(names[b.model]||b.model)) || String(a.reporter).localeCompare(String(b.reporter)));
     let shared = 0, differ = 0;
     const body = list.map(r=>{
-      const vs = Object.values(r.vals).map(a=>a[0].value);
-      const isDiff = vs.length>1 && (Math.max(...vs)-Math.min(...vs) > 0.05);
-      if(vs.length>1){ shared++; if(isDiff) differ++; }
+      // A whole number within 0.5 counts as the same figure: some sources round (59.6 printed as 60).
+      const close = (a,b) => Math.abs(a-b) < 0.05 || ((Number.isInteger(a)||Number.isInteger(b)) && Math.abs(a-b) <= 0.5);
+      const sets = Object.values(r.vals).map(a=>a.map(s=>s.value));
+      const common = sets.length>1 && sets[0].some(v=>sets.every(s=>s.some(w=>close(v,w))));
+      const isDiff = sets.length>1 && !common;
+      if(sets.length>1){ shared++; if(isDiff) differ++; }
       const cells = loaded.map(({h})=>{
         const a = r.vals[h.id];
         if(!a) return `<td class="v" style="color:var(--muted)">—</td>`;
-        const s = a[0];
-        return `<td class="v ${isDiff?"diff":""}">${fmt(s.value,s.unit)}${s.unit==="pct"?"%":""}<small>${esc(s.note||"").slice(0,60)}</small></td>`;
+        const shown = a.slice().sort((x,y)=>y.value-x.value).slice(0,4);
+        return `<td class="v ${isDiff?"diff":""}">${shown.map(s=>`${fmt(s.value,s.unit)}${s.unit==="pct"?"%":""}<small>${esc(s.setting||"")}</small>`).join("")}${a.length>4?`<small>+${a.length-4} more</small>`:""}</td>`;
       }).join("");
-      return `<tr><td>${esc(names[r.model]||r.model)}</td><td class="l">${esc(r.reporter||"")} <span class="tag">${esc(KINDLABEL[r.kind]||r.kind)}</span></td><td class="l">${esc(r.setting||"")}</td>${cells}</tr>`;
+      return `<tr><td>${esc(names[r.model]||r.model)}</td><td class="l">${esc(r.reporter||"")} <span class="tag">${esc(KINDLABEL[r.kind]||r.kind)}</span></td>${cells}</tr>`;
     }).join("");
-    out.innerHTML = `<table><thead><tr><th>Model</th><th class="l">Published by</th><th class="l">Setting</th>${loaded.map(({h})=>`<th>${esc(h.name)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table>`;
-    agree.textContent = loaded.length < 2
-      ? `${list.length} figures from one harness. Agreement checks start when a second harness adds its data.`
-      : `${shared} figures recorded by more than one harness; ${differ} differ.`;
+    out.innerHTML = `<table><thead><tr><th>Model</th><th class="l">Published by</th>${loaded.map(({h})=>`<th>${esc(h.name)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table>`;
+    agree.textContent = `${shared} figures recorded by more than one harness; ${differ} with no value in common (whole numbers within 0.5 count as rounding).`;
   };
   sel.onchange = draw;
   draw();

@@ -1,6 +1,7 @@
 # Working in this repository
 
-- One folder per harness under `harnesses/`. Edit only your own folder and your own entry in `harnesses/manifest.json`.
+- One folder per harness under `harnesses/`, or a linked repository. Edit only your own folder and your own entry in `harnesses/manifest.json`.
+- A linked harness stays in its own repository in its own format. Its manifest entry gives `format`, `repo`, `page` and the raw data URLs; the hub needs a loader for the format. Do not copy another harness's files into this repository.
 - Compile from [PROMPT.md](PROMPT.md) unchanged so pages stay comparable.
 - Every figure in `data.json` needs a source. Never estimate a missing value.
 - Run `python tools/validate.py` before committing. It checks the data format and prints where harnesses disagree.

@@ -32,7 +32,7 @@ for (const [m,ladder] of Object.entries(LADDERS)) for (const [e,v,c] of ladder)
 add({model:ID.wonderfull, benchmark:"AA Intelligence Index v4.3", value:56, unit:"pts", reporter:"Artificial Analysis", kind:"independent", setting:"max", source:"aaBoard", note:"not priced per token"});
 for (const r of OSW) for (const [variant,[v,n]] of Object.entries(r.c))
   add({model:ID[r.m], benchmark:`OSWorld ${variant}`, value:v, unit:"pct", reporter:n.split(/[,;]/)[0], kind:"variant-map", source:null, note:n});
-for (const d of CURSOR) add({model:ID[d.m], benchmark:"CursorBench 4.0", value:d.v, unit:"pct", reporter:d.n.split(",")[0], kind: d.m.startsWith("grok")||d.m.endsWith("55")||d.m==="fable51"?"claim":"rival-table", source:d.m.startsWith("grok")?"cursor":d.m==="sonnet55"?"anthSonnet":"anthOpus", note:d.n});
+for (const d of CURSOR) add({model:ID[d.m], benchmark:"CursorBench 4.0", value:d.v, unit:"pct", reporter:"Cursor", kind:"independent", setting:d.e||null, source:"cursorBoard", note:d.n});
 for (const d of AGENTS) add({model:ID[d.m], benchmark:"AA Coding Agents Index", value:d.v, unit:"pts", reporter:"Artificial Analysis", kind:"independent", setting:d.l, source:"aaMuse", note:"model plus agent harness"});
 const sources = Object.entries(SRC).map(([id,s])=>({id, title:s.t, url:s.u, type:{lab:"lab",ind:"independent",sec:"secondary"}[s.k], retrieved_directly: !/not retrievable/.test(s.t) && s.k!=="sec" ? true : s.k==="sec" ? "secondary report" : false}));
 const out = {schema:"frontier-atlas/0.1",

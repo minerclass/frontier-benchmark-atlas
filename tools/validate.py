@@ -9,7 +9,7 @@ from collections import defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-UNITS = {"pct", "elo", "pts"}
+UNITS = {"pct", "elo", "pts", "usd"}
 KINDS = {"claim", "rival-table", "independent", "variant-map"}
 SOURCE_TYPES = {"lab", "independent", "secondary"}
 
@@ -49,8 +49,11 @@ def main():
     loaded = {}
     failed = False
     for h in manifest["harnesses"]:
-        if not h.get("data"):
+        if not h.get("format"):
             print(f"- {h['id']}: {h.get('status', 'no data')}")
+            continue
+        if h["format"] != "frontier-atlas/0.1" or not h.get("data") or h["data"].startswith("http"):
+            print(f"- {h['id']}: {h.get('status')} ({h.get('repo')}, {h['format']}); native format, compared in the hub")
             continue
         path = ROOT / h["data"]
         try:

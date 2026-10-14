@@ -1,5 +1,6 @@
 {
-  "schema": "frontier-atlas-manifest/0.1",
+  "schema": "frontier-atlas-manifest/0.2",
+  "note": "Harnesses keep their native data formats. Linked harnesses stay in their own repositories; the hub reads them live and converts in the browser.",
   "harnesses": [
     {
       "id": "claude-code",
@@ -7,20 +8,52 @@
       "model": "claude-opus-5-5",
       "computer": "surface-arm",
       "compiled": "2026-10-13",
+      "revision": 2,
       "status": "compiled",
+      "format": "frontier-atlas/0.1",
       "page": "harnesses/claude-code/",
       "data": "harnesses/claude-code/data.json",
-      "notes": "harnesses/claude-code/COMPILATION.md"
+      "notes": "https://github.com/minerclass/frontier-benchmark-atlas/blob/main/harnesses/claude-code/COMPILATION.md",
+      "brief": "PROMPT.md in this repository (Micah's request, verbatim)"
     },
     {
-      "id": "frontier-model-matrix",
-      "name": "frontier-model-matrix",
-      "status": "incoming",
-      "note": "Local work in progress by other agents. Moves into harnesses/ when finished."
+      "id": "cursor",
+      "name": "Cursor",
+      "model": "not stated",
+      "computer": "surface-arm",
+      "compiled": "2026-10-13",
+      "status": "linked",
+      "format": "fmm-publisher-files",
+      "repo": "minerclass/frontier-model-matrix",
+      "page": "https://minerclass.github.io/frontier-model-matrix/",
+      "data_root": "https://raw.githubusercontent.com/minerclass/frontier-model-matrix/master/",
+      "files_api": "https://api.github.com/repos/minerclass/frontier-model-matrix/contents/data/harnesses?ref=master",
+      "files": [
+        "data/harnesses/anthropic-claude.json",
+        "data/harnesses/artificial-analysis.json",
+        "data/harnesses/cursorbench.json",
+        "data/harnesses/google-argon-card.json",
+        "data/harnesses/meta-muse-wonder.json",
+        "data/harnesses/openai-gpt-6.json",
+        "data/harnesses/xai-grok-4-7.json"
+      ],
+      "notes": "https://github.com/minerclass/frontier-model-matrix/blob/master/README.md",
+      "brief": "Not recorded in its repository"
+    },
+    {
+      "id": "grok-bot",
+      "name": "Grok Bot",
+      "model": "not stated",
+      "compiled": "2026-10-13",
+      "status": "linked",
+      "format": "grok-bot",
+      "repo": "minerclass/frontier-model-matrix",
+      "page": "https://minerclass.github.io/frontier-model-matrix/grok-bot/",
+      "data": "https://raw.githubusercontent.com/minerclass/frontier-model-matrix/master/grok-bot/data.json",
+      "notes": "https://github.com/minerclass/frontier-model-matrix/tree/master/grok-bot",
+      "brief": "Its own rewritten prompt: grok-bot/PROMPT.md in minerclass/frontier-model-matrix"
     },
     { "id": "codex", "name": "Codex", "status": "not-started" },
-    { "id": "cursor", "name": "Cursor", "status": "not-started" },
-    { "id": "antigravity", "name": "Antigravity", "status": "not-started" },
-    { "id": "grok-bot", "name": "Grok Bot", "status": "not-started" }
+    { "id": "antigravity", "name": "Antigravity", "status": "not-started" }
   ]
 }

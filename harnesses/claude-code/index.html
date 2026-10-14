@@ -387,13 +387,13 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
         <h2>Coding agents and Cursor</h2>
         <p class="sub">CursorBench is Cursor's in-house benchmark. Grok 4.7 sits in Cursor's model pool beside Grok 4.6, Grok 4.5 and Cursor's own Composer 2.5. The coding-agents index scores the model and its agent harness together.</p>
       </div>
-      <div class="meta">CursorBench 4.0: vendor-reported<br>Coding Agents Index: independent</div>
+      <div class="meta">CursorBench 4.0: Cursor's public board<br>Coding Agents Index: independent</div>
     </div>
     <div class="two">
       <div class="panel">
-        <h3>CursorBench 4.0, as reported by the labs</h3>
+        <h3>CursorBench 4.0, Cursor's public board</h3>
         <div id="cursorbars"></div>
-        <p class="small">Composer 2.5 (18 May) was reported at 63.2% on CursorBench v3.1 and 56.1% on v3.2. It has no published v4.0 score, so it is not plotted.</p>
+        <p class="small">Each model at its highest listed effort, board read 13 Oct 2026. Cursor's own Composer 2.5 scores 27.7% with no effort setting listed. Its 63.2% launch figure was on the older CursorBench v3.1.</p>
       </div>
       <div class="panel">
         <h3>Coding Agents Index, Artificial Analysis</h3>
@@ -438,11 +438,12 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
       <li>Index scores are Intelligence Index v4.3.x. Launch-day figures under v4.1.x, such as Fable 5.1 at 65.7 and GPT-6 Astra at 61.2, are not comparable with them.</li>
       <li>Gemini 4 Argon: trackers date the announcement and a limited rollout to 30 September. Google's post describing API and app availability is dated 13 October.</li>
       <li>All numbers are as published by 13 October 2026 and will move as evaluators rerun models.</li>
+      <li>Revision 2, 13 October 2026: GPT-6 Astra's own Terminal-Bench 4.0 figure corrected from 57.7 to 57.9, and the CursorBench chart rebuilt from Cursor's public board, which adds Gemini 4 Argon, Claude Haiku 5.5, Muse Spark 1.3 and Composer 2.5. Both errors surfaced when this compilation was compared with Cursor's.</li>
     </ul>
     <div class="srcs" id="srclist"></div>
   </section>
 
-  <footer>Frontier Benchmark Atlas · compiled 13 Oct 2026 · figures belong to their publishers</footer>
+  <footer>Frontier Benchmark Atlas · compiled 13 Oct 2026 · revision 2 · figures belong to their publishers</footer>
 </main>
 
 <div id="tip" hidden></div>
@@ -460,6 +461,7 @@ const SRC = {
   anthFable:{t:"Anthropic · Claude Fable 5.1 and Mythos 5.1", u:"https://www.anthropic.com/claude-fable-and-mythos-5-1", k:"lab"},
   google:{t:"Google · Gemini 4 Argon post", u:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/", k:"lab"},
   cursor:{t:"Cursor · Grok 4.7 page", u:"https://cursor.com/grok", k:"lab"},
+  cursorBoard:{t:"Cursor · CursorBench 4.0 public board", u:"https://cursor.com/cursorbench", k:"ind"},
   oaiSol:{t:"OpenAI · Introducing GPT-6.1 Sol (not retrievable)", u:"https://openai.com/index/introducing-gpt-6-1-sol/", k:"lab"},
   oaiAstra:{t:"OpenAI · GPT-6 Astra (not retrievable)", u:"https://openai.com/index/gpt-6-astra/", k:"lab"},
   aaBoard:{t:"Artificial Analysis · model leaderboard", u:"https://artificialanalysis.ai/leaderboards/models", k:"ind"},
@@ -526,7 +528,7 @@ const TABLES = {
       ["BenchCAD","pct",[95.9,83.3,null,null,null,null],"OpenAI-reported"],
       ["AA Intelligence Index v4.1.1","pts",[61.2,60.9,null,65.7,null,null],"Artificial Analysis (older version)"],
       ["BrowseComp","pct",[91.5,90.4,90.8,null,null,null],"OpenAI-reported"],
-      ["Terminal-Bench 4.0","pct",[57.7,null,52.3,55.8,null,null],"OpenAI-reported"],
+      ["Terminal-Bench 4.0","pct",[57.9,null,52.3,55.8,null,null],"OpenAI-reported"],
       ["DeepSWE v1.1","pct",[74.1,72.7,73.7,67.4,null,73.8],"OpenAI-reported"],
       ["FrontierMath Tier 4 v2","pct",[97.6,null,73.2,87.8,87.8,null],"OpenAI-reported"],
       ["Terminal-Bench Science 0.1","pct",[64.6,null,30.0,52.6,null,null],"OpenAI-reported"],
@@ -652,7 +654,7 @@ const SPEED = {opus55:95,sonnet55:137,haiku55:237,fable51:71,astra:61,sol61:59,l
 const TB4 = [
   {m:"sonnet55", self:{v:70.6,n:"Anthropic, Sonnet 5.5 page"}, rivals:[], aa:{v:63.6,n:"max effort · AA article and tosea.ai"}},
   {m:"opus55", self:{v:66.4,n:"Anthropic, xhigh effort, ±2.6 SE"}, rivals:[{by:"google",v:66.4,n:"Google table, from leaderboard"}], aa:{v:59.6,n:"max effort"}},
-  {m:"astra", self:{v:57.7,n:"OpenAI, high effort (OfficeChai)"}, rivals:[{by:"anthropic",v:57.9,n:"Anthropic table, 'as reported by OpenAI'"},{by:"google",v:58.2,n:"Google table"}], aa:{v:59.1,n:"AA run, quoted in Meta's card"}},
+  {m:"astra", self:{v:57.9,n:"OpenAI, high effort; Anthropic and Google cite the same figure"}, rivals:[{by:"anthropic",v:57.9,n:"Anthropic table, 'as reported by OpenAI'"},{by:"google",v:58.2,n:"Google table"}], aa:{v:59.1,n:"AA run, quoted in Meta's card"}},
   {m:"argon", self:{v:57.4,n:"Google ran Argon"}, rivals:[], aa:{v:57,n:"high effort, AA Muse article"}},
   {m:"wonderfull", self:{v:57.1,n:"Meta's card quotes the AA run"}, rivals:[], aa:{v:57.1,n:"AA run"}},
   {m:"fable51", self:{v:55.8,n:"Anthropic, Fable 5.1 page"}, rivals:[{by:"openai",v:55.8,n:"OpenAI Astra table"},{by:"google",v:57.9,n:"Google table"},{by:"xai",v:57.9,n:"SpaceXAI table, Max effort"}], aa:{v:52.0,n:"AA run, quoted in Meta's card"}},
@@ -666,7 +668,7 @@ const CASES = [
   {m:"fable51", b:"Terminal-Bench 4.0", unit:"pct", why:"Anthropic and OpenAI print 55.8. Google and SpaceXAI both print 57.9, and SpaceXAI marks its run Max effort. Artificial Analysis measured 52.0.",
     pts:[{by:"anthropic",v:55.8,l:"Anthropic (own)"},{by:"openai",v:55.8,l:"OpenAI table"},{by:"google",v:57.9,l:"Google table"},{by:"xai",v:57.9,l:"SpaceXAI table, Max"},{by:"indep",v:52.0,l:"Artificial Analysis"}]},
   {m:"astra", b:"Terminal-Bench 4.0", unit:"pct", why:"The one flagship whose independent run came in above every published claim.",
-    pts:[{by:"openai",v:57.7,l:"OpenAI (own)"},{by:"anthropic",v:57.9,l:"Anthropic table"},{by:"google",v:58.2,l:"Google table"},{by:"indep",v:59.1,l:"Artificial Analysis"}]},
+    pts:[{by:"openai",v:57.9,l:"OpenAI (own)"},{by:"anthropic",v:57.9,l:"Anthropic table"},{by:"google",v:58.2,l:"Google table"},{by:"indep",v:59.1,l:"Artificial Analysis"}]},
   {m:"opus55", b:"Terminal-Bench Science 0.1", unit:"pct", why:"A rival printed a higher score than the lab itself. Anthropic gives a standard error of ±3.5 to 5 points on this test.",
     pts:[{by:"anthropic",v:58.7,l:"Anthropic (own)"},{by:"google",v:63.3,l:"Google table"}]},
   {m:"astra", b:"Terminal-Bench Science 0.1", unit:"pct", why:"OpenAI's later Sol post gives Astra a higher score than Astra's own launch did. Google's table uses the newer figure.",
@@ -698,12 +700,16 @@ const OSW = [
 
 /* ---------- coding ---------- */
 const CURSOR = [
-  {m:"opus55",v:57.8,n:"Anthropic, Opus 5.5 page"},
-  {m:"sonnet55",v:55.5,n:"Anthropic, Sonnet 5.5 page"},
-  {m:"fable51",v:51.8,n:"Anthropic and SpaceXAI tables agree (Max)"},
-  {m:"grok47",v:46.3,n:"Cursor page, xHigh"},
-  {m:"gpt56sol",v:41.7,n:"Anthropic and SpaceXAI tables agree"},
-  {m:"grok46",v:40.4,n:"Cursor page, High"}
+  {m:"opus55",v:57.8,e:"Max",n:"Max effort. Anthropic's table prints the same figure"},
+  {m:"sonnet55",v:55.5,e:"Max",n:"Max effort. Anthropic's table prints the same figure"},
+  {m:"argon",v:52.9,e:"High",n:"High effort"},
+  {m:"fable51",v:51.8,e:"Max",n:"Max effort. Anthropic and SpaceXAI tables print the same figure"},
+  {m:"haiku55",v:48.4,e:"Max",n:"Max effort"},
+  {m:"grok47",v:46.3,e:"Extra High",n:"Extra High effort. SpaceXAI's table prints the same figure"},
+  {m:"gpt56sol",v:41.7,e:"Max",n:"Max effort"},
+  {m:"spark13",v:41.6,e:"Max",n:"Max effort"},
+  {m:"grok46",v:41.4,e:"Extra High",n:"Extra High effort. SpaceXAI's table lists 40.4 at High"},
+  {m:"composer25",v:27.7,e:null,n:"No effort setting listed"}
 ];
 const AGENTS = [
   {m:"wonderfull",l:"Muse Code + Wonder Full",v:68},
@@ -1273,7 +1279,7 @@ function hbars(elId, rows, {max, unit, labelW=170, labelOf, tipOf}){
 function renderBars(){
   const cost = INDEX.filter(d=>LADDERS[d.m]).map(d=>{ const l=LADDERS[d.m]; const top=l[l.length-1]; return {m:d.m, v: l.reduce((a,b)=>b[1]>a[1]||(b[1]===a[1]&&b[2]>a[2])?b:a)[2]}; }).sort((a,b)=>b.v-a.v);
   hbars("costbars", cost, {max:8.2, unit:"$", labelW:140, labelOf:d=>M[d.m].s, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">$${d.v.toFixed(2)} per index task</div><div class="tm">${SPEED[d.m]?SPEED[d.m]+" output tokens/s · ":""}${SRC.aaBoard.t}</div>`});
-  hbars("cursorbars", CURSOR, {max:62, unit:"%", labelW:150, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">${d.v.toFixed(1)}%</div><div class="tm">${esc(d.n)}</div>`});
+  hbars("cursorbars", CURSOR, {max:62, unit:"%", labelW:150, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">${d.v.toFixed(1)}%</div><div class="tm">${esc(d.n)} · ${SRC.cursorBoard.t}</div>`});
   hbars("agentbars", AGENTS, {max:72, unit:"", labelW:190, labelOf:d=>d.l, tipOf:d=>`<div class="tt">${esc(d.l)}</div><div class="tv">Coding Agents Index ${d.v}</div><div class="tm">${SRC.aaMuse.t}</div>`});
 }
 
