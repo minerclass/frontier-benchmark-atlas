@@ -1,0 +1,1328 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Frontier Benchmark Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: drafting sheets on a faint engineering grid. Hero = claims (lab tables) beside measurement (independent ladder); each later section is one "sheet" with a title block. */
+:root{
+  --paper:#edf1f5; --sheet:#fbfcfd; --ink:#122033; --ink-2:#44526a; --muted:#66748a;
+  --rule:#d3dbe5; --grid:#e2e8ef; --hatch:#b3bfcd; --wash:#e8edf3;
+  --lab-anthropic:#e34948; --lab-openai:#1baf7a; --lab-google:#2a78d6; --lab-xai:#eda100; --lab-meta:#a8329a;
+  --indep:#122033; --seq:#2a5d9f;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
+    --rule:#263244; --grid:#172030; --hatch:#3c4c62; --wash:#1a2431;
+    --lab-anthropic:#cb4644; --lab-openai:#199e70; --lab-google:#3987e5; --lab-xai:#b98a00; --lab-meta:#c04fb0;
+    --indep:#e6ecf3; --seq:#6da7ec; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
+  --rule:#263244; --grid:#172030; --hatch:#3c4c62; --wash:#1a2431;
+  --lab-anthropic:#cb4644; --lab-openai:#199e70; --lab-google:#3987e5; --lab-xai:#b98a00; --lab-meta:#c04fb0;
+  --indep:#e6ecf3; --seq:#6da7ec; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background-color:var(--paper); color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  font-family:var(--f-body); font-size:16.5px; line-height:1.6;
+}
+a{color:inherit; text-decoration-color:var(--muted); text-underline-offset:2px}
+a:hover{text-decoration-color:var(--ink)}
+:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.wrap{max-width:1200px; margin:0 auto; padding-inline:clamp(16px,3.5vw,40px); padding-block:0 64px}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono); font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2)}
+h1,h2,h3{font-family:var(--f-display); text-wrap:balance; margin:0; color:var(--ink)}
+h1{font-size:clamp(2.5rem,7vw,5.2rem); font-weight:800; font-stretch:118%; line-height:.95; letter-spacing:-.015em}
+h2{font-size:clamp(1.45rem,3vw,2.05rem); font-weight:750; font-stretch:110%; line-height:1.1}
+h3{font-size:1.08rem; font-weight:700; font-stretch:104%; line-height:1.25}
+p{margin:0}
+.lede{font-size:clamp(1.05rem,1.8vw,1.22rem); max-width:64ch; color:var(--ink-2)}
+.sub{color:var(--ink-2); max-width:70ch; font-size:1rem}
+.small{font-size:.88rem; color:var(--ink-2)}
+
+/* masthead */
+.mast{display:grid; gap:18px; padding-block:clamp(28px,5vw,56px) 22px}
+.mast .rowline{display:flex; flex-wrap:wrap; gap:8px 18px; align-items:baseline; justify-content:space-between}
+.stamp{font-family:var(--f-mono); font-size:.74rem; color:var(--ink-2); border:1px solid var(--rule); padding:4px 8px; background:var(--sheet)}
+
+/* filter bar */
+.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:color-mix(in srgb,var(--paper) 92%,transparent); backdrop-filter:blur(6px); border-block:1px solid var(--rule); margin-bottom:22px}
+.bar .in{max-width:1200px; margin:0 auto; padding-inline:clamp(16px,3.5vw,40px); padding-block:8px; display:flex; flex-wrap:wrap; gap:8px 14px; align-items:center}
+.bar .lbl{font-family:var(--f-mono); font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{font-family:var(--f-display); font-size:.86rem; font-weight:600; display:inline-flex; align-items:center; gap:6px; border:1px solid var(--rule); background:var(--sheet); color:var(--ink); padding:4px 10px 4px 8px; border-radius:999px; cursor:pointer}
+.chip[aria-pressed="false"]{color:var(--muted); background:transparent; border-style:dashed}
+.chip[aria-pressed="false"] svg{opacity:.35}
+.chip:hover{border-color:var(--ink-2)}
+.trace{margin-left:auto; display:flex; align-items:center; gap:8px; font-size:.85rem; color:var(--ink-2); font-family:var(--f-display)}
+.trace b{color:var(--ink)}
+.btn{font-family:var(--f-display); font-weight:600; font-size:.84rem; border:1px solid var(--rule); background:var(--sheet); color:var(--ink); padding:4px 10px; border-radius:3px; cursor:pointer}
+.btn:hover{border-color:var(--ink-2)}
+.btn[aria-pressed="true"],.btn[aria-selected="true"]{background:var(--ink); color:var(--sheet); border-color:var(--ink)}
+svg.g{width:12px; height:12px; flex:none; vertical-align:-1px}
+
+/* sheets */
+.sheet{background:var(--sheet); border:1px solid var(--rule); padding:clamp(18px,3vw,32px); position:relative; display:grid; gap:18px; min-width:0}
+.sheet + .sheet{margin-top:22px}
+.tblock{display:flex; flex-wrap:wrap; gap:6px 24px; justify-content:space-between; align-items:flex-start}
+.tblock .meta{font-family:var(--f-mono); font-size:.72rem; color:var(--muted); text-align:right; line-height:1.5; border-left:1px solid var(--rule); padding-left:10px}
+.tblock > div:first-child{display:grid; gap:8px; min-width:0; flex:1 1 420px}
+.corner::before,.corner::after{content:""; position:absolute; width:10px; height:10px; border-color:var(--ink-2); border-style:solid; opacity:.55}
+.corner::before{top:-1px; left:-1px; border-width:2px 0 0 2px}
+.corner::after{bottom:-1px; right:-1px; border-width:0 2px 2px 0}
+
+/* hero */
+.hero{display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:22px}
+@media (max-width:900px){.hero{grid-template-columns:1fr}}
+.hrows{display:grid; gap:4px}
+.hrow{all:unset; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:4px 14px; padding:10px 8px; border-top:1px solid var(--rule); cursor:pointer; align-items:center}
+.hrow:last-child{border-bottom:1px solid var(--rule)}
+.hrow:hover{background:var(--wash)}
+.hrow:focus-visible{outline:2px solid var(--ink); outline-offset:-2px}
+.hlab{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; font-family:var(--f-display)}
+.hlab b{font-weight:700; font-size:1rem}
+.hlab span{font-size:.84rem; color:var(--ink-2)}
+.hcells{grid-column:1; min-width:0}
+.hcells svg{display:block; width:100%; height:auto; max-width:440px}
+.hfrac{grid-column:2; grid-row:1 / span 2; text-align:right; font-family:var(--f-display); line-height:1}
+.hfrac .big{font-size:2.1rem; font-weight:800; font-stretch:112%}
+.hfrac .of{font-size:1.05rem; color:var(--ink-2); font-weight:600}
+.hfrac small{display:block; font-family:var(--f-mono); font-size:.66rem; color:var(--muted); margin-top:4px; letter-spacing:.04em}
+.key{display:flex; flex-wrap:wrap; gap:6px 16px; font-family:var(--f-display); font-size:.82rem; color:var(--ink-2); align-items:center}
+.key span{display:inline-flex; align-items:center; gap:6px}
+.cell{transform-box:fill-box; transform-origin:center}
+@media (prefers-reduced-motion: no-preference){
+  .cell{animation:pop .5s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes pop{from{transform:scale(.55)}to{transform:scale(1)}}
+}
+.ladder svg{display:block; width:100%; height:auto}
+
+/* findings */
+.finds{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:0; border:1px solid var(--rule); background:var(--sheet); margin-top:22px}
+.find{padding:16px 18px; border-right:1px solid var(--rule); border-bottom:1px solid var(--rule); display:grid; gap:6px; align-content:start; min-width:0}
+.find .k{font-family:var(--f-display); font-weight:800; font-stretch:112%; font-size:1.7rem; line-height:1}
+.find p{font-size:.95rem; color:var(--ink-2)}
+.find b{color:var(--ink); font-weight:600}
+.toc{display:flex; flex-wrap:wrap; gap:6px 18px; margin:22px 0; font-family:var(--f-display); font-size:.9rem}
+.toc a{text-decoration:none; color:var(--ink-2); border-bottom:1px solid var(--rule)}
+.toc a:hover{color:var(--ink); border-color:var(--ink)}
+
+/* chart bits */
+.scrollx{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch; min-width:0}
+.scrollx > svg{display:block}
+svg text{font-family:var(--f-display); fill:var(--ink)}
+svg .tick text,svg text.tk{font-family:var(--f-mono); font-size:10.5px; fill:var(--muted)}
+svg .tick line{stroke:var(--grid)}
+svg .domain{stroke:var(--rule)}
+.halo{paint-order:stroke; stroke:var(--sheet); stroke-width:4px; stroke-linejoin:round}
+.mlabel{cursor:pointer}
+.mlabel:hover{text-decoration:underline}
+.dim{opacity:.16; transition:opacity .2s}
+.legend{display:flex; flex-wrap:wrap; gap:6px 18px; font-family:var(--f-display); font-size:.84rem; color:var(--ink-2); align-items:center}
+.legend span{display:inline-flex; gap:6px; align-items:center}
+.two{display:grid; grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); gap:28px}
+@media (max-width:900px){.two{grid-template-columns:1fr}}
+.panel{display:grid; gap:10px; align-content:start; min-width:0}
+.panel h3 + p{margin-top:-4px}
+.notes{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px}
+.note{border-left:2px solid var(--rule); padding:2px 0 2px 12px; font-size:.93rem; color:var(--ink-2)}
+.note b{color:var(--ink); font-family:var(--f-display); font-weight:650}
+
+/* explorer */
+.tabs{display:flex; flex-wrap:wrap; gap:6px}
+.tabs .btn{display:inline-flex; gap:6px; align-items:center; padding:6px 12px}
+.xhead{display:flex; flex-wrap:wrap; gap:8px 22px; align-items:baseline}
+.pills{display:flex; flex-wrap:wrap; gap:6px}
+.pill{font-family:var(--f-mono); font-size:.74rem; border:1px solid var(--rule); padding:2px 8px; border-radius:999px; color:var(--ink-2); display:inline-flex; gap:6px; align-items:center}
+.mx{border-collapse:collapse; width:100%; font-size:.86rem; min-width:720px}
+.mx th,.mx td{padding:7px 10px; border-bottom:1px solid var(--rule); text-align:right; vertical-align:middle}
+.mx th{font-family:var(--f-display); font-weight:650; font-size:.8rem; color:var(--ink-2); vertical-align:bottom; line-height:1.25}
+.mx th:first-child,.mx td:first-child{text-align:left}
+.mx td:first-child{font-family:var(--f-display); font-weight:600; min-width:170px}
+.mx td.src{font-family:var(--f-body); font-size:.78rem; color:var(--muted); text-align:left; max-width:200px; line-height:1.35}
+.mx td.v{font-family:var(--f-mono); font-variant-numeric:tabular-nums; position:relative; min-width:78px}
+.mx td.v .b{display:block; height:3px; margin-top:4px; margin-left:auto; border-radius:2px; opacity:.9}
+.mx .pub{background:color-mix(in srgb,var(--pubc) 9%,transparent)}
+.mx th.pub{color:var(--ink)}
+.mx td.best{font-weight:600; color:var(--ink)}
+.mx td.res{font-family:var(--f-display); font-size:.82rem; text-align:left; white-space:nowrap}
+.st{display:inline-flex; align-items:center; gap:6px}
+.st i{width:10px; height:10px; display:inline-block; border-radius:2px; border:1.5px solid var(--stc,var(--ink-2))}
+.st.lead i{background:var(--stc)}
+.st.tie i{background:linear-gradient(90deg,var(--stc) 50%,transparent 50%)}
+.st.norival i{border-color:var(--hatch); background:repeating-linear-gradient(45deg,var(--hatch) 0 1.5px,transparent 1.5px 4px)}
+.tag{font-family:var(--f-mono); font-size:.66rem; border:1px solid var(--ink-2); color:var(--ink-2); padding:0 4px; border-radius:2px; margin-left:6px; vertical-align:1px}
+
+/* cases */
+.cases{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr)); gap:14px}
+@media (max-width:640px){
+  .bar .hint{display:none}
+  .chip{font-size:.8rem; padding:3px 9px 3px 7px}
+  .bar .in{gap:6px 10px}
+}
+.case{border:1px solid var(--rule); padding:14px 16px; display:grid; gap:8px; align-content:start; min-width:0}
+.case .ct{display:flex; gap:8px; align-items:baseline; flex-wrap:wrap; justify-content:space-between}
+.case .ct h3{font-size:.98rem}
+.case .ct .sp{font-family:var(--f-mono); font-size:.74rem; color:var(--ink-2); white-space:nowrap}
+.case .why{font-size:.88rem; color:var(--ink-2)}
+.case svg{display:block; width:100%}
+
+/* chain */
+.chain svg{display:block; min-width:880px; width:100%; height:auto}
+.osw{border-collapse:collapse; width:100%; min-width:640px; font-size:.86rem}
+.osw th,.osw td{border:1px solid var(--rule); padding:7px 8px; text-align:center}
+.osw th{font-family:var(--f-display); font-weight:650; font-size:.78rem; color:var(--ink-2); line-height:1.25}
+.osw td:first-child,.osw th:first-child{text-align:left; font-family:var(--f-display); font-weight:600}
+.osw td.v{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+.osw td.e{color:var(--muted)}
+
+/* stat tiles */
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px}
+.tile{border:1px solid var(--rule); padding:12px 14px; display:grid; gap:4px}
+.tile .l{font-family:var(--f-display); font-size:.8rem; color:var(--ink-2)}
+.tile .v{font-family:var(--f-display); font-size:1.6rem; font-weight:750; font-stretch:108%; line-height:1.05}
+.tile .s{font-family:var(--f-mono); font-size:.7rem; color:var(--muted)}
+
+/* reference table */
+.ref{border-collapse:collapse; width:100%; min-width:820px; font-size:.88rem}
+.ref th,.ref td{padding:8px 10px; border-bottom:1px solid var(--rule); text-align:right}
+.ref th{font-family:var(--f-display); font-weight:650; font-size:.8rem; color:var(--ink-2); cursor:pointer; user-select:none; white-space:nowrap}
+.ref th:hover{color:var(--ink)}
+.ref th[aria-sort]::after{content:" ↕"; color:var(--muted)}
+.ref th[aria-sort="ascending"]::after{content:" ↑"; color:var(--ink)}
+.ref th[aria-sort="descending"]::after{content:" ↓"; color:var(--ink)}
+.ref td{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+.ref td.t,.ref th.t{text-align:left}
+.ref td.t{font-family:var(--f-display)}
+.ref td.n{font-family:var(--f-display); font-weight:600}
+.ref tr.off td{color:var(--muted)}
+.ref button{all:unset; cursor:pointer}
+.ref button:hover{text-decoration:underline}
+
+/* sources */
+.srcs{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:18px}
+.srcs ul{margin:6px 0 0; padding-left:18px; font-size:.9rem; color:var(--ink-2); display:grid; gap:4px}
+.srcs h3{font-size:.95rem}
+.method{display:grid; gap:8px; font-size:.95rem; color:var(--ink-2); max-width:80ch; padding-left:18px; margin:0}
+
+/* tooltip */
+#tip{position:fixed; left:0; top:0; z-index:50; pointer-events:none; max-width:300px; background:var(--sheet); color:var(--ink); border:1px solid var(--ink-2); padding:9px 11px; font-family:var(--f-display); font-size:.84rem; line-height:1.4; box-shadow:0 6px 18px rgba(10,20,35,.18)}
+#tip .tt{font-weight:700; margin-bottom:3px; display:flex; gap:6px; align-items:center}
+#tip .tm{font-family:var(--f-mono); font-size:.74rem; color:var(--ink-2)}
+#tip .tv{font-family:var(--f-mono); font-size:.9rem}
+#tip hr{border:0; border-top:1px solid var(--rule); margin:6px 0}
+footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div class="rowline">
+      <span class="eyebrow"><a href="../../">Atlas hub</a> · Claude Code compilation · vendor claims against independent runs</span>
+      <span class="stamp">Snapshot · 13 Oct 2026 · 5 labs · 20 models</span>
+    </div>
+    <h1>Frontier Benchmark Atlas</h1>
+    <p class="lede">Between 1 September and 13 October 2026, Anthropic, OpenAI, Google, SpaceXAI and Meta each shipped a frontier model alongside a launch table in which that model mostly wins. This atlas places those tables beside independent runs of the same tests. Where the two agree, the claim holds. Where they part, the gap usually traces back to effort settings, test harnesses, or benchmark versions.</p>
+  </header>
+</div>
+
+<div class="bar" role="region" aria-label="Filters">
+  <div class="in">
+    <span class="lbl">Labs</span>
+    <div class="chips" id="labchips"></div>
+    <div class="trace" id="trace" aria-live="polite"><span class="hint">Click any model name to trace it through every chart.</span></div>
+  </div>
+</div>
+
+<main class="wrap">
+  <section class="hero" aria-label="Overview">
+    <div class="sheet corner">
+      <div class="tblock">
+        <div>
+          <span class="eyebrow">What the labs published</span>
+          <h2>Home-field tables</h2>
+          <p class="sub">Each lab's launch table, one square per benchmark row. A filled square means the lab's model beat every other lab's model listed in that row. Select a row to open the full table.</p>
+        </div>
+      </div>
+      <div class="hrows" id="hero-rows"></div>
+      <div class="key" id="hero-key"></div>
+    </div>
+    <div class="sheet corner">
+      <div class="tblock">
+        <div>
+          <span class="eyebrow">What an independent evaluator measured</span>
+          <h2>One shared yardstick</h2>
+          <p class="sub">Artificial Analysis Intelligence Index v4.3, each model at its highest tested effort. Eight models sit between 52 and 58.</p>
+        </div>
+      </div>
+      <div class="ladder" id="ladder" role="img" aria-label="Ladder of Artificial Analysis Intelligence Index scores"></div>
+    </div>
+  </section>
+
+  <div class="finds" id="finds">
+    <div class="find"><span class="k">11 of 13</span><p><b>Every launch table favors its publisher.</b> OpenAI's GPT-6 Astra table leads in 11 of 13 rows where another lab's model appears. SpaceXAI's Grok 4.7 table is the most modest at 2 of 7.</p></div>
+    <div class="find"><span class="k">6 points</span><p><b>Independent runs compress the field.</b> Claude Opus 5.5 tops the Artificial Analysis index at 58, and the next seven models fall within six points of it.</p></div>
+    <div class="find"><span class="k">−6.8</span><p><b>The largest gaps come from settings.</b> Anthropic reports 66.4% for Opus 5.5 on Terminal-Bench 4.0 at xhigh effort in its own setup. Artificial Analysis measured 59.6% at max.</p></div>
+    <div class="find"><span class="k">6.1</span><p><b>OpenAI's 6.1 generation shipped only as Sol.</b> GPT-6.1 Astra was shelved after it scored worse than GPT-6 Astra on alignment evaluations.</p></div>
+  </div>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#field">Release timeline</a><a href="#tables">Lab tables</a><a href="#tb4">Terminal-Bench 4.0</a><a href="#cases">Disagreements</a><a href="#chain">How a score is made</a><a href="#index">Independent index</a><a href="#coding">Coding and Cursor</a><a href="#all">All models</a><a href="#sources">Sources</a>
+  </nav>
+
+  <section class="sheet corner" id="field">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">The field</span>
+        <h2>Nine launches in six weeks</h2>
+        <p class="sub">Release dates and list prices in US dollars per million input / output tokens. Order matters: a launch table can only compare against models that already exist.</p>
+      </div>
+      <div class="meta">Aug 29 – Oct 16, 2026<br>prices: lab pricing pages</div>
+    </div>
+    <div class="legend" id="tl-legend"></div>
+    <div class="scrollx" id="timeline"></div>
+    <div class="notes">
+      <p class="note"><b>Astra's table is older than Opus 5.5.</b> OpenAI published GPT-6 Astra on 3 September, so its table compares against Claude Opus 5 and Fable 5.1. Opus 5.5 arrived 19 days later.</p>
+      <p class="note"><b>Grok 4.7 is measured against the previous OpenAI generation.</b> The table on Cursor's Grok page uses GPT-5.6 Sol rather than GPT-6 Astra or GPT-6.1 Sol.</p>
+      <p class="note"><b>GPT-6.1 Astra never shipped.</b> OpenAI told The Register it performed worse than GPT-6 Astra on alignment evaluations. The 6.1 generation exists only as Sol.</p>
+    </div>
+  </section>
+
+  <section class="sheet corner" id="tables">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Vendor claims</span>
+        <h2>Each lab's own table</h2>
+        <p class="sub">The full launch table for each lab, as published. The shaded column is the publisher's model. The last column compares it with the best model from any other lab in that row.</p>
+      </div>
+      <div class="meta" id="x-meta"></div>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Lab tables" id="x-tabs"></div>
+    <div id="x-panel" role="tabpanel" style="display:grid; gap:14px; min-width:0"></div>
+  </section>
+
+  <section class="sheet corner" id="tb4">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Claims versus measurement</span>
+        <h2>Terminal-Bench 4.0: one test, many numbers</h2>
+        <p class="sub">Every lab reports this agentic terminal benchmark, so it is the clearest place to set a lab's claim beside rival tables and an independent run. The figure at the right is the independent run minus the lab's own claim.</p>
+      </div>
+      <div class="meta">pass rate, %<br>independent: Artificial Analysis</div>
+    </div>
+    <div class="legend" id="tb4-legend"></div>
+    <div class="scrollx" id="tb4-chart"></div>
+  </section>
+
+  <section class="sheet corner" id="cases">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Discrepancies</span>
+        <h2>Same model, different numbers</h2>
+        <p class="sub">Eight cases where two or more published sources disagree about one model on one benchmark. Marks take the color of the lab that published the figure; dark marks are independent runs.</p>
+      </div>
+      <div class="meta">each strip has its own scale</div>
+    </div>
+    <div class="cases" id="case-grid"></div>
+  </section>
+
+  <section class="sheet corner" id="chain">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Schematic</span>
+        <h2>How a score gets made</h2>
+        <p class="sub">A published number sits at the end of a chain of choices. Pick a run to trace it. The first two runs test the same model on the same benchmark and land 6.8 points apart; the last two test the same model in different setups and agree within noise.</p>
+      </div>
+      <div class="meta">Terminal-Bench 4.0<br>Claude Opus 5 / 5.5</div>
+    </div>
+    <div class="tabs" id="chain-btns" role="group" aria-label="Choose a run to trace"></div>
+    <div class="scrollx chain" id="chain-svg"></div>
+    <div class="panel">
+      <h3>One name, five variants: OSWorld</h3>
+      <p class="small">Computer-use scores are published under the OSWorld name across at least five task sets and scoring rules. Read across a row to see how far one model's number moves with the variant.</p>
+      <div class="scrollx" id="osw"></div>
+    </div>
+  </section>
+
+  <section class="sheet corner" id="index">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Independent measurement</span>
+        <h2>The price of a point</h2>
+        <p class="sub">Artificial Analysis runs each model through the same ten evaluations at every effort setting. Each line traces one model from its lowest to its highest effort. The stepped line marks the best score available at each price.</p>
+      </div>
+      <div class="meta">Intelligence Index v4.3.x<br>cost = USD per index task</div>
+    </div>
+    <div class="two">
+      <div class="panel">
+        <div class="legend" id="sc-legend"></div>
+        <div class="scrollx" id="scatter"></div>
+      </div>
+      <div class="panel">
+        <h3>Cost per index task, top effort</h3>
+        <p class="small">Fable 5.1 costs about ten times as much per task as GPT-6.1 Sol for one more point. Muse Wonder Full is not priced per token.</p>
+        <div id="costbars"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet corner" id="coding">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Agents at work</span>
+        <h2>Coding agents and Cursor</h2>
+        <p class="sub">CursorBench is Cursor's in-house benchmark. Grok 4.7 sits in Cursor's model pool beside Grok 4.6, Grok 4.5 and Cursor's own Composer 2.5. The coding-agents index scores the model and its agent harness together.</p>
+      </div>
+      <div class="meta">CursorBench 4.0: vendor-reported<br>Coding Agents Index: independent</div>
+    </div>
+    <div class="two">
+      <div class="panel">
+        <h3>CursorBench 4.0, as reported by the labs</h3>
+        <div id="cursorbars"></div>
+        <p class="small">Composer 2.5 (18 May) was reported at 63.2% on CursorBench v3.1 and 56.1% on v3.2. It has no published v4.0 score, so it is not plotted.</p>
+      </div>
+      <div class="panel">
+        <h3>Coding Agents Index, Artificial Analysis</h3>
+        <div id="agentbars"></div>
+        <p class="small">Only the five harness and model pairs Artificial Analysis published with the Muse Wonder release.</p>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Grok 4.7 in Cursor at xHigh effort</h3>
+      <div class="tiles">
+        <div class="tile"><span class="l">CursorBench 4.0</span><span class="v">46.3%</span><span class="s">vs 40.4% for Grok 4.6</span></div>
+        <div class="tile"><span class="l">Cost per task</span><span class="v">$6.01</span><span class="s">on CursorBench 4.0</span></div>
+        <div class="tile"><span class="l">Work per task</span><span class="v">88 steps</span><span class="s">70,141 tokens</span></div>
+        <div class="tile"><span class="l">List price</span><span class="v">$2 / $6</span><span class="s">Fast variant $4 / $12</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet corner" id="all">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Table view</span>
+        <h2>All models</h2>
+        <p class="sub">Every model in the atlas with price, access and independent results. Select a column heading to sort.</p>
+      </div>
+      <div class="meta">— = not published</div>
+    </div>
+    <div class="scrollx" id="reftable"></div>
+  </section>
+
+  <section class="sheet corner" id="sources">
+    <div class="tblock">
+      <div>
+        <span class="eyebrow">Method</span>
+        <h2>Sources and limits</h2>
+      </div>
+    </div>
+    <ul class="method">
+      <li>A <b>claim</b> is a figure a lab published about its own model. A <b>rival table</b> figure is one a lab published about another lab's model. <b>Independent</b> means an Artificial Analysis run, including runs that Meta's model card reproduces.</li>
+      <li>Primary pages were read for Anthropic's four launches, Google's Argon post, Cursor's Grok 4.7 page and the Artificial Analysis leaderboard. OpenAI's launch pages and Meta's model card could not be retrieved directly; their figures come from the reports listed below and from rival tables that cite them. Tooltips name the source for each figure.</li>
+      <li>Google's comparison table comes from Emergent's reproduction of Google's evaluation methodology document. Google's announcement post itself contains no table.</li>
+      <li>Index scores are Intelligence Index v4.3.x. Launch-day figures under v4.1.x, such as Fable 5.1 at 65.7 and GPT-6 Astra at 61.2, are not comparable with them.</li>
+      <li>Gemini 4 Argon: trackers date the announcement and a limited rollout to 30 September. Google's post describing API and app availability is dated 13 October.</li>
+      <li>All numbers are as published by 13 October 2026 and will move as evaluators rerun models.</li>
+    </ul>
+    <div class="srcs" id="srclist"></div>
+  </section>
+
+  <footer>Frontier Benchmark Atlas · compiled 13 Oct 2026 · figures belong to their publishers</footer>
+</main>
+
+<div id="tip" hidden></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+(function(){
+"use strict";
+
+/* ---------- sources ---------- */
+const SRC = {
+  anthOpus:{t:"Anthropic · Claude Opus 5.5 launch page", u:"https://www.anthropic.com/claude-opus-5-5", k:"lab"},
+  anthSonnet:{t:"Anthropic · Claude Sonnet 5.5 launch page", u:"https://www.anthropic.com/claude-sonnet-5-5", k:"lab"},
+  anthHaiku:{t:"Anthropic · Claude Haiku 5.5 launch page", u:"https://www.anthropic.com/claude-haiku-5-5", k:"lab"},
+  anthFable:{t:"Anthropic · Claude Fable 5.1 and Mythos 5.1", u:"https://www.anthropic.com/claude-fable-and-mythos-5-1", k:"lab"},
+  google:{t:"Google · Gemini 4 Argon post", u:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/", k:"lab"},
+  cursor:{t:"Cursor · Grok 4.7 page", u:"https://cursor.com/grok", k:"lab"},
+  oaiSol:{t:"OpenAI · Introducing GPT-6.1 Sol (not retrievable)", u:"https://openai.com/index/introducing-gpt-6-1-sol/", k:"lab"},
+  oaiAstra:{t:"OpenAI · GPT-6 Astra (not retrievable)", u:"https://openai.com/index/gpt-6-astra/", k:"lab"},
+  aaBoard:{t:"Artificial Analysis · model leaderboard", u:"https://artificialanalysis.ai/leaderboards/models", k:"ind"},
+  aaMuse:{t:"Artificial Analysis · Muse Wonder article", u:"https://artificialanalysis.ai/articles/muse-wonder", k:"ind"},
+  aaSonnet:{t:"Artificial Analysis · Claude Sonnet 5.5 article", u:"https://artificialanalysis.ai/es/articles/claude-sonnet-5-5", k:"ind"},
+  emGoogle:{t:"Emergent · Gemini 4 Argon benchmarks (reproduces Google's table)", u:"https://emergent.sh/learn/gemini-4-argon-benchmarks", k:"sec"},
+  officechai:{t:"OfficeChai · official GPT-6 Astra benchmarks", u:"https://officechai.com/ai/gpt-6-astra-benchmarks/", k:"sec"},
+  datacampSol:{t:"DataCamp · GPT-6.1 Sol", u:"https://www.datacamp.com/blog/gpt-6-1-sol", k:"sec"},
+  vellum:{t:"Vellum · GPT-6.1 Sol benchmarks explained", u:"https://www.vellum.ai/blog/gpt-6-1-sol-benchmarks-explained", k:"sec"},
+  silicon:{t:"SiliconANGLE · GPT-6.1 Sol", u:"https://siliconangle.com/2026/09/29/openais-gpt-6-1-sol-delivers-astra-like-performance-at-a-dramatically-lower-price/", k:"sec"},
+  register:{t:"The Register · OpenAI benches GPT-6.1 Astra", u:"https://www.theregister.com/ai-and-ml/2026/09/29/openai-benches-gpt-61-astra-for-overstepping-the-mark/5299743", k:"sec"},
+  devto:{t:"DEV Community · Meta's 14-row Muse Wonder table", u:"https://dev.to/gabrielanhaia/metas-muse-wonder-costs-exactly-what-opus-55-costs-it-loses-9-of-metas-own-14-benchmarks-399a", k:"sec"},
+  mindstudio:{t:"MindStudio · Muse Wonder vs Opus 5.5 and GPT-6 Astra", u:"https://www.mindstudio.ai/blog/muse-wonder-benchmarks-vs-opus-gpt6", k:"sec"},
+  techcrunch:{t:"TechCrunch · Meta releases Muse Wonder", u:"https://techcrunch.com/2026/10/12/meta-releases-its-first-frontier-model-muse-wonder/", k:"sec"},
+  marktech:{t:"MarkTechPost · SpaceXAI releases Grok 4.7", u:"https://www.marktechpost.com/2026/09/21/spacexai-releases-grok-4-7/", k:"sec"},
+  composer:{t:"DataCamp · Composer 2.5", u:"https://www.datacamp.com/blog/composer-2-5", k:"sec"},
+  petralian:{t:"Petralian · CursorBench 3.2 and Composer 2.5", u:"https://petralian.com/posts/cursorbench-3-2-fable-5-composer-2-5-cost-vs-score", k:"sec"},
+  tosea:{t:"tosea.ai · Sonnet 5.5 guide (AA Terminal-Bench detail)", u:"https://tosea.ai/blog/claude-sonnet-5-5-complete-guide", k:"sec"},
+  tracker:{t:"AI Release Tracker · Gemini 4 Argon", u:"https://aireleasetracker.com/model/google/gemini-4-argon", k:"sec"}
+};
+
+/* ---------- labs and models ---------- */
+const LAB_ORDER = ["anthropic","openai","google","xai","meta"];
+const LABS = {
+  anthropic:{n:"Anthropic", sym:d3.symbolCircle},
+  openai:{n:"OpenAI", sym:d3.symbolSquare},
+  google:{n:"Google", sym:d3.symbolDiamond},
+  xai:{n:"SpaceXAI + Cursor", sym:d3.symbolTriangle},
+  meta:{n:"Meta", sym:d3.symbolStar}
+};
+const M = {
+  opus55:{n:"Claude Opus 5.5", s:"Opus 5.5", lab:"anthropic"},
+  sonnet55:{n:"Claude Sonnet 5.5", s:"Sonnet 5.5", lab:"anthropic"},
+  haiku55:{n:"Claude Haiku 5.5", s:"Haiku 5.5", lab:"anthropic"},
+  fable51:{n:"Claude Fable 5.1", s:"Fable 5.1", lab:"anthropic"},
+  mythos51:{n:"Claude Mythos 5.1", s:"Mythos 5.1", lab:"anthropic"},
+  opus5:{n:"Claude Opus 5", s:"Opus 5", lab:"anthropic"},
+  fable5:{n:"Claude Fable 5", s:"Fable 5", lab:"anthropic"},
+  astra:{n:"GPT-6 Astra", s:"GPT-6 Astra", lab:"openai"},
+  sol61:{n:"GPT-6.1 Sol", s:"GPT-6.1 Sol", lab:"openai"},
+  luna:{n:"GPT-6 Luna", s:"GPT-6 Luna", lab:"openai"},
+  astra61:{n:"GPT-6.1 Astra", s:"GPT-6.1 Astra", lab:"openai"},
+  gpt56sol:{n:"GPT-5.6 Sol", s:"GPT-5.6 Sol", lab:"openai"},
+  argon:{n:"Gemini 4 Argon", s:"Gemini 4 Argon", lab:"google"},
+  flash38:{n:"Gemini 3.8 Flash", s:"Gemini 3.8 Flash", lab:"google"},
+  grok47:{n:"Grok 4.7", s:"Grok 4.7", lab:"xai"},
+  grok46:{n:"Grok 4.6", s:"Grok 4.6", lab:"xai"},
+  composer25:{n:"Composer 2.5", s:"Composer 2.5", lab:"xai"},
+  wonderfull:{n:"Muse Wonder Full", s:"Wonder Full", lab:"meta"},
+  wonder:{n:"Muse Wonder", s:"Muse Wonder", lab:"meta"},
+  spark13:{n:"Muse Spark 1.3", s:"Muse Spark 1.3", lab:"meta"}
+};
+
+/* ---------- lab launch tables ---------- */
+const TABLES = {
+  openai:{lab:"openai", model:"astra", date:"3 Sep 2026", title:"GPT-6 Astra launch table",
+    src:["officechai","oaiAstra"], cols:["astra","gpt56sol","opus5","fable51","fable5","flash38"],
+    note:"OpenAI's page could not be retrieved; rows as reported by OfficeChai. Only rows with at least one comparison model are shown. Comparators predate Claude Opus 5.5.",
+    rows:[
+      ["ScreenSpot-Pro (no tools)","pct",[92.7,76.9,null,null,87.3,null],"OpenAI-reported"],
+      ["OSWorld 2.0","pct",[72.6,65.7,70.2,null,null,null],"OpenAI-reported"],
+      ["Agents' Last Exam","pct",[59.3,53.6,55.5,48.7,null,null],"OpenAI-reported"],
+      ["AutomationBench","pct",[41.4,18.1,null,null,null,null],"Zapier"],
+      ["BenchCAD","pct",[95.9,83.3,null,null,null,null],"OpenAI-reported"],
+      ["AA Intelligence Index v4.1.1","pts",[61.2,60.9,null,65.7,null,null],"Artificial Analysis (older version)"],
+      ["BrowseComp","pct",[91.5,90.4,90.8,null,null,null],"OpenAI-reported"],
+      ["Terminal-Bench 4.0","pct",[57.7,null,52.3,55.8,null,null],"OpenAI-reported"],
+      ["DeepSWE v1.1","pct",[74.1,72.7,73.7,67.4,null,73.8],"OpenAI-reported"],
+      ["FrontierMath Tier 4 v2","pct",[97.6,null,73.2,87.8,87.8,null],"OpenAI-reported"],
+      ["Terminal-Bench Science 0.1","pct",[64.6,null,30.0,52.6,null,null],"OpenAI-reported"],
+      ["Humanity's Last Exam (tools)","pct",[57.2,null,null,65.0,null,null],"OpenAI-reported"],
+      ["HealthBench Professional","pct",[63.4,60.5,54.5,56.6,60.9,null],"OpenAI-reported"],
+      ["ExploitBench","pct",[100.0,78.5,70.0,null,null,null],"OpenAI-reported"],
+      ["SRE-Bench","pct",[88.0,null,12.5,null,null,null],"OpenAI-reported"],
+      ["MRCR v2 8-needle 256K–512K","pct",[100.0,91.5,null,null,null,null],"OpenAI-reported"],
+      ["MRCR v2 8-needle 512K–1M","pct",[96.3,73.8,null,null,null,null],"OpenAI-reported"]
+    ]},
+  anthropic:{lab:"anthropic", model:"opus55", date:"22 Sep 2026", title:"Claude Opus 5.5 launch table",
+    src:["anthOpus"], cols:["opus55","fable51","opus5","astra","gpt56sol"],
+    note:"Opus 5.5 at max effort except Terminal-Bench 4.0 (xhigh). GPT-6 Astra and GPT-5.6 Sol figures as reported by OpenAI. Production safeguards were on.",
+    rows:[
+      ["Terminal-Bench 4.0","pct",[66.4,55.8,52.3,57.9,37.3],"Anthropic ran; OpenAI figures as reported"],
+      ["FrontierCode v1.1 (Main)","pct",[54.4,50.3,48.0,53.3,47.5],"Anthropic-reported"],
+      ["CursorBench 4.0","pct",[57.8,51.8,46.6,null,41.7],"Cursor"],
+      ["GDPval-AA v2.1","elo",[1846,1735,1708,1542,1588],"Artificial Analysis"],
+      ["AutomationBench","pct",[40.0,31.4,26.9,41.4,28.8],"Zapier"],
+      ["Humanity's Last Exam (tools)","pct",[67.7,65.6,63.6,57.2,null],"Anthropic-reported"],
+      ["Terminal-Bench Science 0.1","pct",[58.7,52.6,29.0,64.6,22.4],"Anthropic ran; Astra as reported by OpenAI"],
+      ["OSWorld 2.1 (partial)","pct",[81.8,80.7,74.0,null,null],"Anthropic-reported"],
+      ["Chartography (with tools)","pct",[89.0,88.4,83.4,null,null],"Anthropic-reported"]
+    ]},
+  google:{lab:"google", model:"argon", date:"30 Sep 2026", title:"Gemini 4 Argon comparison table",
+    src:["emGoogle","google"], cols:["argon","astra","fable51","opus55"],
+    note:"Reproduced by Emergent from Google's evaluation methodology document. Third-party rows do not guarantee matched harnesses or settings.",
+    rows:[
+      ["Vals Index","pct",[68.9,63.1,65.8,67.0],"Third party (Vals AI)"],
+      ["AutomationBench","pct",[51.3,41.4,31.4,42.5],"Third party (Zapier)"],
+      ["Vals Finance Agent v2","pct",[65.4,53.5,58.9,58.6],"Third party (Vals AI)"],
+      ["Harvey Legal Agent","pct",[19.6,5.4,6.7,3.8],"Third party (Vals AI)"],
+      ["DeepSWE v1.1","pct",[77.9,74.1,67.4,74.2],"Google ran Argon; rivals from leaderboard"],
+      ["FrontierSWE v2","pct",[55.0,65.5,56.3,62.3],"Third party (Proximal)"],
+      ["Vibe Code Bench","pct",[91.9,89.6,90.3,90.3],"Third party (Vals AI)"],
+      ["Terminal-Bench 4.0","pct",[57.4,58.2,57.9,66.4],"Google ran Argon; rivals from leaderboard"],
+      ["PostTrainBench","pct",[45.3,44.3,40.2,49.3],"Google ran all models"],
+      ["Terminal-Bench Science 0.1","pct",[57.6,68.1,52.6,63.3],"Google ran Argon; rivals from leaderboard"],
+      ["LABBench 2","pct",[88.8,85.4,68.6,73.1],"Google ran all models"],
+      ["RiemannBench","pct",[76.0,72.0,65.6,69.6],"Third party (Surge)"],
+      ["GraphWalks up to 128K","pct",[99.7,98.7,91.4,90.6],"Google ran all models"],
+      ["GraphWalks 256K–1M","pct",[84.2,71.8,65.0,66.8],"Google ran all models"],
+      ["Agent's Last Exam","pct",[39.5,34.2,null,38.2],"Google ran Argon; rivals from leaderboard"],
+      ["OSWorld 2.0 (offline subset)","pct",[69.2,72.6,null,null],"Google ran Argon; Astra from OpenAI"],
+      ["Chartography","pct",[71.6,71.0,46.2,66.3],"Third party (Surge)"],
+      ["LVBench","pct",[91.7,87.5,79.7,83.7],"Google ran all models"],
+      ["CWE-bench v1","pct",[68.0,68.0,58.0,67.0],"Third party (CWE-bench)"]
+    ]},
+  meta:{lab:"meta", model:"wonderfull", date:"12 Oct 2026", title:"Muse Wonder model card table",
+    src:["devto","mindstudio"], cols:["wonderfull","wonder","fable51","astra","opus55"],
+    note:"Meta's card says competitor runs are best-effort. Rows marked internal are Meta's own benchmarks. SWE-Marathon ran competitors in different harnesses, and Wonder Full at xhigh while the rest of the table is at max.",
+    rows:[
+      ["Personal Superintelligence Index","pts",[59.1,54.3,49.9,54.5,55.2],"Meta internal",true],
+      ["Harvey LAB-AA","pct",[13.1,10.0,6.4,8.6,4.2],"Artificial Analysis version"],
+      ["Vals Finance Agent v2","pct",[59.1,56.6,58.9,53.5,58.6],"Vals AI"],
+      ["HealthBench Pro","pct",[62.3,60.5,62.1,65.3,65.6],"Source not stated"],
+      ["AutomationBench-AA","pct",[45.4,39.1,32.1,41.6,41.2],"Artificial Analysis version"],
+      ["GDP.pdf","pct",[33.2,30.8,27.6,34.2,30.6],"Source not stated"],
+      ["JobBench","pct",[75.3,70.5,73.1,66.1,75.4],"Source not stated"],
+      ["OSWorld V2.1 (partial)","pct",[78.4,72.6,80.7,75.8,81.8],"Source not stated"],
+      ["MemoryBench","pct",[85.5,85.6,79.0,81.4,81.5],"Meta internal, LLM judge",true],
+      ["Terminal-Bench 4.0-AA","pct",[57.1,52.0,52.0,59.1,59.6],"Artificial Analysis"],
+      ["DeepSWE 1.1","pct",[79.0,78.8,67.4,74.1,74.2],"Datacurve (third party)"],
+      ["SWE-Marathon","pct",[57.5,53.1,45.6,42.5,46.3],"Abundant AI; harnesses differ"],
+      ["ProgramBench","pct",[59.0,50.0,55.5,52.5,70.5],"Source not stated"],
+      ["AA Intelligence Index","pts",[56,52,53,53,58],"Artificial Analysis (independent)"]
+    ]},
+  xai:{lab:"xai", model:"grok47", date:"21 Sep 2026", title:"Grok 4.7 launch table",
+    src:["cursor","marktech"], cols:["grok47","grok46","gpt56sol","fable51"],
+    note:"Grok 4.7 at xHigh (DeepSWE at high), Grok 4.6 at High, GPT-5.6 Sol and Fable 5.1 at Max. Compares against the previous OpenAI generation.",
+    rows:[
+      ["CursorBench 4.0","pct",[46.3,40.4,41.7,51.8],"Cursor"],
+      ["DeepSWE v1.1","pct",[71.0,65.2,72.7,70.0],"SpaceXAI-reported"],
+      ["EEBench","pct",[64.0,53.0,39.4,56.4],"SpaceXAI-reported"],
+      ["AA-Briefcase v1.1","elo",[1657,1546,1487,1678],"Artificial Analysis"],
+      ["Terminal-Bench 4.0","pct",[37.6,20.3,37.3,57.9],"SpaceXAI-reported"],
+      ["Harvey Legal Agent","pct",[19.6,15.8,2.5,6.7],"Vals AI"],
+      ["HealthBench Professional","pct",[56.7,48.5,60.5,62.1],"SpaceXAI-reported"]
+    ]}
+};
+const TABLE_ORDER = ["openai","anthropic","google","meta","xai"];
+
+function scoreRows(t){
+  return t.rows.map(r=>{
+    const [b,unit,vals,srcNote,internal] = r;
+    const own=[], out=[];
+    t.cols.forEach((m,i)=>{ const v=vals[i]; if(v==null) return; (M[m].lab===t.lab?own:out).push({m,v}); });
+    const pub = t.lab==="meta" ? d3.max(own,d=>d.v) : vals[0];
+    const pubM = t.lab==="meta" ? own.find(d=>d.v===pub).m : t.cols[0];
+    let status="norival", best=null, bestM=null;
+    if(out.length){
+      best=d3.max(out,d=>d.v); bestM=out.find(d=>d.v===best).m;
+      status = pub>best?"lead":pub===best?"tie":"trail";
+    }
+    return {b,unit,vals,srcNote,internal:!!internal,pub,pubM,best,bestM,status};
+  });
+}
+Object.values(TABLES).forEach(t=>{ t.scored=scoreRows(t); const c=s=>t.scored.filter(r=>r.status===s).length;
+  t.lead=c("lead"); t.tie=c("tie"); t.trail=c("trail"); t.norival=c("norival"); t.contested=t.lead+t.tie+t.trail; });
+
+/* ---------- independent index (AA v4.3, top effort) ---------- */
+const INDEX = [
+  {m:"opus55",v:58},{m:"sonnet55",v:56},{m:"wonderfull",v:56},{m:"fable51",v:53},{m:"astra",v:53},{m:"argon",v:53,eff:"high"},
+  {m:"sol61",v:52},{m:"wonder",v:52},{m:"spark13",v:48},{m:"grok47",v:46,eff:"xhigh"},{m:"haiku55",v:43},{m:"flash38",v:41,eff:"high"},{m:"luna",v:38}
+];
+const LADDERS = {
+  opus55:[["low",42,0.55],["medium",51,1.34],["high",54,1.82],["xhigh",56,3.46],["max",58,5.98]],
+  sonnet55:[["low",36,0.35],["medium",41,0.48],["high",47,0.88],["xhigh",52,2.01],["max",56,5.46]],
+  haiku55:[["low",29,0.02],["medium",34,0.05],["high",38,0.08],["xhigh",41,0.12],["max",43,0.21]],
+  fable51:[["low",47,2.37],["medium",49,2.98],["high",51,3.91],["xhigh",53,5.98],["max",53,7.63]],
+  astra:[["low",46,0.82],["medium",50,1.54],["high",51,1.73],["xhigh",52,2.31],["max",53,3.26]],
+  sol61:[["low",42,0.13],["medium",48,0.21],["high",50,0.32],["xhigh",51,0.39],["max",52,0.72]],
+  luna:[["non-reasoning",18,0.01],["low",22,0.0045],["medium",30,0.02],["high",33,0.03],["xhigh",35,0.04],["max",38,0.07]],
+  argon:[["high",53,1.99]],
+  flash38:[["medium",40,0.93],["high",41,1.24]],
+  grok47:[["low",42,1.25],["high",46,2.73],["xhigh",46,3.74]],
+  wonder:[["max",52,4.52]],
+  spark13:[["max",48,1.60]]
+};
+const SPEED = {opus55:95,sonnet55:137,haiku55:237,fable51:71,astra:61,sol61:59,luna:135,flash38:145,grok47:88,wonder:115};
+
+/* ---------- Terminal-Bench 4.0 ---------- */
+const TB4 = [
+  {m:"sonnet55", self:{v:70.6,n:"Anthropic, Sonnet 5.5 page"}, rivals:[], aa:{v:63.6,n:"max effort · AA article and tosea.ai"}},
+  {m:"opus55", self:{v:66.4,n:"Anthropic, xhigh effort, ±2.6 SE"}, rivals:[{by:"google",v:66.4,n:"Google table, from leaderboard"}], aa:{v:59.6,n:"max effort"}},
+  {m:"astra", self:{v:57.7,n:"OpenAI, high effort (OfficeChai)"}, rivals:[{by:"anthropic",v:57.9,n:"Anthropic table, 'as reported by OpenAI'"},{by:"google",v:58.2,n:"Google table"}], aa:{v:59.1,n:"AA run, quoted in Meta's card"}},
+  {m:"argon", self:{v:57.4,n:"Google ran Argon"}, rivals:[], aa:{v:57,n:"high effort, AA Muse article"}},
+  {m:"wonderfull", self:{v:57.1,n:"Meta's card quotes the AA run"}, rivals:[], aa:{v:57.1,n:"AA run"}},
+  {m:"fable51", self:{v:55.8,n:"Anthropic, Fable 5.1 page"}, rivals:[{by:"openai",v:55.8,n:"OpenAI Astra table"},{by:"google",v:57.9,n:"Google table"},{by:"xai",v:57.9,n:"SpaceXAI table, Max effort"}], aa:{v:52.0,n:"AA run, quoted in Meta's card"}},
+  {m:"wonder", self:{v:52.0,n:"Meta's card quotes the AA run"}, rivals:[], aa:{v:52.0,n:"AA run"}},
+  {m:"haiku55", self:{v:39.2,n:"Anthropic, Haiku 5.5 page"}, rivals:[], aa:null},
+  {m:"grok47", self:{v:37.6,n:"Cursor page, xHigh (some outlets print 38.0)"}, rivals:[], aa:null}
+];
+
+/* ---------- discrepancy cases ---------- */
+const CASES = [
+  {m:"fable51", b:"Terminal-Bench 4.0", unit:"pct", why:"Anthropic and OpenAI print 55.8. Google and SpaceXAI both print 57.9, and SpaceXAI marks its run Max effort. Artificial Analysis measured 52.0.",
+    pts:[{by:"anthropic",v:55.8,l:"Anthropic (own)"},{by:"openai",v:55.8,l:"OpenAI table"},{by:"google",v:57.9,l:"Google table"},{by:"xai",v:57.9,l:"SpaceXAI table, Max"},{by:"indep",v:52.0,l:"Artificial Analysis"}]},
+  {m:"astra", b:"Terminal-Bench 4.0", unit:"pct", why:"The one flagship whose independent run came in above every published claim.",
+    pts:[{by:"openai",v:57.7,l:"OpenAI (own)"},{by:"anthropic",v:57.9,l:"Anthropic table"},{by:"google",v:58.2,l:"Google table"},{by:"indep",v:59.1,l:"Artificial Analysis"}]},
+  {m:"opus55", b:"Terminal-Bench Science 0.1", unit:"pct", why:"A rival printed a higher score than the lab itself. Anthropic gives a standard error of ±3.5 to 5 points on this test.",
+    pts:[{by:"anthropic",v:58.7,l:"Anthropic (own)"},{by:"google",v:63.3,l:"Google table"}]},
+  {m:"astra", b:"Terminal-Bench Science 0.1", unit:"pct", why:"OpenAI's later Sol post gives Astra a higher score than Astra's own launch did. Google's table uses the newer figure.",
+    pts:[{by:"openai",v:64.6,l:"OpenAI, Astra launch"},{by:"anthropic",v:64.6,l:"Anthropic table"},{by:"openai",v:68.1,l:"OpenAI, 6.1 Sol post"},{by:"google",v:68.1,l:"Google table"}]},
+  {m:"fable51", b:"DeepSWE v1.1", unit:"pct", why:"Three rival tables agree on 67.4. SpaceXAI ran Fable 5.1 at Max effort and got 70.0.",
+    pts:[{by:"google",v:67.4,l:"Google table"},{by:"openai",v:67.4,l:"OpenAI table"},{by:"meta",v:67.4,l:"Meta card"},{by:"xai",v:70.0,l:"SpaceXAI table, Max"}]},
+  {m:"opus55", b:"AutomationBench", unit:"pct", why:"Anthropic's 40.0 is Zapier's early-access run with no fallback model. OpenAI says GPT-6.1 Sol (35.4 at medium) beats Opus 5.5 by 2.2 points, which implies about 33.2.",
+    pts:[{by:"anthropic",v:40.0,l:"Anthropic (own), via Zapier"},{by:"google",v:42.5,l:"Google table"},{by:"openai",v:33.2,l:"≈33.2 implied by OpenAI, medium",derived:true}]},
+  {m:"opus55", b:"Chartography", unit:"pct", why:"Tool access alone moves this score by about 25 points.",
+    pts:[{by:"anthropic",v:89.0,l:"Anthropic, with tools"},{by:"anthropic",v:64.4,l:"Anthropic, no tools"},{by:"google",v:66.3,l:"Google table"}]},
+  {m:"fable51", b:"AA Intelligence Index", unit:"pts", why:"Artificial Analysis rebased the index between versions. Both numbers are right for their version and cannot be compared.",
+    pts:[{by:"openai",v:65.7,l:"v4.1.1, quoted by OpenAI"},{by:"indep",v:53,l:"v4.3, Artificial Analysis"}]}
+];
+
+/* ---------- OSWorld variants ---------- */
+const OSW_COLS = ["2.0 offline subset","2.0 partial","2.0 strict","2.1 partial","2.1 offline subset"];
+const OSW = [
+  {m:"opus55", c:{"2.1 partial":[81.8,"Anthropic; Meta's card agrees"]}},
+  {m:"sonnet55", c:{"2.1 partial":[80.1,"Anthropic, Sonnet page"],"2.1 offline subset":[83.9,"Anthropic, Haiku page"]}},
+  {m:"fable51", c:{"2.0 partial":[77.9,"Anthropic, Fable page"],"2.0 strict":[41.7,"Anthropic, Fable page"],"2.1 partial":[80.7,"Anthropic Opus page; Meta card"]}},
+  {m:"haiku55", c:{"2.1 offline subset":[72.4,"Anthropic, Haiku page"]}},
+  {m:"astra", c:{"2.0 offline subset":[72.6,"OpenAI via OfficeChai; Google table. Vellum lists 73.5"],"2.1 partial":[75.8,"Meta card"]}},
+  {m:"sol61", c:{"2.0 offline subset":[71.4,"OpenAI via Vellum, max effort"]}},
+  {m:"luna", c:{"2.1 offline subset":[48.9,"Anthropic, Haiku page"]}},
+  {m:"argon", c:{"2.0 offline subset":[69.2,"Google table"]}},
+  {m:"wonderfull", c:{"2.1 partial":[78.4,"Meta card"]}},
+  {m:"wonder", c:{"2.1 partial":[72.6,"Meta card"]}}
+];
+
+/* ---------- coding ---------- */
+const CURSOR = [
+  {m:"opus55",v:57.8,n:"Anthropic, Opus 5.5 page"},
+  {m:"sonnet55",v:55.5,n:"Anthropic, Sonnet 5.5 page"},
+  {m:"fable51",v:51.8,n:"Anthropic and SpaceXAI tables agree (Max)"},
+  {m:"grok47",v:46.3,n:"Cursor page, xHigh"},
+  {m:"gpt56sol",v:41.7,n:"Anthropic and SpaceXAI tables agree"},
+  {m:"grok46",v:40.4,n:"Cursor page, High"}
+];
+const AGENTS = [
+  {m:"wonderfull",l:"Muse Code + Wonder Full",v:68},
+  {m:"sonnet55",l:"Claude Code + Sonnet 5.5",v:68},
+  {m:"opus55",l:"Claude Code + Opus 5.5",v:66},
+  {m:"wonder",l:"Muse Code + Muse Wonder",v:63},
+  {m:"spark13",l:"Muse Code + Spark 1.3",v:54}
+];
+
+/* ---------- timeline ---------- */
+const EVENTS = [
+  {lab:"anthropic",d:"2026-09-01",m:"fable51",l:"Claude Fable 5.1",s:"$10 / $50 · + Mythos 5.1 (trusted access)",pos:"up"},
+  {lab:"anthropic",d:"2026-09-22",m:"opus55",l:"Claude Opus 5.5",s:"$4 / $20",pos:"up"},
+  {lab:"anthropic",d:"2026-09-28",m:"sonnet55",l:"Claude Sonnet 5.5",s:"$2 / $10",pos:"down"},
+  {lab:"anthropic",d:"2026-10-07",m:"haiku55",l:"Claude Haiku 5.5",s:"$0.10 / $0.50",pos:"up",anchor:"end"},
+  {lab:"openai",d:"2026-09-03",m:"astra",l:"GPT-6 Astra",s:"$10 / $50",pos:"up"},
+  {lab:"openai",d:"2026-09-29",m:"sol61",l:"GPT-6.1 Sol",s:"$2 / $10",pos:"up"},
+  {lab:"openai",d:"2026-09-29",m:"astra61",l:"GPT-6.1 Astra shelved",s:"reported 29 Sep",pos:"down",kind:"cancel"},
+  {lab:"google",d:"2026-09-30",m:"argon",l:"Gemini 4 Argon announced",s:"limited access",pos:"up"},
+  {lab:"google",d:"2026-10-13",m:"argon",l:"Broad availability",s:"$2 / $10 intro, $4 / $20 from Dec",pos:"down",anchor:"end",kind:"mile"},
+  {lab:"xai",d:"2026-09-21",m:"grok47",l:"Grok 4.7",s:"$2 / $6 · in Cursor's model pool",pos:"up"},
+  {lab:"meta",d:"2026-10-12",m:"wonder",l:"Muse Wonder + Wonder Full",s:"$4 / $20 · Full via Muse Code only",pos:"up",anchor:"end"}
+];
+
+/* ---------- reference rows ---------- */
+const REF = [
+  {m:"opus55",rel:"2026-09-22",acc:"API, apps",pin:4,pout:20},
+  {m:"sonnet55",rel:"2026-09-28",acc:"API, apps",pin:2,pout:10},
+  {m:"haiku55",rel:"2026-10-07",acc:"API, apps",pin:0.10,pout:0.50},
+  {m:"fable51",rel:"2026-09-01",acc:"API, apps",pin:10,pout:50},
+  {m:"mythos51",rel:"2026-09-01",acc:"Trusted access only"},
+  {m:"astra",rel:"2026-09-03",acc:"API, ChatGPT",pin:10,pout:50},
+  {m:"sol61",rel:"2026-09-29",acc:"API, ChatGPT",pin:2,pout:10},
+  {m:"luna",rel:null,acc:"API",pin:0.10,pout:0.50},
+  {m:"astra61",rel:null,acc:"Shelved, never released"},
+  {m:"argon",rel:"2026-09-30",acc:"API, Gemini app (intro price)",pin:2,pout:10},
+  {m:"flash38",rel:null,acc:"API"},
+  {m:"grok47",rel:"2026-09-21",acc:"API, Cursor",pin:2,pout:6},
+  {m:"composer25",rel:"2026-05-18",acc:"Cursor plans"},
+  {m:"wonder",rel:"2026-10-12",acc:"Meta Model API",pin:4,pout:20},
+  {m:"wonderfull",rel:"2026-10-12",acc:"Muse Code subscription"},
+  {m:"spark13",rel:null,acc:"Meta Model API",pin:1.25,pout:4.25}
+];
+
+/* ---------- state + helpers ---------- */
+const state = {labs:new Set(LAB_ORDER), focus:null, tab:"openai", trace:0};
+const labVar = lab => lab==="indep" ? "var(--indep)" : `var(--lab-${lab})`;
+const symPath = (lab,size) => d3.symbol(lab==="indep"?d3.symbolCircle:LABS[lab].sym, size)();
+const glyph = (lab,size=46) => `<svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><path d="${symPath(lab,size)}" style="fill:${labVar(lab)}"/></svg>`;
+const vis = m => state.labs.has(M[m].lab);
+const fmt = (v,u) => v==null ? "—" : u==="elo" ? d3.format(",")(Math.round(v)) : u==="pts" ? (Number.isInteger(v)?String(v):v.toFixed(1)) : v.toFixed(1);
+const unitSuffix = u => u==="pct" ? "%" : u==="elo" ? " Elo" : "";
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const cw = el => Math.max(280, Math.floor(el.getBoundingClientRect().width));
+
+const tip = document.getElementById("tip");
+function showTip(html, ev){
+  tip.innerHTML = html; tip.hidden = false;
+  let x, y;
+  if(ev && ev.clientX!=null && ev.type!=="focus"){ x=ev.clientX; y=ev.clientY; }
+  else { const r=(ev && ev.target ? ev.target : ev).getBoundingClientRect(); x=r.left+r.width/2; y=r.bottom; }
+  const tr = tip.getBoundingClientRect(), pad=14;
+  let tx = x+pad, ty = y+pad;
+  if(tx+tr.width > innerWidth-8) tx = Math.max(8, x-tr.width-pad);
+  if(ty+tr.height > innerHeight-8) ty = Math.max(8, y-tr.height-pad);
+  tip.style.transform = `translate(${tx}px,${ty}px)`;
+}
+function hideTip(){ tip.hidden = true; }
+function bindTip(sel, fn){
+  sel.on("pointerenter pointermove", (e,d)=>showTip(fn(d), e))
+     .on("pointerleave", hideTip)
+     .on("focus", (e,d)=>showTip(fn(d), e))
+     .on("blur", hideTip);
+}
+function srcLine(keys){ return (Array.isArray(keys)?keys:[keys]).map(k=>SRC[k]?SRC[k].t:k).join("; "); }
+
+/* focus (trace a model) */
+function setFocus(m){
+  state.focus = (state.focus===m) ? null : m;
+  applyFocus();
+}
+function applyFocus(){
+  const f = state.focus;
+  document.querySelectorAll("[data-model]").forEach(el=>{
+    el.classList.toggle("dim", !!f && el.getAttribute("data-model")!==f);
+  });
+  const tr = document.getElementById("trace");
+  if(f){
+    tr.innerHTML = `<span>Tracing</span>${glyph(M[f].lab)}<b>${esc(M[f].n)}</b><button class="btn" id="clearfocus" type="button">Clear</button>`;
+    document.getElementById("clearfocus").onclick = ()=>setFocus(f);
+  } else {
+    tr.innerHTML = `<span class="hint">Click any model name to trace it through every chart.</span>`;
+  }
+}
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && state.focus){ setFocus(state.focus); } });
+function focusable(sel){
+  sel.attr("tabindex",0).attr("role","button").classed("mlabel",true)
+    .on("click",(e,d)=>{ e.stopPropagation(); setFocus(typeof d==="string"?d:d.m); })
+    .on("keydown",(e,d)=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setFocus(typeof d==="string"?d:d.m); } });
+}
+
+/* ---------- lab chips ---------- */
+function renderChips(){
+  const box = document.getElementById("labchips");
+  box.innerHTML = LAB_ORDER.map(l=>`<button class="chip" type="button" data-lab="${l}" aria-pressed="${state.labs.has(l)}">${glyph(l,56)}${LABS[l].n}</button>`).join("");
+  box.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{
+    const l=b.dataset.lab;
+    if(state.labs.has(l)){ if(state.labs.size>1) state.labs.delete(l); } else state.labs.add(l);
+    if(state.focus && !vis(state.focus)) state.focus=null;
+    renderChips(); renderAll();
+  });
+}
+
+/* ---------- hero: home-field tables ---------- */
+function renderHero(){
+  const box = document.getElementById("hero-rows");
+  const maxCells = d3.max(Object.values(TABLES),t=>t.rows.length);
+  const s=15, g=3, W=maxCells*(s+g), H=s+6;
+  const order = TABLE_ORDER.slice().sort((a,b)=>TABLES[b].lead/TABLES[b].contested - TABLES[a].lead/TABLES[a].contested);
+  box.innerHTML = "";
+  order.forEach((k,ri)=>{
+    const t = TABLES[k];
+    const btn = document.createElement("button");
+    btn.className="hrow"; btn.type="button";
+    btn.setAttribute("aria-label", `${LABS[t.lab].n} ${t.title}: led ${t.lead} of ${t.contested} contested rows. Open the full table.`);
+    btn.innerHTML = `<div class="hlab">${glyph(t.lab,60)}<b>${LABS[t.lab].n}</b><span>${esc(M[t.model].n)} · ${t.date} · ${t.rows.length} rows</span></div>
+      <div class="hcells"></div>
+      <div class="hfrac"><span class="big">${t.lead}</span><span class="of">/${t.contested}</span><small>CONTESTED ROWS LED</small></div>`;
+    btn.onclick = ()=>{ state.tab=k; renderExplorer(); document.getElementById("tables").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth", block:"start"}); };
+    box.appendChild(btn);
+    const rank = {lead:0,tie:1,trail:2,norival:3};
+    const cells = t.scored.map((r,i)=>({...r,i})).sort((a,b)=>rank[a.status]-rank[b.status] || (b.internal-a.internal));
+    const svg = d3.select(btn.querySelector(".hcells")).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("preserveAspectRatio","xMinYMid meet").attr("aria-hidden","true");
+    const defs = svg.append("defs");
+    const pid = `hatch-${k}`;
+    defs.append("pattern").attr("id",pid).attr("width",4).attr("height",4).attr("patternUnits","userSpaceOnUse").attr("patternTransform","rotate(45)")
+      .append("line").attr("x1",0).attr("y1",0).attr("x2",0).attr("y2",4).style("stroke","var(--hatch)").style("stroke-width",1.6);
+    const c = svg.selectAll("g.c").data(cells).join("g").attr("class","c").attr("transform",(d,i)=>`translate(${i*(s+g)+1.5},${(H-s)/2})`);
+    c.each(function(d,i){
+      const gg = d3.select(this);
+      const inner = gg.append("g").attr("class","cell").style("animation-delay",`${ri*90+i*28}ms`);
+      if(d.status==="lead") inner.append("rect").attr("width",s).attr("height",s).attr("rx",2).style("fill",labVar(t.lab));
+      else if(d.status==="tie"){ inner.append("rect").attr("x",.75).attr("y",.75).attr("width",s-1.5).attr("height",s-1.5).attr("rx",2).style("fill","none").style("stroke",labVar(t.lab)).style("stroke-width",1.5);
+        inner.append("rect").attr("width",s/2).attr("height",s).attr("rx",2).style("fill",labVar(t.lab)); }
+      else if(d.status==="trail") inner.append("rect").attr("x",.75).attr("y",.75).attr("width",s-1.5).attr("height",s-1.5).attr("rx",2).style("fill","var(--sheet)").style("stroke",labVar(t.lab)).style("stroke-width",1.5);
+      else inner.append("rect").attr("x",.5).attr("y",.5).attr("width",s-1).attr("height",s-1).attr("rx",2).style("fill",`url(#${pid})`).style("stroke","var(--hatch)");
+      if(d.internal) inner.append("circle").attr("cx",s/2).attr("cy",s/2).attr("r",2.4).style("fill","var(--sheet)").style("stroke","var(--ink)").style("stroke-width",1.2);
+      gg.append("rect").attr("x",-1.5).attr("y",-3).attr("width",s+g).attr("height",s+6).style("fill","transparent");
+    });
+    bindTip(c, d=>{
+      const st = {lead:"Leads every other lab",tie:"Ties the best other lab",trail:"Trails another lab",norival:"No other lab's model scored"}[d.status];
+      let h = `<div class="tt">${esc(d.b)}${d.internal?' <span class="tag">internal</span>':''}</div><div class="tm">${esc(LABS[t.lab].n)} table · ${st}</div><hr>`;
+      h += `<div class="tv">${esc(M[d.pubM].s)}: ${fmt(d.pub,d.unit)}${unitSuffix(d.unit)}</div>`;
+      if(d.bestM) h += `<div class="tv">${esc(M[d.bestM].s)}: ${fmt(d.best,d.unit)}${unitSuffix(d.unit)}</div>`;
+      h += `<div class="tm" style="margin-top:4px">${esc(d.srcNote)}</div>`;
+      return h;
+    });
+  });
+  document.getElementById("hero-key").innerHTML = `
+    <span><svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rect width="13" height="13" rx="2" style="fill:var(--ink-2)"/></svg>Led every other lab</span>
+    <span><svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rect x=".75" y=".75" width="11.5" height="11.5" rx="2" style="fill:none;stroke:var(--ink-2);stroke-width:1.5"/><rect width="6.5" height="13" rx="2" style="fill:var(--ink-2)"/></svg>Tied</span>
+    <span><svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rect x=".75" y=".75" width="11.5" height="11.5" rx="2" style="fill:none;stroke:var(--ink-2);stroke-width:1.5"/></svg>Trailed</span>
+    <span><svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><defs><pattern id="hk" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" style="stroke:var(--hatch);stroke-width:1.6"/></pattern></defs><rect x=".5" y=".5" width="12" height="12" rx="2" style="fill:url(#hk);stroke:var(--hatch)"/></svg>No other lab compared</span>
+    <span><svg width="13" height="13" viewBox="0 0 13 13" aria-hidden="true"><rect x=".75" y=".75" width="11.5" height="11.5" rx="2" style="fill:none;stroke:var(--ink-2);stroke-width:1"/><circle cx="6.5" cy="6.5" r="2.4" style="fill:var(--sheet);stroke:var(--ink);stroke-width:1.2"/></svg>Lab's internal benchmark</span>`;
+}
+
+/* ---------- hero: independent ladder ---------- */
+function renderLadder(){
+  const el = document.getElementById("ladder");
+  const W = cw(el), H = 400, x0 = 46;
+  const y = d3.scaleLinear().domain([36,60]).range([H-14,14]);
+  el.innerHTML = "";
+  const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H);
+  svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",y(60)).attr("y2",y(36)).style("stroke","var(--ink-2)").style("stroke-width",1.2);
+  d3.range(36,61).forEach(v=>{
+    const major = v%5===0;
+    svg.append("line").attr("x1",x0-(major?9:4)).attr("x2",x0).attr("y1",y(v)).attr("y2",y(v)).style("stroke","var(--ink-2)").style("stroke-width",major?1.2:.8);
+    if(major) svg.append("text").attr("class","tk").attr("x",x0-13).attr("y",y(v)+3.5).attr("text-anchor","end").text(v);
+  });
+  const groups = d3.groups(INDEX.filter(d=>vis(d.m)), d=>d.v).sort((a,b)=>b[0]-a[0]);
+  const TINY = {opus55:"Opus 5.5",sonnet55:"Sonnet 5.5",wonderfull:"Wonder Full",fable51:"Fable 5.1",astra:"Astra",argon:"Argon",sol61:"6.1 Sol",wonder:"Wonder",spark13:"Spark 1.3",grok47:"Grok 4.7",haiku55:"Haiku 5.5",flash38:"3.8 Flash",luna:"Luna"};
+  groups.forEach(([v,items])=>{
+    const g = svg.append("g").attr("transform",`translate(0,${y(v)})`);
+    g.append("line").attr("x1",x0).attr("x2",x0+16).attr("y1",0).attr("y2",0).style("stroke","var(--ink)").style("stroke-width",1.4);
+    g.append("circle").attr("cx",x0).attr("cy",0).attr("r",3).style("fill","var(--ink)");
+    g.append("text").attr("x",x0+22).attr("y",4).style("font-family","var(--f-mono)").style("font-size","12px").style("font-weight",600).text(v);
+    const items_g = g.append("g");
+    const draw = (nameOf, fs) => {
+      items_g.selectAll("*").remove();
+      let cx = x0+46;
+      items.forEach(d=>{
+        const it = items_g.append("g").attr("data-model",d.m).datum(d);
+        it.append("path").attr("transform",`translate(${cx+5},0)`).attr("d",symPath(M[d.m].lab,52)).style("fill",labVar(M[d.m].lab));
+        const tx = it.append("text").attr("x",cx+14).attr("y",4).style("font-size",fs+"px").style("font-weight",600).text(nameOf(d.m)).datum(d.m);
+        focusable(tx);
+        bindTip(it, ()=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">Index ${d.v}</div><div class="tm">${d.eff?d.eff+" effort":"highest tested effort"} · ${SRC.aaBoard.t}</div>`);
+        cx += 14 + tx.node().getComputedTextLength() + 12;
+      });
+      return cx - 12;
+    };
+    if(draw(m=>M[m].s, 12.5) > W-4 && draw(m=>TINY[m], 12.5) > W-4) draw(m=>TINY[m], 11);
+  });
+}
+
+/* ---------- timeline ---------- */
+function renderTimeline(){
+  const el = document.getElementById("timeline");
+  const lanes = LAB_ORDER.filter(l=>state.labs.has(l));
+  const W = Math.max(cw(el), 780), laneH = 84, top = 30, left = 128, right = 22;
+  const H = top + lanes.length*laneH + 8;
+  const x = d3.scaleTime().domain([new Date("2026-08-29"), new Date("2026-10-16")]).range([left, W-right]);
+  el.innerHTML = "";
+  document.getElementById("tl-legend").innerHTML = `<span><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="5.5" style="fill:var(--ink-2)"/></svg>Release</span><span><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="5" style="fill:var(--sheet);stroke:var(--ink-2);stroke-width:1.5"/><path d="M-3,-3L3,3M3,-3L-3,3" style="stroke:var(--ink-2);stroke-width:1.5"/></svg>Shelved before release</span><span><svg width="14" height="14" viewBox="-7 -7 14 14"><path d="${d3.symbol(d3.symbolDiamond,46)()}" style="fill:var(--ink-2)"/></svg>Availability milestone</span><span class="mono" style="font-size:.74rem">$ input / output per 1M tokens</span>`;
+  const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Release timeline by lab, 29 August to 16 October 2026");
+  const ax = svg.append("g").attr("transform",`translate(0,${top-8})`).call(d3.axisTop(x).ticks(d3.timeMonday.every(1)).tickFormat(d3.timeFormat("%-d %b")).tickSize(-(lanes.length*laneH)).tickPadding(6));
+  ax.select(".domain").remove();
+  ax.selectAll(".tick line").style("stroke","var(--grid)");
+  lanes.forEach((l,i)=>{
+    const cy = top + i*laneH + laneH/2;
+    svg.append("line").attr("x1",left).attr("x2",W-right).attr("y1",cy).attr("y2",cy).style("stroke","var(--rule)");
+    const lg = svg.append("g").attr("transform",`translate(12,${cy})`);
+    lg.append("path").attr("d",symPath(l,60)).attr("transform","translate(5,0)").style("fill",labVar(l));
+    lg.append("text").attr("x",16).attr("y",4).style("font-size","12.5px").style("font-weight",700).text(LABS[l].n.replace(" + Cursor",""));
+    if(l==="xai") lg.append("text").attr("x",16).attr("y",19).style("font-size","11px").style("fill","var(--muted)").text("+ Cursor");
+  });
+  const today = x(new Date("2026-10-13"));
+  svg.append("line").attr("x1",today).attr("x2",today).attr("y1",top-6).attr("y2",H-6).style("stroke","var(--ink)").style("stroke-width",1);
+  svg.append("text").attr("x",today-4).attr("y",H-10).attr("text-anchor","end").attr("class","tk").style("fill","var(--ink-2)").text("snapshot 13 Oct");
+  // Argon limited-access span
+  if(state.labs.has("google")){
+    const cy = top + lanes.indexOf("google")*laneH + laneH/2;
+    svg.append("line").attr("x1",x(new Date("2026-09-30"))).attr("x2",x(new Date("2026-10-13"))).attr("y1",cy).attr("y2",cy).style("stroke",labVar("google")).style("stroke-width",3).style("opacity",.45);
+  }
+  const ev = EVENTS.filter(e=>state.labs.has(e.lab));
+  const g = svg.selectAll("g.ev").data(ev).join("g").attr("class","ev").attr("data-model",d=>d.m)
+    .attr("transform",d=>`translate(${x(new Date(d.d))},${top + lanes.indexOf(d.lab)*laneH + laneH/2})`);
+  g.each(function(d){
+    const s = d3.select(this);
+    if(d.kind==="cancel"){
+      s.append("circle").attr("r",6).style("fill","var(--sheet)").style("stroke",labVar(d.lab)).style("stroke-width",1.8);
+      s.append("path").attr("d","M-3.5,-3.5L3.5,3.5M3.5,-3.5L-3.5,3.5").style("stroke",labVar(d.lab)).style("stroke-width",1.6);
+    } else if(d.kind==="mile"){
+      s.append("path").attr("d",d3.symbol(d3.symbolDiamond,90)()).style("fill",labVar(d.lab)).style("stroke","var(--sheet)").style("stroke-width",2);
+    } else {
+      s.append("circle").attr("r",7).style("fill",labVar(d.lab)).style("stroke","var(--sheet)").style("stroke-width",2.5);
+    }
+    const up = d.pos==="up", anchor = d.anchor||"start", dx = anchor==="end"?8:-8;
+    const t1 = s.append("text").attr("x",dx).attr("y",up?-27:24).attr("text-anchor",anchor).attr("class","halo").style("font-size","12.5px").style("font-weight",650).text(d.l).datum(d);
+    s.append("text").attr("x",dx).attr("y",up?-13:38).attr("text-anchor",anchor).attr("class","tk halo").style("fill","var(--ink-2)").text(d.s);
+    if(d.m!=="astra61") focusable(t1);
+    s.append("circle").attr("r",12).style("fill","transparent");
+  });
+  bindTip(g, d=>`<div class="tt">${glyph(d.lab)}${esc(d.l)}</div><div class="tm">${d3.timeFormat("%-d %B %Y")(new Date(d.d))}</div><div class="tv">${esc(d.s)}</div>${d.m==="argon"?`<div class="tm" style="margin-top:4px">Announcement date from ${SRC.tracker.t}; availability from Google's post dated 13 Oct.</div>`:""}${d.kind==="cancel"?`<div class="tm" style="margin-top:4px">${SRC.register.t}</div>`:""}`);
+}
+
+/* ---------- explorer ---------- */
+function renderExplorerTabs(){
+  const box = document.getElementById("x-tabs");
+  box.innerHTML = TABLE_ORDER.map(k=>`<button class="btn" role="tab" type="button" id="tab-${k}" data-k="${k}" aria-selected="${state.tab===k}" tabindex="${state.tab===k?0:-1}">${glyph(TABLES[k].lab,56)}${LABS[TABLES[k].lab].n}</button>`).join("");
+  const btns = [...box.querySelectorAll("[role=tab]")];
+  btns.forEach((b,i)=>{
+    b.onclick=()=>{ state.tab=b.dataset.k; renderExplorer(); };
+    b.onkeydown=e=>{ if(e.key==="ArrowRight"||e.key==="ArrowLeft"){ e.preventDefault(); const n=btns[(i+(e.key==="ArrowRight"?1:-1)+btns.length)%btns.length]; n.focus(); n.click(); } };
+  });
+}
+function renderExplorer(){
+  renderExplorerTabs();
+  const t = TABLES[state.tab];
+  document.getElementById("x-meta").innerHTML = `${t.rows.length} rows · ${t.cols.length} models<br>${t.date}`;
+  const panel = document.getElementById("x-panel");
+  panel.setAttribute("aria-labelledby",`tab-${state.tab}`);
+  const pubc = labVar(t.lab);
+  const head = t.cols.map((m,i)=>`<th class="${i===0||(t.lab==='meta'&&M[m].lab==='meta')?'pub':''}" style="--pubc:${pubc}"><span class="st">${glyph(M[m].lab,40)}</span> <span class="mlabel" data-m="${m}" tabindex="0" role="button">${esc(M[m].n)}</span></th>`).join("");
+  const rows = t.scored.map(r=>{
+    const rowMax = d3.max(r.vals.filter(v=>v!=null));
+    const cells = r.vals.map((v,i)=>{
+      const m=t.cols[i], isPub = i===0||(t.lab==='meta'&&M[m].lab==='meta');
+      if(v==null) return `<td class="v ${isPub?'pub':''}" style="--pubc:${pubc}; color:var(--muted)">—</td>`;
+      const w = r.unit==="elo" ? Math.max(4,(v-1300)/(rowMax-1300)*100) : v/rowMax*100;
+      return `<td class="v ${isPub?'pub':''} ${v===rowMax?'best':''}" style="--pubc:${pubc}" data-model="${m}">${fmt(v,r.unit)}<span class="b" style="width:${w.toFixed(1)}%; background:${labVar(M[m].lab)}"></span></td>`;
+    }).join("");
+    let res;
+    if(r.status==="lead") res=`<span class="st lead" style="--stc:${pubc}"><i></i>Leads by ${fmt(r.pub-r.best,r.unit)}</span>`;
+    else if(r.status==="tie") res=`<span class="st tie" style="--stc:${pubc}"><i></i>Tied with ${esc(M[r.bestM].s)}</span>`;
+    else if(r.status==="trail") res=`<span class="st trail" style="--stc:${pubc}"><i></i>Trails ${esc(M[r.bestM].s)} by ${fmt(r.best-r.pub,r.unit)}</span>`;
+    else res=`<span class="st norival"><i></i>No other lab</span>`;
+    return `<tr><td>${esc(r.b)}${r.internal?'<span class="tag">internal</span>':''}${r.unit==='elo'?' <span class="tag">Elo</span>':''}</td><td class="src">${esc(r.srcNote)}</td>${cells}<td class="res">${res}</td></tr>`;
+  }).join("");
+  panel.innerHTML = `
+    <div class="xhead"><h3>${glyph(t.lab,60)} ${esc(LABS[t.lab].n)} · ${esc(t.title)}</h3>
+      <div class="pills"><span class="pill"><span class="st lead" style="--stc:${pubc}"><i></i></span>${t.lead} led</span>${t.tie?`<span class="pill"><span class="st tie" style="--stc:${pubc}"><i></i></span>${t.tie} tied</span>`:''}<span class="pill"><span class="st trail" style="--stc:${pubc}"><i></i></span>${t.trail} trailed</span>${t.norival?`<span class="pill"><span class="st norival"><i></i></span>${t.norival} no other lab</span>`:''}</div></div>
+    <p class="small">${esc(t.note)} Source: ${t.src.map(k=>`<a href="${SRC[k].u}" target="_blank" rel="noopener">${esc(SRC[k].t)}</a>`).join("; ")}.</p>
+    <div class="scrollx"><table class="mx"><thead><tr><th>Benchmark</th><th style="text-align:left">Who ran it</th>${head}<th style="text-align:left">Publisher vs best other lab</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+  panel.querySelectorAll(".mlabel[data-m]").forEach(s=>{
+    s.onclick=()=>setFocus(s.dataset.m);
+    s.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setFocus(s.dataset.m);} };
+  });
+  applyFocus();
+}
+
+/* ---------- Terminal-Bench 4.0 dot plot ---------- */
+function renderTB4(){
+  const el = document.getElementById("tb4-chart");
+  const rows = TB4.filter(d=>vis(d.m));
+  const W = cw(el), narrow = W < 560, rowH = 40, top = 30, left = narrow?104:150, right = narrow?64:120, dxD = narrow?16:26;
+  const H = top + rows.length*rowH + 10;
+  const x = d3.scaleLinear().domain([30,75]).range([left, W-right]);
+  document.getElementById("tb4-legend").innerHTML = `
+    <span><svg width="16" height="16" viewBox="-8 -8 16 16"><circle r="6" style="fill:var(--sheet);stroke:var(--ink-2);stroke-width:2"/></svg>Lab's own claim</span>
+    <span><svg width="16" height="16" viewBox="-8 -8 16 16"><path d="${d3.symbol(d3.symbolDiamond,44)()}" style="fill:var(--ink-2)"/></svg>Printed in a rival lab's table (color = that lab)</span>
+    <span><svg width="16" height="16" viewBox="-8 -8 16 16"><circle r="5" style="fill:var(--indep)"/></svg>Independent run, Artificial Analysis</span>`;
+  el.innerHTML = "";
+  const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Terminal-Bench 4.0 claims, rival-table figures and independent runs by model");
+  const ax = svg.append("g").attr("transform",`translate(0,${top-6})`).call(d3.axisTop(x).ticks(narrow?5:9).tickFormat(d=>d+"%").tickSize(-(rows.length*rowH)).tickPadding(6));
+  ax.select(".domain").remove();
+  svg.append("text").attr("x",W-right+dxD).attr("y",top-12).attr("class","tk").text(narrow?"AA−claim":"AA − claim");
+  const g = svg.selectAll("g.r").data(rows).join("g").attr("class","r").attr("data-model",d=>d.m).attr("transform",(d,i)=>`translate(0,${top + i*rowH + rowH/2})`);
+  g.each(function(d){
+    const s = d3.select(this), lab = M[d.m].lab;
+    s.append("path").attr("transform","translate(10,0)").attr("d",symPath(lab,46)).style("fill",labVar(lab));
+    focusable(s.append("text").attr("x",22).attr("y",4).style("font-size",narrow?"12px":"13px").style("font-weight",600).text(narrow?M[d.m].s:M[d.m].n).datum(d.m));
+    if(d.aa){
+      s.append("line").attr("x1",x(d.self.v)).attr("x2",x(d.aa.v)).attr("y1",0).attr("y2",0).style("stroke","var(--ink-2)").style("stroke-width",2);
+    }
+    const rv = s.selectAll("path.rv").data(d.rivals.map(r=>({...r,m:d.m}))).join("path").attr("class","rv")
+      .attr("transform",r=>`translate(${x(r.v)},-11)`).attr("d",d3.symbol(d3.symbolDiamond,46)()).style("fill",r=>labVar(r.by)).style("stroke","var(--sheet)").style("stroke-width",1.5);
+    bindTip(rv, r=>`<div class="tt">${esc(M[r.m].n)}</div><div class="tv">${r.v.toFixed(1)}%</div><div class="tm">${glyph(r.by)} ${esc(r.n)}</div>`);
+    const sc = s.append("circle").attr("cx",x(d.self.v)).attr("cy",0).attr("r",6.5).style("fill","var(--sheet)").style("stroke",labVar(lab)).style("stroke-width",2.4);
+    bindTip(sc, ()=>`<div class="tt">${esc(M[d.m].n)}</div><div class="tv">Claim: ${d.self.v.toFixed(1)}%</div><div class="tm">${esc(d.self.n)}</div>`);
+    if(d.aa){
+      const ac = s.append("circle").attr("cx",x(d.aa.v)).attr("cy",0).attr("r",5.5).style("fill","var(--indep)").style("stroke","var(--sheet)").style("stroke-width",2);
+      bindTip(ac, ()=>`<div class="tt">${esc(M[d.m].n)}</div><div class="tv">Independent: ${d.aa.v.toFixed(1)}%</div><div class="tm">Artificial Analysis · ${esc(d.aa.n)}</div>`);
+      const delta = d.aa.v - d.self.v;
+      s.append("text").attr("x",W-right+dxD).attr("y",4).style("font-family","var(--f-mono)").style("font-size","12.5px").style("font-weight",600)
+        .style("fill", Math.abs(delta)>=3 ? "var(--ink)" : "var(--ink-2)")
+        .text((delta>0?"+":delta<0?"−":"±")+Math.abs(delta).toFixed(1));
+    } else {
+      s.append("text").attr("x",W-right+dxD).attr("y",4).attr("class","tk").text(narrow?"none":"no indep. run");
+    }
+  });
+}
+
+/* ---------- discrepancy strips ---------- */
+function renderCases(){
+  const grid = document.getElementById("case-grid");
+  const list = CASES.filter(c=>vis(c.m));
+  grid.innerHTML = list.map((c,i)=>{
+    const vals = c.pts.map(p=>p.v), spread = d3.max(vals)-d3.min(vals);
+    return `<article class="case" data-model="${c.m}"><div class="ct"><h3>${glyph(M[c.m].lab,52)} <span class="mlabel" tabindex="0" role="button" data-m="${c.m}">${esc(M[c.m].n)}</span> · ${esc(c.b)}</h3><span class="sp">spread ${fmt(spread,c.unit)}${c.unit==='pct'?' pts':''}</span></div><div class="strip" id="strip-${i}"></div><p class="why">${esc(c.why)}</p></article>`;
+  }).join("");
+  grid.querySelectorAll(".mlabel[data-m]").forEach(s=>{ s.onclick=()=>setFocus(s.dataset.m); s.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setFocus(s.dataset.m);} }; });
+  list.forEach((c,i)=>{
+    const el = document.getElementById(`strip-${i}`);
+    const W = cw(el);
+    const groups = d3.groups(c.pts, p=>p.v).map(([v,ps])=>({v,ps})).sort((a,b)=>a.v-b.v);
+    const lo=d3.min(groups,d=>d.v), hi=d3.max(groups,d=>d.v), pad=Math.max(1,(hi-lo)*.12);
+    const x = d3.scaleLinear().domain([lo-pad, hi+pad]).range([14, W-14]);
+    const axisY = 26, lineH = 14;
+    const svg = d3.select(el).append("svg").attr("width",W).attr("viewBox",`0 0 ${W} 100`).attr("role","img").attr("aria-label",`${M[c.m].n} on ${c.b}: ${c.pts.map(p=>p.l+" "+p.v).join(", ")}`);
+    const ax = svg.append("g").attr("transform",`translate(0,${axisY})`).call(d3.axisTop(x).ticks(Math.max(3,Math.floor(W/90))).tickSize(4).tickPadding(4).tickFormat(d=>c.unit==="pct"?d+"%":d));
+    ax.select(".domain").style("stroke","var(--ink-2)");
+    ax.selectAll(".tick line").style("stroke","var(--ink-2)");
+    const leaders = svg.append("g");
+    let ly = axisY + 20;
+    groups.forEach(gp=>{
+      const gx = x(gp.v), anchorEnd = gx > W*0.55;
+      const t = svg.append("text").attr("y",ly).attr("class","halo").style("font-size","11.5px");
+      const val = fmt(gp.v,c.unit), names = gp.ps.map(p=>p.l);
+      t.append("tspan").text(`${val} · ${names.join(", ")}`);
+      let lines = 1;
+      if(t.node().getComputedTextLength() > W-6 && names.length>1){
+        t.selectAll("tspan").remove();
+        const cut = Math.ceil(names.length/2);
+        t.append("tspan").attr("dy",0).text(`${val} · ${names.slice(0,cut).join(", ")},`);
+        t.append("tspan").attr("dy",lineH).text(names.slice(cut).join(", "));
+        lines = 2;
+      }
+      const len = d3.max(t.selectAll("tspan").nodes(), n=>n.getComputedTextLength());
+      let left = anchorEnd ? gx-4-len : gx+4;
+      left = Math.max(2, Math.min(left, W-2-len));
+      t.attr("x",left); t.selectAll("tspan").attr("x",left);
+      leaders.append("line").attr("x1",gx).attr("x2",gx).attr("y1",axisY).attr("y2",ly-10).style("stroke","var(--muted)").style("stroke-width",1);
+      ly += lines*lineH + 4;
+    });
+    const H = ly - 6;
+    svg.attr("height",H).attr("viewBox",`0 0 ${W} ${H}`);
+    groups.forEach(gp=>{
+      const gx = x(gp.v);
+      gp.ps.forEach((p,j)=>{
+        const cy = axisY - (j*0) ; // stacked marks share a spot; offset horizontally
+        const off = (j-(gp.ps.length-1)/2)*7;
+        const mk = svg.append("circle").attr("cx",gx+off).attr("cy",axisY).attr("r",5)
+          .style("fill", p.derived ? "var(--sheet)" : labVar(p.by)).style("stroke", p.derived ? labVar(p.by) : "var(--sheet)").style("stroke-width", p.derived?1.8:1.5).datum(p);
+        bindTip(mk, p=>`<div class="tt">${p.by==="indep"?"Independent":glyph(p.by)+" "+esc(LABS[p.by].n)}</div><div class="tv">${fmt(p.v,c.unit)}${unitSuffix(c.unit)}</div><div class="tm">${esc(p.l)}</div>`);
+      });
+    });
+  });
+}
+
+/* ---------- measurement chain schematic ---------- */
+const CHAIN = {
+  stages:[
+    {k:"model", t:"Model", o:["Claude Opus 5.5","Claude Opus 5"]},
+    {k:"effort", t:"Effort setting", o:["low","medium","high","xhigh","max","not stated"]},
+    {k:"harness", t:"Harness", o:["Lab's own setup","Claude Code ×5 trials","Evaluator's harness"]},
+    {k:"runner", t:"Who ran it", o:["The model's lab","Public leaderboard","Independent evaluator"]}
+  ],
+  traces:[
+    {n:"Anthropic launch table", p:["Claude Opus 5.5","xhigh","Lab's own setup","The model's lab"], v:"66.4%", e:"±2.6 pts standard error", lab:"anthropic"},
+    {n:"Artificial Analysis", p:["Claude Opus 5.5","max","Evaluator's harness","Independent evaluator"], v:"59.6%", e:"same benchmark, 6.8 pts lower", lab:"indep"},
+    {n:"Public leaderboard", p:["Claude Opus 5","not stated","Claude Code ×5 trials","Public leaderboard"], v:"51.8%", e:"Opus 5, 5 trials per task", lab:"indep"},
+    {n:"Anthropic rerun of Opus 5", p:["Claude Opus 5","not stated","Lab's own setup","The model's lab"], v:"52.3%", e:"0.5 pts from leaderboard, within noise", lab:"anthropic"}
+  ]
+};
+function renderChain(){
+  const btnBox = document.getElementById("chain-btns");
+  btnBox.innerHTML = CHAIN.traces.map((t,i)=>`<button class="btn" type="button" aria-pressed="${state.trace===i}" data-i="${i}">${t.lab==="indep"?'<svg class="g" viewBox="-7 -7 14 14"><circle r="5" style="fill:var(--indep)"/></svg>':glyph(t.lab,50)}${esc(t.n)}</button>`).join("");
+  btnBox.querySelectorAll("button").forEach(b=>b.onclick=()=>{ state.trace=+b.dataset.i; renderChain(); });
+  const el = document.getElementById("chain-svg");
+  const W = 1110, colW = 158, gap = 40, x0 = 8, nodeH = 26, top = 40;
+  const H = top + 6*34 + 10;
+  el.innerHTML = "";
+  const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Schematic of the choices behind a Terminal-Bench 4.0 score");
+  const pos = {};
+  CHAIN.stages.forEach((st,si)=>{
+    const cx = x0 + si*(colW+gap);
+    svg.append("text").attr("x",cx).attr("y",16).attr("class","tk").style("text-transform","uppercase").style("letter-spacing",".08em").text(st.t);
+    svg.append("line").attr("x1",cx).attr("x2",cx+colW).attr("y1",24).attr("y2",24).style("stroke","var(--rule)");
+    st.o.forEach((o,oi)=>{ pos[st.k+"|"+o] = {x:cx, y: top + oi*34}; });
+  });
+  const rx = x0 + 4*(colW+gap);
+  svg.append("text").attr("x",rx).attr("y",16).attr("class","tk").style("text-transform","uppercase").style("letter-spacing",".08em").text("Published score");
+  svg.append("line").attr("x1",rx).attr("x2",W-6).attr("y1",24).attr("y2",24).style("stroke","var(--rule)");
+  const link = (a,b) => { const mx=(a.x+colW+b.x)/2; return `M${a.x+colW},${a.y+nodeH/2} C${mx},${a.y+nodeH/2} ${mx},${b.y+nodeH/2} ${b.x},${b.y+nodeH/2}`; };
+  const ordered = CHAIN.traces.map((t,i)=>({t,i})).sort((a,b)=>(a.i===state.trace)-(b.i===state.trace));
+  ordered.forEach(({t,i})=>{
+    const sel = i===state.trace;
+    const pts = t.p.map((o,si)=>pos[CHAIN.stages[si].k+"|"+o]);
+    const resY = top + i*34 + 10;
+    let d = "";
+    for(let k=0;k<pts.length-1;k++) d += link(pts[k],pts[k+1])+" ";
+    d += link(pts[pts.length-1], {x:rx, y:resY-nodeH/2+10});
+    const path = svg.append("path").attr("d",d).style("fill","none").style("stroke", sel ? (t.lab==="indep"?"var(--ink)":labVar(t.lab)) : "var(--rule)").style("stroke-width", sel?3:1.5).style("stroke-linecap","round");
+    if(sel && !matchMedia("(prefers-reduced-motion: reduce)").matches){
+      const len = path.node().getTotalLength();
+      path.attr("stroke-dasharray",`${len} ${len}`).attr("stroke-dashoffset",len).transition().duration(700).ease(d3.easeCubicOut).attr("stroke-dashoffset",0).on("end",()=>path.attr("stroke-dasharray",null));
+    }
+  });
+  const active = CHAIN.traces[state.trace];
+  CHAIN.stages.forEach((st,si)=>{
+    st.o.forEach(o=>{
+      const p = pos[st.k+"|"+o], on = active.p[si]===o;
+      svg.append("rect").attr("x",p.x).attr("y",p.y).attr("width",colW).attr("height",nodeH).attr("rx",3)
+        .style("fill", on ? "var(--ink)" : "var(--sheet)").style("stroke", on ? "var(--ink)" : "var(--rule)");
+      svg.append("text").attr("x",p.x+10).attr("y",p.y+17).style("font-size","12.5px").style("font-weight",on?650:500).style("fill", on ? "var(--sheet)" : "var(--ink-2)").text(o);
+    });
+  });
+  CHAIN.traces.forEach((t,i)=>{
+    const sel = i===state.trace, y = top + i*34;
+    svg.append("text").attr("x",rx+4).attr("y",y+20).style("font-family","var(--f-mono)").style("font-size",sel?"20px":"14px").style("font-weight",sel?600:500).style("fill",sel?"var(--ink)":"var(--muted)").text(t.v);
+    svg.append("text").attr("x",rx+(sel?84:58)).attr("y",y+18).style("font-size","11.5px").style("fill",sel?"var(--ink-2)":"var(--muted)").text(sel?t.e:t.n);
+  });
+}
+
+/* ---------- OSWorld matrix ---------- */
+function renderOSW(){
+  const el = document.getElementById("osw");
+  const rows = OSW.filter(r=>vis(r.m));
+  const all = rows.flatMap(r=>Object.values(r.c).map(c=>c[0]));
+  const s = d3.scaleLinear().domain([d3.min(all)||40, d3.max(all)||90]).range([8,46]);
+  el.innerHTML = `<table class="osw"><thead><tr><th>Model</th>${OSW_COLS.map(c=>`<th>OSWorld ${c}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr data-model="${r.m}"><td>${glyph(M[r.m].lab,44)} <span class="mlabel" role="button" tabindex="0" data-m="${r.m}">${esc(M[r.m].n)}</span></td>${OSW_COLS.map(c=>{const v=r.c[c]; return v?`<td class="v" title="${esc(v[1])}" style="background:color-mix(in srgb, var(--seq) ${s(v[0]).toFixed(0)}%, var(--sheet))">${v[0].toFixed(1)}</td>`:`<td class="e">·</td>`;}).join("")}</tr>`).join("")}</tbody></table>`;
+  el.querySelectorAll(".mlabel[data-m]").forEach(sp=>{ sp.onclick=()=>setFocus(sp.dataset.m); sp.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); setFocus(sp.dataset.m);} }; });
+  el.querySelectorAll("td.v").forEach(td=>{
+    td.addEventListener("pointerenter",e=>showTip(`<div class="tv">${td.textContent}%</div><div class="tm">${esc(td.title)}</div>`,e));
+    td.addEventListener("pointermove",e=>showTip(`<div class="tv">${td.textContent}%</div><div class="tm">${esc(td.title)}</div>`,e));
+    td.addEventListener("pointerleave",hideTip);
+  });
+}
+
+/* ---------- scatter: index vs cost ---------- */
+function renderScatter(){
+  const el = document.getElementById("scatter");
+  const models = Object.keys(LADDERS).filter(vis);
+  const W = Math.max(cw(el), 620), H = 440, mg = {t:16,r:132,b:44,l:46};
+  const x = d3.scaleLog().domain([0.003,12]).range([mg.l, W-mg.r]);
+  const y = d3.scaleLinear().domain([15,61]).range([H-mg.b, mg.t]);
+  document.getElementById("sc-legend").innerHTML = LAB_ORDER.filter(l=>state.labs.has(l)).map(l=>`<span>${glyph(l,52)}${LABS[l].n}</span>`).join("") + `<span><svg width="22" height="10"><path d="M1,8 H8 V3 H21" style="fill:none;stroke:var(--ink-2);stroke-width:1.2"/></svg>Best score at each price</span>`;
+  el.innerHTML = "";
+  const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Artificial Analysis Intelligence Index against cost per task, by effort setting");
+  const ticks = [0.01,0.03,0.1,0.3,1,3,10];
+  const gx = svg.append("g").attr("transform",`translate(0,${H-mg.b})`).call(d3.axisBottom(x).tickValues(ticks).tickFormat(d=>"$"+(d<1?d:d.toFixed(0))).tickSize(-(H-mg.b-mg.t)).tickPadding(8));
+  gx.select(".domain").remove();
+  const gy = svg.append("g").attr("transform",`translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(9).tickSize(-(W-mg.l-mg.r)).tickPadding(8));
+  gy.select(".domain").remove();
+  svg.append("text").attr("x",W-mg.r).attr("y",H-8).attr("text-anchor","end").attr("class","tk").text("cost per index task, log scale →");
+  svg.append("text").attr("x",mg.l-34).attr("y",mg.t+2).attr("class","tk").text("index");
+  const pts = [];
+  models.forEach(m=>LADDERS[m].forEach(([e,v,c])=>pts.push({m,e,v,c})));
+  // frontier
+  const sorted = pts.slice().sort((a,b)=>a.c-b.c); let best=-1; const fr=[];
+  sorted.forEach(p=>{ if(p.v>best){ best=p.v; fr.push(p); } });
+  if(fr.length>1){
+    fr.push({c:12, v:best});
+    svg.append("path").datum(fr).attr("d",d3.line().x(d=>x(d.c)).y(d=>y(d.v)).curve(d3.curveStepAfter)).style("fill","none").style("stroke","var(--ink-2)").style("stroke-width",1.2).style("opacity",.8);
+  }
+  const line = d3.line().x(d=>x(d[2])).y(d=>y(d[1]));
+  models.forEach(m=>{
+    const lab = M[m].lab;
+    const data = LADDERS[m].slice().sort((a,b)=>a[2]-b[2]);
+    const g = svg.append("g").attr("data-model",m);
+    if(data.length>1) g.append("path").attr("d",line(data)).style("fill","none").style("stroke",labVar(lab)).style("stroke-width",2).style("stroke-linejoin","round").style("stroke-linecap","round");
+    g.selectAll("path.pt").data(data).join("path").attr("class","pt").attr("transform",d=>`translate(${x(d[2])},${y(d[1])})`).attr("d",symPath(lab,54)).style("fill",labVar(lab)).style("stroke","var(--sheet)").style("stroke-width",2);
+  });
+  // labels: right-column for costly models, adjacent for the rest
+  const ends = models.map(m=>{ const top = LADDERS[m].reduce((a,b)=> b[1]>a[1]||(b[1]===a[1]&&b[2]>a[2])?b:a); return {m, v:top[1], c:top[2]}; });
+  const col = ends.filter(d=>d.c>=2.5).sort((a,b)=>b.v-a.v);
+  let lastY=-Infinity; col.forEach(d=>{ d.ly=Math.max(y(d.v), lastY+15); lastY=d.ly; });
+  const lx = W-mg.r+10;
+  col.forEach(d=>{
+    const g = svg.append("g").attr("data-model",d.m);
+    g.append("path").attr("d",`M${x(d.c)+6},${y(d.v)} L${lx-4},${d.ly}`).style("stroke","var(--muted)").style("stroke-width",.8).style("fill","none");
+    focusable(g.append("text").attr("x",lx).attr("y",d.ly+4).attr("class","halo").style("font-size","12px").style("font-weight",600).text(M[d.m].s).datum(d.m));
+  });
+  const place = {sol61:[0,-12,"middle"], argon:[0,-12,"middle"], spark13:[0,18,"middle"], flash38:[8,14,"start"], haiku55:[-9,4,"end"], luna:[-9,4,"end"]};
+  ends.filter(d=>d.c<2.5).forEach(d=>{
+    const [dx,dy,an] = place[d.m]||[8,4,"start"];
+    const g = svg.append("g").attr("data-model",d.m);
+    focusable(g.append("text").attr("x",x(d.c)+dx).attr("y",y(d.v)+dy).attr("text-anchor",an).attr("class","halo").style("font-size","12px").style("font-weight",600).text(M[d.m].s).datum(d.m));
+  });
+  // hover via delaunay
+  const del = d3.Delaunay.from(pts, d=>x(d.c), d=>y(d.v));
+  const hl = svg.append("circle").attr("r",9).style("fill","none").style("stroke","var(--ink)").style("stroke-width",1.5).style("pointer-events","none").attr("visibility","hidden");
+  svg.append("rect").attr("x",mg.l).attr("y",mg.t).attr("width",W-mg.l-mg.r).attr("height",H-mg.t-mg.b).style("fill","transparent")
+    .on("pointermove",e=>{
+      const [mx,my] = d3.pointer(e); const i = del.find(mx,my); const p = pts[i];
+      if(Math.hypot(x(p.c)-mx, y(p.v)-my) > 40){ hl.attr("visibility","hidden"); hideTip(); return; }
+      hl.attr("cx",x(p.c)).attr("cy",y(p.v)).attr("visibility","visible");
+      showTip(`<div class="tt">${glyph(M[p.m].lab)}${esc(M[p.m].n)}</div><div class="tm">${esc(p.e)} effort</div><div class="tv">Index ${p.v} · $${p.c<0.01?p.c.toFixed(4):p.c.toFixed(2)} per task</div>`, e);
+    })
+    .on("pointerleave",()=>{ hl.attr("visibility","hidden"); hideTip(); })
+    .on("click",e=>{ const [mx,my]=d3.pointer(e); const p=pts[del.find(mx,my)]; if(Math.hypot(x(p.c)-mx,y(p.v)-my)<=40) setFocus(p.m); });
+}
+
+/* ---------- horizontal bars ---------- */
+function hbars(elId, rows, {max, unit, labelW=170, labelOf, tipOf}){
+  const el = document.getElementById(elId);
+  const data = rows.filter(r=>vis(r.m));
+  const W = cw(el), rowH = 30, top = 4, H = top + data.length*rowH + 6;
+  el.innerHTML = "";
+  const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img");
+  const probe = svg.append("text").style("font-size","12.5px").style("font-weight",600);
+  const maxLen = d3.max(data, d=>{ probe.text(labelOf?labelOf(d):M[d.m].n); return probe.node().getComputedTextLength(); }) || 0;
+  probe.remove();
+  const lw = Math.min(Math.max(labelW, maxLen+14), W*0.6);
+  const x = d3.scaleLinear().domain([0,max]).range([lw, W-60]);
+  svg.append("line").attr("x1",lw).attr("x2",lw).attr("y1",top-2).attr("y2",H-4).style("stroke","var(--rule)");
+  const g = svg.selectAll("g").data(data).join("g").attr("data-model",d=>d.m).attr("transform",(d,i)=>`translate(0,${top+i*rowH})`);
+  g.each(function(d){
+    const s = d3.select(this), lab = M[d.m].lab, bw = Math.max(2, x(d.v)-lw), bh = 14, r = Math.min(4,bw/2), y0 = (rowH-bh)/2;
+    focusable(s.append("text").attr("x",lw-10).attr("y",rowH/2+4).attr("text-anchor","end").style("font-size","12.5px").style("font-weight",600).text(labelOf?labelOf(d):M[d.m].n).datum(d.m));
+    s.append("path").attr("d",`M${lw},${y0} h${bw-r} a${r},${r} 0 0 1 ${r},${r} v${bh-2*r} a${r},${r} 0 0 1 ${-r},${r} h${-(bw-r)} Z`).style("fill",labVar(lab));
+    s.append("text").attr("x",lw+bw+6).attr("y",rowH/2+4).style("font-family","var(--f-mono)").style("font-size","12px").text(unit==="$"?"$"+d.v.toFixed(2):unit==="%"?d.v.toFixed(1)+"%":d.v);
+    s.append("rect").attr("x",0).attr("y",0).attr("width",W).attr("height",rowH).style("fill","transparent").style("pointer-events","none");
+  });
+  if(tipOf) bindTip(g, tipOf);
+}
+function renderBars(){
+  const cost = INDEX.filter(d=>LADDERS[d.m]).map(d=>{ const l=LADDERS[d.m]; const top=l[l.length-1]; return {m:d.m, v: l.reduce((a,b)=>b[1]>a[1]||(b[1]===a[1]&&b[2]>a[2])?b:a)[2]}; }).sort((a,b)=>b.v-a.v);
+  hbars("costbars", cost, {max:8.2, unit:"$", labelW:140, labelOf:d=>M[d.m].s, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">$${d.v.toFixed(2)} per index task</div><div class="tm">${SPEED[d.m]?SPEED[d.m]+" output tokens/s · ":""}${SRC.aaBoard.t}</div>`});
+  hbars("cursorbars", CURSOR, {max:62, unit:"%", labelW:150, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">${d.v.toFixed(1)}%</div><div class="tm">${esc(d.n)}</div>`});
+  hbars("agentbars", AGENTS, {max:72, unit:"", labelW:190, labelOf:d=>d.l, tipOf:d=>`<div class="tt">${esc(d.l)}</div><div class="tv">Coding Agents Index ${d.v}</div><div class="tm">${SRC.aaMuse.t}</div>`});
+}
+
+/* ---------- reference table ---------- */
+const refSort = {k:"idx", dir:-1};
+function renderRef(){
+  const el = document.getElementById("reftable");
+  const idx = Object.fromEntries(INDEX.map(d=>[d.m,d]));
+  const rows = REF.map(r=>{
+    const l = LADDERS[r.m]; const top = l ? l.reduce((a,b)=>b[1]>a[1]||(b[1]===a[1]&&b[2]>a[2])?b:a) : null;
+    return {...r, n:M[r.m].n, lab:M[r.m].lab, idx: idx[r.m]?idx[r.m].v:null, eff: idx[r.m]&&idx[r.m].eff, cost: top?top[2]:null, spd: SPEED[r.m]||null};
+  }).filter(r=>vis(r.m));
+  const k = refSort.k, dir = refSort.dir;
+  rows.sort((a,b)=>{ const av=a[k], bv=b[k]; if(av==null&&bv==null) return 0; if(av==null) return 1; if(bv==null) return -1; return (av>bv?1:av<bv?-1:0)*dir; });
+  const cols = [["n","Model","t"],["lab","Lab","t"],["rel","Released","t"],["acc","Access","t"],["pin","$ in / 1M",""],["pout","$ out / 1M",""],["idx","AA index",""],["cost","AA $ / task",""],["spd","Tokens / s",""]];
+  const money = v => v==null?"—":"$"+(v<1?v.toFixed(2):(Number.isInteger(v)?v:v.toFixed(2)));
+  el.innerHTML = `<table class="ref"><thead><tr>${cols.map(([ck,cl,cc])=>`<th class="${cc}" scope="col" data-k="${ck}" tabindex="0" aria-sort="${ck===k?(dir>0?'ascending':'descending'):'none'}">${cl}</th>`).join("")}</tr></thead><tbody>${rows.map(r=>`<tr data-model="${r.m}" class="${r.m==='astra61'?'off':''}">
+    <td class="t n">${glyph(r.lab,44)} <button type="button" data-m="${r.m}">${esc(r.n)}</button></td>
+    <td class="t">${esc(LABS[r.lab].n)}</td>
+    <td class="t">${r.rel?d3.timeFormat("%-d %b %Y")(new Date(r.rel)):"—"}</td>
+    <td class="t">${esc(r.acc)}</td>
+    <td>${money(r.pin)}</td><td>${money(r.pout)}</td>
+    <td>${r.idx==null?"—":r.idx+(r.eff?` <span class="tag">${r.eff}</span>`:"")}</td>
+    <td>${r.cost==null?"—":"$"+r.cost.toFixed(2)}</td>
+    <td>${r.spd||"—"}</td></tr>`).join("")}</tbody></table>`;
+  el.querySelectorAll("th[data-k]").forEach(th=>{
+    const go=()=>{ const kk=th.dataset.k; if(refSort.k===kk) refSort.dir*=-1; else { refSort.k=kk; refSort.dir=(["n","lab","rel","acc"].includes(kk)?1:-1); } renderRef(); applyFocus(); };
+    th.onclick=go; th.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } };
+  });
+  el.querySelectorAll("button[data-m]").forEach(b=>b.onclick=()=>setFocus(b.dataset.m));
+}
+
+/* ---------- sources ---------- */
+function renderSources(){
+  const groups = [["Lab pages","lab"],["Independent evaluators","ind"],["Reports and reproductions","sec"]];
+  document.getElementById("srclist").innerHTML = groups.map(([t,k])=>`<div><h3>${t}</h3><ul>${Object.values(SRC).filter(s=>s.k===k).map(s=>`<li><a href="${s.u}" target="_blank" rel="noopener">${esc(s.t)}</a></li>`).join("")}</ul></div>`).join("");
+}
+
+/* ---------- orchestrate ---------- */
+function renderAll(){
+  renderHero(); renderLadder(); renderTimeline(); renderExplorer(); renderTB4(); renderCases(); renderChain(); renderOSW(); renderScatter(); renderBars(); renderRef();
+  applyFocus();
+}
+renderChips(); renderSources(); renderAll();
+if(document.fonts && document.fonts.ready) document.fonts.ready.then(()=>{ renderLadder(); renderTimeline(); renderScatter(); applyFocus(); });
+let lastW = innerWidth, rt;
+addEventListener("resize",()=>{ if(Math.abs(innerWidth-lastW)<8) return; lastW=innerWidth; clearTimeout(rt); rt=setTimeout(()=>{ renderAll(); },160); });
+document.addEventListener("scroll", hideTip, {passive:true});
+})();
+</script>
+
+</html>

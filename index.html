@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Frontier Benchmark Atlas</title>
+<meta name="description" content="Frontier AI model benchmarks, vendor claims against independent runs, compiled separately by several AI agent harnesses from one brief.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: same drafting-sheet identity as the harness pages. Hub = harness cards, then a cross-harness comparison sheet. */
+:root{
+  color-scheme:light;
+  --paper:#edf1f5; --sheet:#fbfcfd; --ink:#122033; --ink-2:#44526a; --muted:#66748a;
+  --rule:#d3dbe5; --grid:#e2e8ef; --wash:#e8edf3;
+  --k-claim:#2a78d6; --k-rival:#eda100; --k-indep:#122033; --k-variant:#b3bfcd;
+  --s-lab:#2a78d6; --s-indep:#122033; --s-sec:#eda100;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
+    --rule:#263244; --grid:#172030; --wash:#1a2431;
+    --k-claim:#3987e5; --k-rival:#b98a00; --k-indep:#e6ecf3; --k-variant:#3c4c62;
+    --s-lab:#3987e5; --s-indep:#e6ecf3; --s-sec:#b98a00; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
+  --rule:#263244; --grid:#172030; --wash:#1a2431;
+  --k-claim:#3987e5; --k-rival:#b98a00; --k-indep:#e6ecf3; --k-variant:#3c4c62;
+  --s-lab:#3987e5; --s-indep:#e6ecf3; --s-sec:#b98a00; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0; background-color:var(--paper); color:var(--ink);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px; font-family:var(--f-body); font-size:16.5px; line-height:1.6}
+a{color:inherit; text-decoration-color:var(--muted); text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.wrap{max-width:1200px; margin:0 auto; padding-inline:clamp(16px,3.5vw,40px); padding-block:clamp(28px,5vw,56px) 64px; display:grid; gap:22px}
+h1,h2,h3{font-family:var(--f-display); margin:0; text-wrap:balance}
+h1{font-size:clamp(2.4rem,6.5vw,4.8rem); font-weight:800; font-stretch:118%; line-height:.95; letter-spacing:-.015em}
+h2{font-size:clamp(1.4rem,3vw,1.95rem); font-weight:750; font-stretch:110%; line-height:1.1}
+h3{font-size:1.1rem; font-weight:700; font-stretch:104%}
+p{margin:0}
+.eyebrow{font-family:var(--f-mono); font-size:.74rem; letter-spacing:.09em; text-transform:uppercase; color:var(--ink-2)}
+.lede{font-size:clamp(1.05rem,1.8vw,1.2rem); color:var(--ink-2); max-width:66ch}
+.sub{color:var(--ink-2); max-width:70ch}
+.small{font-size:.88rem; color:var(--ink-2)}
+.mast{display:grid; gap:16px}
+.sheet{background:var(--sheet); border:1px solid var(--rule); padding:clamp(18px,3vw,32px); display:grid; gap:16px; min-width:0}
+.cards{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr)); gap:14px}
+.card{border:1px solid var(--rule); padding:16px 18px; display:grid; gap:10px; align-content:start; min-width:0; background:var(--sheet)}
+.card.off{background:transparent; border-style:dashed}
+.card .top{display:flex; justify-content:space-between; gap:10px; align-items:baseline; flex-wrap:wrap}
+.pill{font-family:var(--f-mono); font-size:.7rem; letter-spacing:.04em; border:1px solid var(--rule); padding:1px 8px; border-radius:999px; color:var(--ink-2); white-space:nowrap}
+.pill.on{border-color:var(--ink); color:var(--ink)}
+.meta{font-family:var(--f-mono); font-size:.76rem; color:var(--ink-2); display:grid; gap:2px}
+.nums{display:flex; gap:18px; flex-wrap:wrap}
+.nums div{display:grid}
+.nums b{font-family:var(--f-display); font-size:1.5rem; font-weight:750; font-stretch:108%; line-height:1.1}
+.nums span{font-family:var(--f-display); font-size:.78rem; color:var(--ink-2)}
+.stack{display:flex; height:10px; gap:2px; border-radius:2px; overflow:hidden}
+.stack i{display:block; height:100%}
+.leg{display:flex; flex-wrap:wrap; gap:4px 14px; font-family:var(--f-display); font-size:.8rem; color:var(--ink-2)}
+.leg span{display:inline-flex; gap:5px; align-items:center}
+.leg i{width:10px; height:10px; border-radius:2px; display:inline-block}
+.links{display:flex; gap:14px; flex-wrap:wrap; font-family:var(--f-display); font-weight:600; font-size:.9rem}
+.controls{display:flex; flex-wrap:wrap; gap:10px; align-items:center; font-family:var(--f-display); font-size:.9rem}
+select{font:inherit; color:var(--ink); background:var(--sheet); border:1px solid var(--rule); padding:5px 8px; border-radius:3px; max-width:100%}
+.scrollx{overflow-x:auto; min-width:0}
+table{border-collapse:collapse; width:100%; font-size:.88rem}
+th,td{padding:7px 10px; border-bottom:1px solid var(--rule); text-align:right; vertical-align:top}
+th{font-family:var(--f-display); font-weight:650; font-size:.8rem; color:var(--ink-2); text-align:right}
+th:first-child,td:first-child,th.l,td.l{text-align:left}
+td:first-child{font-family:var(--f-display); font-weight:600}
+td.v{font-family:var(--f-mono); font-variant-numeric:tabular-nums}
+td.v small{display:block; font-size:.7rem; color:var(--muted)}
+td.diff{outline:2px solid var(--k-rival); outline-offset:-2px}
+.tag{font-family:var(--f-mono); font-size:.66rem; border:1px solid var(--ink-2); color:var(--ink-2); padding:0 4px; border-radius:2px}
+.empty{border:1px dashed var(--rule); padding:16px; color:var(--ink-2); font-size:.95rem}
+ol{margin:0; padding-left:20px; display:grid; gap:6px; color:var(--ink-2); max-width:75ch}
+footer{font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header class="mast">
+    <span class="eyebrow">One brief · several AI harnesses · Sept–Oct 2026 frontier models</span>
+    <h1>Frontier Benchmark Atlas</h1>
+    <p class="lede">Each AI agent harness gets the same request: chart the September–October 2026 frontier models against their makers' benchmark claims. Each publishes its own page here. This hub sets the compilations side by side, so you can see which numbers the agents agree on, where they differ, and how each one sourced its figures.</p>
+  </header>
+
+  <section class="sheet" aria-labelledby="h-harness">
+    <span class="eyebrow">Compilations</span>
+    <h2 id="h-harness">Harness pages</h2>
+    <p class="sub">Source mix shows how much of each compilation rests on lab pages, independent evaluators, or second-hand reports.</p>
+    <div class="leg"><span><i style="background:var(--s-lab)"></i>Lab page</span><span><i style="background:var(--s-indep)"></i>Independent evaluator</span><span><i style="background:var(--s-sec)"></i>Second-hand report</span></div>
+    <div class="cards" id="cards"><p class="empty">Loading harness list…</p></div>
+  </section>
+
+  <section class="sheet" aria-labelledby="h-compare">
+    <span class="eyebrow">Cross-check</span>
+    <h2 id="h-compare">Compare compilations</h2>
+    <p class="sub">Pick a benchmark to see every figure each harness recorded for it. Cells outlined in amber differ between harnesses for the same model, publisher and setting.</p>
+    <div class="controls">
+      <label for="bench">Benchmark</label>
+      <select id="bench"></select>
+      <span class="small" id="agree"></span>
+    </div>
+    <div class="scrollx" id="compare"></div>
+  </section>
+
+  <section class="sheet" aria-labelledby="h-add">
+    <span class="eyebrow">Contributing</span>
+    <h2 id="h-add">Adding a harness</h2>
+    <ol>
+      <li>Give the harness the brief in <a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/PROMPT.md">PROMPT.md</a> unchanged.</li>
+      <li>It writes <code>index.html</code>, <code>data.json</code> (format in <a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/SCHEMA.md">SCHEMA.md</a>) and <code>COMPILATION.md</code> under <code>harnesses/&lt;id&gt;/</code>.</li>
+      <li>It adds or updates its entry in <code>harnesses/manifest.json</code>.</li>
+      <li><code>python tools/validate.py</code> checks the format and lists disagreements with other harnesses.</li>
+    </ol>
+  </section>
+
+  <footer>Frontier Benchmark Atlas · <a href="https://github.com/minerclass/frontier-benchmark-atlas">source</a> · figures belong to their publishers</footer>
+</main>
+
+<script>
+(function(){
+"use strict";
+const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm = s => String(s==null?"":s).toLowerCase().replace(/[^a-z0-9]+/g,"");
+const fmt = (v,u) => u==="elo" ? Math.round(v).toLocaleString("en-US") : (Number.isInteger(v)?String(v):v.toFixed(1));
+const STATUS = {compiled:"compiled", incoming:"incoming", "not-started":"not started"};
+const KINDLABEL = {claim:"own claim","rival-table":"rival table",independent:"independent","variant-map":"variant"};
+
+async function load(){
+  let manifest;
+  try { manifest = await (await fetch("harnesses/manifest.json")).json(); }
+  catch(e){
+    document.getElementById("cards").innerHTML = `<p class="empty">The harness list could not load. If you opened this file directly, serve the folder instead: <code>python -m http.server 8232</code>.</p>`;
+    return;
+  }
+  const loaded = [];
+  for(const h of manifest.harnesses){
+    if(!h.data) continue;
+    try { const d = await (await fetch(h.data)).json(); loaded.push({h, d}); } catch(e){ h.error = true; }
+  }
+  renderCards(manifest.harnesses, loaded);
+  renderCompare(loaded);
+}
+
+function renderCards(list, loaded){
+  const byId = Object.fromEntries(loaded.map(x=>[x.h.id, x.d]));
+  document.getElementById("cards").innerHTML = list.map(h=>{
+    const d = byId[h.id];
+    if(!d){
+      return `<article class="card off"><div class="top"><h3>${esc(h.name)}</h3><span class="pill">${esc(h.error?"data unreadable":STATUS[h.status]||h.status)}</span></div>${h.note?`<p class="small">${esc(h.note)}</p>`:""}</article>`;
+    }
+    const st = {lab:0, independent:0, secondary:0};
+    d.sources.forEach(s=>{ if(s.type in st) st[s.type]++; });
+    const n = d.sources.length || 1;
+    const kinds = {};
+    d.scores.forEach(s=>{ kinds[s.kind]=(kinds[s.kind]||0)+1; });
+    return `<article class="card">
+      <div class="top"><h3>${esc(h.name)}</h3><span class="pill on">${esc(STATUS[h.status]||h.status)}</span></div>
+      <div class="meta"><span>model · ${esc(h.model||d.harness.model)}</span><span>computer · ${esc(h.computer||d.harness.computer)}</span><span>compiled · ${esc(h.compiled||d.harness.compiled)}</span></div>
+      <div class="nums"><div><b>${d.models.length}</b><span>models</span></div><div><b>${d.scores.length}</b><span>figures</span></div><div><b>${d.sources.length}</b><span>sources</span></div></div>
+      <div class="stack" role="img" aria-label="Sources: ${st.lab} lab pages, ${st.independent} independent, ${st.secondary} second-hand">
+        <i style="width:${st.lab/n*100}%; background:var(--s-lab)"></i><i style="width:${st.independent/n*100}%; background:var(--s-indep)"></i><i style="width:${st.secondary/n*100}%; background:var(--s-sec)"></i>
+      </div>
+      <p class="small">${Object.entries(kinds).map(([k,v])=>`${v} ${KINDLABEL[k]||k}`).join(" · ")}</p>
+      <div class="links"><a href="${esc(h.page)}">Open page</a>${h.notes?`<a href="https://github.com/minerclass/frontier-benchmark-atlas/blob/main/${esc(h.notes)}">How it was compiled</a>`:""}<a href="${esc(h.data)}">data.json</a></div>
+    </article>`;
+  }).join("");
+}
+
+function renderCompare(loaded){
+  const sel = document.getElementById("bench"), out = document.getElementById("compare"), agree = document.getElementById("agree");
+  if(!loaded.length){ out.innerHTML = `<p class="empty">No harness data yet.</p>`; return; }
+  const benches = new Map();
+  loaded.forEach(({d})=>d.scores.forEach(s=>{ const k=norm(s.benchmark); if(!benches.has(k)) benches.set(k, s.benchmark); }));
+  const counts = {};
+  loaded.forEach(({d})=>d.scores.forEach(s=>{ const k=norm(s.benchmark); counts[k]=(counts[k]||0)+1; }));
+  const keys = [...benches.keys()].sort((a,b)=>counts[b]-counts[a]);
+  sel.innerHTML = keys.map(k=>`<option value="${esc(k)}">${esc(benches.get(k))} (${counts[k]})</option>`).join("");
+  const start = keys.find(k=>k===norm("Terminal-Bench 4.0")) || keys[0];
+  sel.value = start;
+  const draw = () => {
+    const bk = sel.value;
+    const rows = new Map();
+    const names = {};
+    loaded.forEach(({h,d})=>{
+      d.models.forEach(m=>{ names[m.id]=names[m.id]||m.name; });
+      d.scores.filter(s=>norm(s.benchmark)===bk).forEach(s=>{
+        const rk = [s.model, norm(s.reporter), norm(s.setting)].join("|");
+        if(!rows.has(rk)) rows.set(rk, {model:s.model, reporter:s.reporter, setting:s.setting, kind:s.kind, unit:s.unit, vals:{}});
+        const r = rows.get(rk);
+        (r.vals[h.id] = r.vals[h.id] || []).push(s);
+      });
+    });
+    const list = [...rows.values()].sort((a,b)=>String(names[a.model]).localeCompare(String(names[b.model])) || String(a.reporter).localeCompare(String(b.reporter)));
+    let shared = 0, differ = 0;
+    const body = list.map(r=>{
+      const vs = Object.values(r.vals).map(a=>a[0].value);
+      const isDiff = vs.length>1 && (Math.max(...vs)-Math.min(...vs) > 0.05);
+      if(vs.length>1){ shared++; if(isDiff) differ++; }
+      const cells = loaded.map(({h})=>{
+        const a = r.vals[h.id];
+        if(!a) return `<td class="v" style="color:var(--muted)">—</td>`;
+        const s = a[0];
+        return `<td class="v ${isDiff?"diff":""}">${fmt(s.value,s.unit)}${s.unit==="pct"?"%":""}<small>${esc(s.note||"").slice(0,60)}</small></td>`;
+      }).join("");
+      return `<tr><td>${esc(names[r.model]||r.model)}</td><td class="l">${esc(r.reporter||"")} <span class="tag">${esc(KINDLABEL[r.kind]||r.kind)}</span></td><td class="l">${esc(r.setting||"")}</td>${cells}</tr>`;
+    }).join("");
+    out.innerHTML = `<table><thead><tr><th>Model</th><th class="l">Published by</th><th class="l">Setting</th>${loaded.map(({h})=>`<th>${esc(h.name)}</th>`).join("")}</tr></thead><tbody>${body}</tbody></table>`;
+    agree.textContent = loaded.length < 2
+      ? `${list.length} figures from one harness. Agreement checks start when a second harness adds its data.`
+      : `${shared} figures recorded by more than one harness; ${differ} differ.`;
+  };
+  sel.onchange = draw;
+  draw();
+}
+load();
+})();
+</script>
+</body>
+</html>

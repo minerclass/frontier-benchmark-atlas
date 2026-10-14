@@ -1,0 +1,26 @@
+{
+  "schema": "frontier-atlas-manifest/0.1",
+  "harnesses": [
+    {
+      "id": "claude-code",
+      "name": "Claude Code",
+      "model": "claude-opus-5-5",
+      "computer": "surface-arm",
+      "compiled": "2026-10-13",
+      "status": "compiled",
+      "page": "harnesses/claude-code/",
+      "data": "harnesses/claude-code/data.json",
+      "notes": "harnesses/claude-code/COMPILATION.md"
+    },
+    {
+      "id": "frontier-model-matrix",
+      "name": "frontier-model-matrix",
+      "status": "incoming",
+      "note": "Local work in progress by other agents. Moves into harnesses/ when finished."
+    },
+    { "id": "codex", "name": "Codex", "status": "not-started" },
+    { "id": "cursor", "name": "Cursor", "status": "not-started" },
+    { "id": "antigravity", "name": "Antigravity", "status": "not-started" },
+    { "id": "grok-bot", "name": "Grok Bot", "status": "not-started" }
+  ]
+}
