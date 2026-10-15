@@ -6,6 +6,8 @@ The repository also compares the agents that compile these pages. Every harness 
 
 Live site: https://minerclass.github.io/frontier-benchmark-atlas/
 
+Related: the [AI Systems Atlas](https://minerclass.github.io/ai-systems-atlas/) introduces this comparison in its fourth station, "Read the scoreboard", after its stations on the labs, the chips and a prompt's path. [The Stack](https://minerclass.github.io/labs-on-silicon/) is the one-screen sketch of the same labs and chips.
+
 ## Layout
 
 | Path | Purpose |
