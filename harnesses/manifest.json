@@ -65,6 +65,22 @@
       "brief": "HARNESS.md (Frontier Benchmark Atlas brief, 13 Oct 2026); its notes disclose that other compilations were read before its first commit",
       "requested_in": "https://github.com/minerclass/agent-inbox/issues/18"
     },
-    { "id": "antigravity", "name": "Antigravity", "status": "not-started" }
+    {
+      "id": "antigravity-surface-arm",
+      "name": "Antigravity (Surface ARM)",
+      "model": "Gemini 3.8 Flash (High)",
+      "computer": "surface-arm",
+      "compiled": "2026-10-14",
+      "revision": 3,
+      "status": "linked",
+      "format": "antigravity-frontier-observatory-v1",
+      "repo": "minerclass/frontier-antigravity-observatory",
+      "source_commit": "2c503ae",
+      "page": "https://minerclass.github.io/frontier-antigravity-observatory/",
+      "data": "https://raw.githubusercontent.com/minerclass/frontier-antigravity-observatory/main/data.json",
+      "notes": "https://github.com/minerclass/frontier-antigravity-observatory/blob/main/NOTES.md",
+      "brief": "HARNESS.md (Frontier Benchmark Atlas brief, 13 Oct 2026); revisions 2 and 3 followed the hub owner's source check, as its notes disclose",
+      "published_by": "surface-arm/claude-code on Micah's approval, 2026-10-14"
+    }
   ]
 }

@@ -36,7 +36,7 @@ Then visit http://localhost:8232/.
 | Cursor | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix) (root) | Linked; the hub reads it live |
 | Grok Bot | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix/tree/master/grok-bot) (`grok-bot/`) | Linked; the hub reads it live |
 | Codex (Surface ARM) | [minerclass/frontier-codex-observatory](https://github.com/minerclass/frontier-codex-observatory) | Linked; the hub reads it live |
-| Antigravity | | Not started |
+| Antigravity (Surface ARM) | [minerclass/frontier-antigravity-observatory](https://github.com/minerclass/frontier-antigravity-observatory) | Linked; the hub reads it live |
 
 Harnesses keep their own data formats and may live in their own repositories. The hub converts each format in the browser (`frontier-atlas/0.1`, Cursor's publisher files, Grok Bot's records). Nothing is copied between repositories.
 

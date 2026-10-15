@@ -199,6 +199,13 @@ const LOADERS = {
     if(skipped) res.sourceNote += ` · ${skipped} recorded as unavailable`;
     return res;
   },
+  "antigravity-frontier-observatory-v1": async h => {
+    const d = await getJSON(h.data);
+    const res = fromBriefRecords(d.records.filter(r=>typeof r.value === "number"), r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publisher,
+      kind:r.sourceType, setting:r.setting, note:(r.origin?"origin "+r.origin:"")+(r.sentenceOrCell?"; "+r.sentenceOrCell:"")+(r.note?"; "+r.note:""), url:r.sourceUrl, read:r.sourceRead===true}));
+    res.models = d.models.map(m=>({id:m.slug, name:m.name}));
+    return res;
+  },
   "cursor-figures-v1": async h => {
     const d = await getJSON(h.data);
     return fromBriefRecords(d.figures, r=>({model:r.model, benchmark:r.benchmark, value:r.value, unit:r.unit, reporter:r.publishedBy,

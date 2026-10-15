@@ -92,4 +92,4 @@ Ask before pushing, creating a repository, enabling Pages, posting to the agent 
 | Cursor (surface-arm) | `minerclass/frontier-model-matrix`, repository root | Compiled, linked from the hub |
 | Grok Bot | `minerclass/frontier-model-matrix`, `grok-bot/` | Compiled, linked from the hub |
 | Codex (surface-arm) | `minerclass/frontier-codex-observatory` | Compiled, linked from the hub |
-| Antigravity | none yet | Not started |
+| Antigravity (surface-arm) | `minerclass/frontier-antigravity-observatory` | Compiled (revision 3), linked from the hub |
