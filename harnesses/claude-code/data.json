@@ -4,8 +4,11 @@
     "id": "claude-code",
     "name": "Claude Code (desktop app)",
     "model": "claude-opus-5-5",
-    "computer": "surface-arm",
-    "compiled": "2026-10-13"
+    "computer": "mac",
+    "compiled": "2026-10-26",
+    "revision": 3,
+    "first_compiled": "2026-10-13",
+    "first_computer": "surface-arm"
   },
   "models": [
     {
@@ -93,7 +96,7 @@
       "id": "gpt-6-luna",
       "name": "GPT-6 Luna",
       "lab": "OpenAI",
-      "released": null,
+      "released": "2026-09-22",
       "access": "API",
       "price_in_per_mtok": 0.1,
       "price_out_per_mtok": 0.5
@@ -187,75 +190,18 @@
       "access": "Meta Model API",
       "price_in_per_mtok": 1.25,
       "price_out_per_mtok": 4.25
+    },
+    {
+      "id": "muse-spark-open",
+      "name": "Muse Spark Open",
+      "lab": "Meta",
+      "released": "2026-10-15",
+      "access": "Open weights (Muse Model License); hosted APIs",
+      "price_in_per_mtok": null,
+      "price_out_per_mtok": null
     }
   ],
   "scores": [
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "gpt-6-astra",
-      "benchmark": "ScreenSpot-Pro (no tools)",
-      "value": 92.7,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "gpt-5-6-sol",
-      "benchmark": "ScreenSpot-Pro (no tools)",
-      "value": 76.9,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "claude-fable-5",
-      "benchmark": "ScreenSpot-Pro (no tools)",
-      "value": 87.3,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "rival-table",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "gpt-6-astra",
-      "benchmark": "OSWorld 2.0",
-      "value": 72.6,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "gpt-5-6-sol",
-      "benchmark": "OSWorld 2.0",
-      "value": 65.7,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "claude-opus-5",
-      "benchmark": "OSWorld 2.0",
-      "value": 70.2,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "rival-table",
-      "source": "officechai"
-    },
     {
       "setting": null,
       "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
@@ -265,7 +211,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -276,7 +222,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -287,95 +233,194 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
       "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "claude-fable-5-1",
+      "model": "claude-fable-5",
       "benchmark": "Agents' Last Exam",
       "value": 48.7,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: Zapier",
+      "note": "GPT-6 Astra launch table; who ran it: Opus 5: benchmark authors' leaderboard run",
+      "model": "gpt-6-astra",
+      "benchmark": "OSWorld 2.0 (offline set, partial)",
+      "value": 72.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Opus 5: benchmark authors' leaderboard run",
+      "model": "gpt-5-6-sol",
+      "benchmark": "OSWorld 2.0 (offline set, partial)",
+      "value": 65.7,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Opus 5: benchmark authors' leaderboard run",
+      "model": "claude-opus-5",
+      "benchmark": "OSWorld 2.0 (offline set, partial)",
+      "value": 70.2,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable figure is Mythos",
+      "model": "gpt-6-astra",
+      "benchmark": "ScreenSpot-Pro (no tools)",
+      "value": 92.7,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable figure is Mythos",
+      "model": "gpt-5-6-sol",
+      "benchmark": "ScreenSpot-Pro (no tools)",
+      "value": 76.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable figure is Mythos",
+      "model": "claude-fable-5",
+      "benchmark": "ScreenSpot-Pro (no tools)",
+      "value": 87.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
       "model": "gpt-6-astra",
       "benchmark": "AutomationBench",
       "value": 41.4,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: Zapier",
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
       "model": "gpt-5-6-sol",
       "benchmark": "AutomationBench",
       "value": 18.1,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
       "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-opus-5",
+      "benchmark": "AutomationBench",
+      "value": 26.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5-1",
+      "benchmark": "AutomationBench",
+      "value": 31.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "AutomationBench",
+      "value": 17.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Claude: modified eval per Fable 5.1 card",
       "model": "gpt-6-astra",
       "benchmark": "BenchCAD",
       "value": 95.9,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "note": "GPT-6 Astra launch table; who ran it: Claude: modified eval per Fable 5.1 card",
       "model": "gpt-5-6-sol",
       "benchmark": "BenchCAD",
       "value": 83.3,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
-      "model": "gpt-6-astra",
-      "benchmark": "AA Intelligence Index v4.1.1",
-      "value": 61.2,
-      "unit": "pts",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
-      "model": "gpt-5-6-sol",
-      "benchmark": "AA Intelligence Index v4.1.1",
-      "value": 60.9,
-      "unit": "pts",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
-      "model": "claude-fable-5-1",
-      "benchmark": "AA Intelligence Index v4.1.1",
-      "value": 65.7,
-      "unit": "pts",
+      "note": "GPT-6 Astra launch table; who ran it: Claude: modified eval per Fable 5.1 card",
+      "model": "claude-opus-5",
+      "benchmark": "BenchCAD",
+      "value": 82.1,
+      "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Claude: modified eval per Fable 5.1 card",
+      "model": "claude-fable-5-1",
+      "benchmark": "BenchCAD",
+      "value": 84.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Claude: modified eval per Fable 5.1 card",
+      "model": "claude-fable-5",
+      "benchmark": "BenchCAD",
+      "value": 67.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -386,7 +431,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -397,7 +442,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -408,7 +453,150 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "BrowseComp",
+      "value": 87.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-6-astra",
+      "benchmark": "Internal Design Tasks",
+      "value": 50,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-5-6-sol",
+      "benchmark": "Internal Design Tasks",
+      "value": 47.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "claude-fable-5",
+      "benchmark": "Internal Design Tasks",
+      "value": 35.8,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-6-astra",
+      "benchmark": "Internal Data Science Tasks",
+      "value": 40.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-5-6-sol",
+      "benchmark": "Internal Data Science Tasks",
+      "value": 30.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "claude-fable-5",
+      "benchmark": "Internal Data Science Tasks",
+      "value": 34.7,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
+      "model": "gpt-6-astra",
+      "benchmark": "AA Intelligence Index v4.1.1",
+      "value": 61.2,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
+      "model": "gpt-5-6-sol",
+      "benchmark": "AA Intelligence Index v4.1.1",
+      "value": 60.9,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
+      "model": "claude-opus-5",
+      "benchmark": "AA Intelligence Index v4.1.1",
+      "value": 63.1,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
+      "model": "claude-fable-5-1",
+      "benchmark": "AA Intelligence Index v4.1.1",
+      "value": 65.7,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
+      "model": "claude-fable-5",
+      "benchmark": "AA Intelligence Index v4.1.1",
+      "value": 62.1,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis (older version)",
+      "model": "gemini-3-8-flash",
+      "benchmark": "AA Intelligence Index v4.1.1",
+      "value": 58.7,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -419,18 +607,29 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "Terminal-Bench 4.0",
+      "value": 37.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
       "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
       "model": "claude-opus-5",
       "benchmark": "Terminal-Bench 4.0",
-      "value": 52.3,
+      "value": 52.6,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -441,7 +640,29 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "Terminal-Bench 4.0",
+      "value": 44.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gemini-3-8-flash",
+      "benchmark": "Terminal-Bench 4.0",
+      "value": 19.1,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -452,7 +673,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -463,7 +684,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -474,7 +695,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -485,7 +706,18 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "DeepSWE v1.1",
+      "value": 69.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -496,51 +728,238 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
       "model": "gpt-6-astra",
-      "benchmark": "FrontierMath Tier 4 v2",
-      "value": 97.6,
+      "benchmark": "FrontierCode 1.1 Extended",
+      "value": 64.5,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "gpt-5-6-sol",
+      "benchmark": "FrontierCode 1.1 Extended",
+      "value": 60.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
       "model": "claude-opus-5",
-      "benchmark": "FrontierMath Tier 4 v2",
-      "value": 73.2,
+      "benchmark": "FrontierCode 1.1 Extended",
+      "value": 63.6,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
       "model": "claude-fable-5-1",
-      "benchmark": "FrontierMath Tier 4 v2",
-      "value": 87.8,
+      "benchmark": "FrontierCode 1.1 Extended",
+      "value": 63.6,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
       "model": "claude-fable-5",
-      "benchmark": "FrontierMath Tier 4 v2",
-      "value": 87.8,
+      "benchmark": "FrontierCode 1.1 Extended",
+      "value": 64.9,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "gemini-3-8-flash",
+      "benchmark": "FrontierCode 1.1 Extended",
+      "value": 56.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "gpt-6-astra",
+      "benchmark": "FrontierCode 1.1 Main",
+      "value": 53.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "gpt-5-6-sol",
+      "benchmark": "FrontierCode 1.1 Main",
+      "value": 47.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "claude-opus-5",
+      "benchmark": "FrontierCode 1.1 Main",
+      "value": 53.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "claude-fable-5-1",
+      "benchmark": "FrontierCode 1.1 Main",
+      "value": 50.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "claude-fable-5",
+      "benchmark": "FrontierCode 1.1 Main",
+      "value": 53.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra with a Codex prompt",
+      "model": "gemini-3-8-flash",
+      "benchmark": "FrontierCode 1.1 Main",
+      "value": 43.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-6-astra",
+      "benchmark": "Internal Database Migration Tasks",
+      "value": 63.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-5-6-sol",
+      "benchmark": "Internal Database Migration Tasks",
+      "value": 42.7,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "claude-fable-5-1",
+      "benchmark": "Internal Database Migration Tasks",
+      "value": 57.8,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "claude-fable-5",
+      "benchmark": "Internal Database Migration Tasks",
+      "value": 50.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis",
+      "model": "gpt-6-astra",
+      "benchmark": "AA Coding Agent Index v1.4",
+      "value": 67,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis",
+      "model": "gpt-5-6-sol",
+      "benchmark": "AA Coding Agent Index v1.4",
+      "value": 65.1,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis",
+      "model": "claude-opus-5",
+      "benchmark": "AA Coding Agent Index v1.4",
+      "value": 68.1,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis",
+      "model": "claude-fable-5",
+      "benchmark": "AA Coding Agent Index v1.4",
+      "value": 67.2,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: Artificial Analysis",
+      "model": "gemini-3-8-flash",
+      "benchmark": "AA Coding Agent Index v1.4",
+      "value": 61.2,
+      "unit": "pts",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -551,7 +970,18 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "Terminal-Bench Science 0.1",
+      "value": 22.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -562,7 +992,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -573,7 +1003,139 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "Terminal-Bench Science 0.1",
+      "value": 21.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-6-astra",
+      "benchmark": "FrontierMath Tier 4 v2",
+      "value": 97.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "FrontierMath Tier 4 v2",
+      "value": 83,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-opus-5",
+      "benchmark": "FrontierMath Tier 4 v2",
+      "value": 73.2,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5-1",
+      "benchmark": "FrontierMath Tier 4 v2",
+      "value": 87.8,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "FrontierMath Tier 4 v2",
+      "value": 90.2,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-6-astra",
+      "benchmark": "GPQA Diamond",
+      "value": 96,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "GPQA Diamond",
+      "value": 94.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-opus-5",
+      "benchmark": "GPQA Diamond",
+      "value": 93.7,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5-1",
+      "benchmark": "GPQA Diamond",
+      "value": 93.7,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "GPQA Diamond",
+      "value": 92.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gemini-3-8-flash",
+      "benchmark": "GPQA Diamond",
+      "value": 95.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -584,7 +1146,18 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-opus-5",
+      "benchmark": "Humanity's Last Exam (tools)",
+      "value": 63.6,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -595,62 +1168,150 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "gpt-6-astra",
-      "benchmark": "HealthBench Professional",
-      "value": 63.4,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "gpt-5-6-sol",
-      "benchmark": "HealthBench Professional",
-      "value": 60.5,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "claim",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "claude-opus-5",
-      "benchmark": "HealthBench Professional",
-      "value": 54.5,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "rival-table",
-      "source": "officechai"
-    },
-    {
-      "setting": null,
-      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
-      "model": "claude-fable-5-1",
-      "benchmark": "HealthBench Professional",
-      "value": 56.6,
-      "unit": "pct",
-      "reporter": "OpenAI",
-      "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
       "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
       "model": "claude-fable-5",
-      "benchmark": "HealthBench Professional",
+      "benchmark": "Humanity's Last Exam (tools)",
+      "value": 63.8,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable models refused most",
+      "model": "gpt-6-astra",
+      "benchmark": "GeneBench Pro",
+      "value": 37.1,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable models refused most",
+      "model": "gpt-5-6-sol",
+      "benchmark": "GeneBench Pro",
+      "value": 32.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-6-astra",
+      "benchmark": "MedChemBench",
+      "value": 49.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal",
+      "model": "gpt-5-6-sol",
+      "benchmark": "MedChemBench",
+      "value": 47.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable models refused most",
+      "model": "gpt-6-astra",
+      "benchmark": "LifeSciBench",
+      "value": 60.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Fable models refused most",
+      "model": "gpt-5-6-sol",
+      "benchmark": "LifeSciBench",
+      "value": 59.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI ran Claude itself; Opus 5 fallback for Fable 5.1",
+      "model": "gpt-6-astra",
+      "benchmark": "HealthBench Professional (length-adjusted)",
+      "value": 63.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI ran Claude itself; Opus 5 fallback for Fable 5.1",
+      "model": "gpt-5-6-sol",
+      "benchmark": "HealthBench Professional (length-adjusted)",
+      "value": 60.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI ran Claude itself; Opus 5 fallback for Fable 5.1",
+      "model": "claude-opus-5",
+      "benchmark": "HealthBench Professional (length-adjusted)",
+      "value": 56.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI ran Claude itself; Opus 5 fallback for Fable 5.1",
+      "model": "claude-fable-5-1",
+      "benchmark": "HealthBench Professional (length-adjusted)",
+      "value": 58.1,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI ran Claude itself; Opus 5 fallback for Fable 5.1",
+      "model": "claude-fable-5",
+      "benchmark": "HealthBench Professional (length-adjusted)",
       "value": 60.9,
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI ran Claude itself; Opus 5 fallback for Fable 5.1",
+      "model": "gemini-3-8-flash",
+      "benchmark": "HealthBench Professional (length-adjusted)",
+      "value": 52.1,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -661,7 +1322,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -672,7 +1333,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -683,7 +1344,84 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI models without time limit; Fable is Mythos",
+      "model": "gpt-6-astra",
+      "benchmark": "ExploitGym",
+      "value": 42.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI models without time limit; Fable is Mythos",
+      "model": "gpt-5-6-sol",
+      "benchmark": "ExploitGym",
+      "value": 30.3,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI models without time limit; Fable is Mythos",
+      "model": "claude-opus-5",
+      "benchmark": "ExploitGym",
+      "value": 22,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI models without time limit; Fable is Mythos",
+      "model": "claude-fable-5-1",
+      "benchmark": "ExploitGym",
+      "value": 30.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI models without time limit; Fable is Mythos",
+      "model": "claude-fable-5",
+      "benchmark": "ExploitGym",
+      "value": 28.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal; Sol hit a 300-turn limit",
+      "model": "gpt-6-astra",
+      "benchmark": "ExploitBench (June–Aug 2026)",
+      "value": 39,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI internal; Sol hit a 300-turn limit",
+      "model": "gpt-5-6-sol",
+      "benchmark": "ExploitBench (June–Aug 2026)",
+      "value": 5.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -694,7 +1432,18 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "SRE-Bench",
+      "value": 55.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -705,7 +1454,29 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "rival-table",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-6-astra",
+      "benchmark": "SEC-Bench Pro",
+      "value": 85.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "SEC-Bench Pro",
+      "value": 79.1,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -716,7 +1487,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -727,7 +1498,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -738,7 +1509,7 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -749,7 +1520,150 @@
       "unit": "pct",
       "reporter": "OpenAI",
       "kind": "claim",
-      "source": "officechai"
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra in Responses API harness",
+      "model": "gpt-6-astra",
+      "benchmark": "ARC-AGI-3",
+      "value": 99.9,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra in Responses API harness",
+      "model": "gpt-5-6-sol",
+      "benchmark": "ARC-AGI-3",
+      "value": 7.8,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported; Astra in Responses API harness",
+      "model": "claude-opus-5",
+      "benchmark": "ARC-AGI-3",
+      "value": 30.2,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-6-astra",
+      "benchmark": "ARC-AGI-2",
+      "value": 95,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "ARC-AGI-2",
+      "value": 92.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-opus-5",
+      "benchmark": "ARC-AGI-2",
+      "value": 90.4,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5-1",
+      "benchmark": "ARC-AGI-2",
+      "value": 90,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "ARC-AGI-2",
+      "value": 89.2,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-6-astra",
+      "benchmark": "ARC-AGI-1",
+      "value": 98.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "gpt-5-6-sol",
+      "benchmark": "ARC-AGI-1",
+      "value": 97.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "claim",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-opus-5",
+      "benchmark": "ARC-AGI-1",
+      "value": 97.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5-1",
+      "benchmark": "ARC-AGI-1",
+      "value": 97.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
+    },
+    {
+      "setting": null,
+      "note": "GPT-6 Astra launch table; who ran it: OpenAI-reported",
+      "model": "claude-fable-5",
+      "benchmark": "ARC-AGI-1",
+      "value": 98.5,
+      "unit": "pct",
+      "reporter": "OpenAI",
+      "kind": "rival-table",
+      "source": "oaiAstra"
     },
     {
       "setting": null,
@@ -1189,7 +2103,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1200,7 +2114,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1211,7 +2125,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1222,51 +2136,51 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier, private set)",
       "model": "gemini-4-argon",
       "benchmark": "AutomationBench",
       "value": 51.3,
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier, private set)",
       "model": "gpt-6-astra",
       "benchmark": "AutomationBench",
       "value": 41.4,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier, private set)",
       "model": "claude-fable-5-1",
       "benchmark": "AutomationBench",
       "value": 31.4,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Zapier, private set)",
       "model": "claude-opus-5-5",
       "benchmark": "AutomationBench",
       "value": 42.5,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1277,7 +2191,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1288,7 +2202,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1299,7 +2213,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1310,7 +2224,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1321,7 +2235,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1332,7 +2246,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1343,7 +2257,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1354,51 +2268,51 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; Astra leaderboard; Claude system cards",
       "model": "gemini-4-argon",
       "benchmark": "DeepSWE v1.1",
       "value": 77.9,
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; Astra leaderboard; Claude system cards",
       "model": "gpt-6-astra",
       "benchmark": "DeepSWE v1.1",
       "value": 74.1,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; Astra leaderboard; Claude system cards",
       "model": "claude-fable-5-1",
       "benchmark": "DeepSWE v1.1",
       "value": 67.4,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; Astra leaderboard; Claude system cards",
       "model": "claude-opus-5-5",
       "benchmark": "DeepSWE v1.1",
       "value": 74.2,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1409,7 +2323,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1420,7 +2334,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1431,7 +2345,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1442,7 +2356,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1453,7 +2367,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1464,7 +2378,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1475,7 +2389,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1486,7 +2400,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1497,7 +2411,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1508,7 +2422,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1519,7 +2433,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1530,7 +2444,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1541,7 +2455,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1552,7 +2466,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1563,7 +2477,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1574,7 +2488,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1585,7 +2499,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1596,7 +2510,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1607,7 +2521,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1618,7 +2532,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1629,7 +2543,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1640,7 +2554,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1651,7 +2565,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1662,7 +2576,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1673,7 +2587,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1684,7 +2598,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1695,7 +2609,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1706,7 +2620,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1717,7 +2631,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1728,7 +2642,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1739,7 +2653,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1750,7 +2664,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1761,7 +2675,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1772,7 +2686,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1783,7 +2697,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1794,40 +2708,40 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard; binary pass rate",
       "model": "gemini-4-argon",
       "benchmark": "Agent's Last Exam",
       "value": 39.5,
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard; binary pass rate",
       "model": "gpt-6-astra",
       "benchmark": "Agent's Last Exam",
       "value": 34.2,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard",
+      "note": "Gemini 4 Argon comparison table; who ran it: Google ran Argon; rivals from leaderboard; binary pass rate",
       "model": "claude-opus-5-5",
       "benchmark": "Agent's Last Exam",
       "value": 38.2,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1838,7 +2752,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1849,51 +2763,51 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge), no tools",
       "model": "gemini-4-argon",
       "benchmark": "Chartography",
       "value": 71.6,
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge), no tools",
       "model": "gpt-6-astra",
       "benchmark": "Chartography",
       "value": 71,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge), no tools",
       "model": "claude-fable-5-1",
       "benchmark": "Chartography",
       "value": 46.2,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
-      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge)",
+      "note": "Gemini 4 Argon comparison table; who ran it: Third party (Surge), no tools",
       "model": "claude-opus-5-5",
       "benchmark": "Chartography",
       "value": 66.3,
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1904,7 +2818,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1915,7 +2829,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1926,7 +2840,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1937,7 +2851,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1948,7 +2862,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "claim",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1959,7 +2873,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1970,7 +2884,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1981,7 +2895,7 @@
       "unit": "pct",
       "reporter": "Google",
       "kind": "rival-table",
-      "source": "emGoogle"
+      "source": "googleCard"
     },
     {
       "setting": null,
@@ -1992,7 +2906,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2003,7 +2917,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2014,7 +2928,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2025,7 +2939,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2036,62 +2950,62 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version",
+      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version 1.1",
       "model": "muse-wonder-full",
       "benchmark": "Harvey LAB-AA",
       "value": 13.1,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version",
+      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version 1.1",
       "model": "muse-wonder",
       "benchmark": "Harvey LAB-AA",
       "value": 10,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version",
+      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version 1.1",
       "model": "claude-fable-5-1",
       "benchmark": "Harvey LAB-AA",
       "value": 6.4,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version",
+      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version 1.1",
       "model": "gpt-6-astra",
       "benchmark": "Harvey LAB-AA",
       "value": 8.6,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version",
+      "note": "Muse Wonder model card table; who ran it: Artificial Analysis version 1.1",
       "model": "claude-opus-5-5",
       "benchmark": "Harvey LAB-AA",
       "value": 4.2,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2102,7 +3016,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2113,7 +3027,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2124,7 +3038,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2135,7 +3049,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2146,62 +3060,62 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran Muse, Astra; Claude system cards",
       "model": "muse-wonder-full",
       "benchmark": "HealthBench Pro",
       "value": 62.3,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran Muse, Astra; Claude system cards",
       "model": "muse-wonder",
       "benchmark": "HealthBench Pro",
       "value": 60.5,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran Muse, Astra; Claude system cards",
       "model": "claude-fable-5-1",
       "benchmark": "HealthBench Pro",
       "value": 62.1,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran Muse, Astra; Claude system cards",
       "model": "gpt-6-astra",
       "benchmark": "HealthBench Pro",
       "value": 65.3,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran Muse, Astra; Claude system cards",
       "model": "claude-opus-5-5",
       "benchmark": "HealthBench Pro",
       "value": 65.6,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2212,7 +3126,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2223,7 +3137,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2234,7 +3148,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2245,7 +3159,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2256,62 +3170,62 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Surge",
       "model": "muse-wonder-full",
       "benchmark": "GDP.pdf",
       "value": 33.2,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Surge",
       "model": "muse-wonder",
       "benchmark": "GDP.pdf",
       "value": 30.8,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Surge",
       "model": "claude-fable-5-1",
       "benchmark": "GDP.pdf",
       "value": 27.6,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Surge",
       "model": "gpt-6-astra",
       "benchmark": "GDP.pdf",
       "value": 34.2,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Surge",
       "model": "claude-opus-5-5",
       "benchmark": "GDP.pdf",
       "value": 30.6,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2322,7 +3236,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2333,7 +3247,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2344,7 +3258,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2355,7 +3269,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2366,62 +3280,106 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran; Opus 5.5 is Anthropic's figure",
       "model": "muse-wonder-full",
       "benchmark": "OSWorld V2.1 (partial)",
       "value": 78.4,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran; Opus 5.5 is Anthropic's figure",
       "model": "muse-wonder",
       "benchmark": "OSWorld V2.1 (partial)",
       "value": 72.6,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran; Opus 5.5 is Anthropic's figure",
       "model": "claude-fable-5-1",
       "benchmark": "OSWorld V2.1 (partial)",
       "value": 80.7,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran; Opus 5.5 is Anthropic's figure",
       "model": "gpt-6-astra",
       "benchmark": "OSWorld V2.1 (partial)",
       "value": 75.8,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: Meta ran; Opus 5.5 is Anthropic's figure",
       "model": "claude-opus-5-5",
       "benchmark": "OSWorld V2.1 (partial)",
       "value": 81.8,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
+    },
+    {
+      "setting": null,
+      "note": "Muse Wonder model card table; who ran it: Meta ran; no Opus 5.5 binary figure",
+      "model": "muse-wonder-full",
+      "benchmark": "OSWorld V2.1 (binary)",
+      "value": 39.4,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaCard"
+    },
+    {
+      "setting": null,
+      "note": "Muse Wonder model card table; who ran it: Meta ran; no Opus 5.5 binary figure",
+      "model": "muse-wonder",
+      "benchmark": "OSWorld V2.1 (binary)",
+      "value": 34.3,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaCard"
+    },
+    {
+      "setting": null,
+      "note": "Muse Wonder model card table; who ran it: Meta ran; no Opus 5.5 binary figure",
+      "model": "claude-fable-5-1",
+      "benchmark": "OSWorld V2.1 (binary)",
+      "value": 43.1,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "rival-table",
+      "source": "metaCard"
+    },
+    {
+      "setting": null,
+      "note": "Muse Wonder model card table; who ran it: Meta ran; no Opus 5.5 binary figure",
+      "model": "gpt-6-astra",
+      "benchmark": "OSWorld V2.1 (binary)",
+      "value": 34.3,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "rival-table",
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2432,7 +3390,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2443,7 +3401,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2454,7 +3412,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2465,7 +3423,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2476,7 +3434,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2487,7 +3445,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2498,7 +3456,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2509,7 +3467,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2520,7 +3478,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2531,62 +3489,62 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Datacurve (third party)",
+      "note": "Muse Wonder model card table; who ran it: Datacurve; Astra from OpenAI; Fable from Anthropic",
       "model": "muse-wonder-full",
       "benchmark": "DeepSWE 1.1",
       "value": 79,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Datacurve (third party)",
+      "note": "Muse Wonder model card table; who ran it: Datacurve; Astra from OpenAI; Fable from Anthropic",
       "model": "muse-wonder",
       "benchmark": "DeepSWE 1.1",
       "value": 78.8,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Datacurve (third party)",
+      "note": "Muse Wonder model card table; who ran it: Datacurve; Astra from OpenAI; Fable from Anthropic",
       "model": "claude-fable-5-1",
       "benchmark": "DeepSWE 1.1",
       "value": 67.4,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Datacurve (third party)",
+      "note": "Muse Wonder model card table; who ran it: Datacurve; Astra from OpenAI; Fable from Anthropic",
       "model": "gpt-6-astra",
       "benchmark": "DeepSWE 1.1",
       "value": 74.1,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Datacurve (third party)",
+      "note": "Muse Wonder model card table; who ran it: Datacurve; Astra from OpenAI; Fable from Anthropic",
       "model": "claude-opus-5-5",
       "benchmark": "DeepSWE 1.1",
       "value": 74.2,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2597,7 +3555,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2608,7 +3566,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2619,7 +3577,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2630,7 +3588,7 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2641,62 +3599,62 @@
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: All models in mini-swe-agent",
       "model": "muse-wonder-full",
       "benchmark": "ProgramBench",
       "value": 59,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: All models in mini-swe-agent",
       "model": "muse-wonder",
       "benchmark": "ProgramBench",
       "value": 50,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: All models in mini-swe-agent",
       "model": "claude-fable-5-1",
       "benchmark": "ProgramBench",
       "value": 55.5,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: All models in mini-swe-agent",
       "model": "gpt-6-astra",
       "benchmark": "ProgramBench",
       "value": 52.5,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
-      "note": "Muse Wonder model card table; who ran it: Source not stated",
+      "note": "Muse Wonder model card table; who ran it: All models in mini-swe-agent",
       "model": "claude-opus-5-5",
       "benchmark": "ProgramBench",
       "value": 70.5,
       "unit": "pct",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2707,7 +3665,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2718,7 +3676,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "claim",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2729,7 +3687,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2740,7 +3698,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -2751,7 +3709,7 @@
       "unit": "pts",
       "reporter": "Meta",
       "kind": "rival-table",
-      "source": "devto"
+      "source": "metaCard"
     },
     {
       "setting": null,
@@ -3107,14 +4065,14 @@
     },
     {
       "setting": null,
-      "note": "high effort, AA Muse article",
+      "note": "high effort, AA leaderboard data (the Muse article prints 57)",
       "model": "gemini-4-argon",
       "benchmark": "Terminal-Bench 4.0",
-      "value": 57,
+      "value": 57.1,
       "unit": "pct",
       "reporter": "Artificial Analysis",
       "kind": "independent",
-      "source": "aaMuse"
+      "source": "aaBoard"
     },
     {
       "setting": null,
@@ -3170,6 +4128,314 @@
       "reporter": "Anthropic",
       "kind": "claim",
       "source": "anthHaiku"
+    },
+    {
+      "setting": null,
+      "note": "max effort, AA leaderboard data, read 26 Oct",
+      "model": "claude-haiku-5-5",
+      "benchmark": "Terminal-Bench 4.0",
+      "value": 32.8,
+      "unit": "pct",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": null,
+      "note": "xhigh effort, AA leaderboard data, read 26 Oct",
+      "model": "grok-4-7",
+      "benchmark": "Terminal-Bench 4.0",
+      "value": 25.8,
+      "unit": "pct",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: GLM 5.3 (max) 45",
+      "model": "muse-spark-open",
+      "benchmark": "AA Intelligence Index",
+      "value": 39,
+      "unit": "pts",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: GLM 5.3 (max) 61.4",
+      "model": "muse-spark-open",
+      "benchmark": "JobBench",
+      "value": 61.8,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Qwen3.8-2.4T-A95B (xhigh) 84.5",
+      "model": "muse-spark-open",
+      "benchmark": "MCP-Atlas",
+      "value": 89.2,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: GLM 5.3 (max) 1653",
+      "model": "muse-spark-open",
+      "benchmark": "GDPVal-AA v2",
+      "value": 1401,
+      "unit": "elo",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "AA leaderboard data, read 26 Oct 2026, rounded to one decimal",
+      "model": "muse-spark-open",
+      "benchmark": "GDPVal-AA v2",
+      "value": 1401,
+      "unit": "elo",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 84.8",
+      "model": "muse-spark-open",
+      "benchmark": "OSWorld Verified",
+      "value": 80.4,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 76.5",
+      "model": "muse-spark-open",
+      "benchmark": "Toolathlon Verified",
+      "value": 72.8,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 22.2",
+      "model": "muse-spark-open",
+      "benchmark": "HLE-Diamond (no tools)",
+      "value": 26.1,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 20",
+      "model": "muse-spark-open",
+      "benchmark": "AA Omniscience",
+      "value": 25,
+      "unit": "pts",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "AA leaderboard data, read 26 Oct 2026, rounded to one decimal",
+      "model": "muse-spark-open",
+      "benchmark": "AA Omniscience",
+      "value": 24.7,
+      "unit": "pts",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 59.5",
+      "model": "muse-spark-open",
+      "benchmark": "SciCode",
+      "value": 58.5,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "AA leaderboard data, read 26 Oct 2026, rounded to one decimal",
+      "model": "muse-spark-open",
+      "benchmark": "SciCode",
+      "value": 58.4,
+      "unit": "pct",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: GLM 5.3 (max) 62.5",
+      "model": "muse-spark-open",
+      "benchmark": "HLE (w/ tools)",
+      "value": 61,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Qwen3.8 (xhigh) and Kimi K3 (max) 93.5",
+      "model": "muse-spark-open",
+      "benchmark": "GPQA Diamond",
+      "value": 89,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "AA leaderboard data, read 26 Oct 2026, rounded to one decimal",
+      "model": "muse-spark-open",
+      "benchmark": "GPQA Diamond",
+      "value": 89,
+      "unit": "pct",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 68",
+      "model": "muse-spark-open",
+      "benchmark": "DeepSWE 1.1, preferred harness",
+      "value": 60,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 66",
+      "model": "muse-spark-open",
+      "benchmark": "SWE-Atlas-QnA, preferred harness",
+      "value": 58,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 85",
+      "model": "muse-spark-open",
+      "benchmark": "Terminal-Bench 2.1, Terminus 2 agent",
+      "value": 76.4,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "AA leaderboard data, read 26 Oct 2026, rounded to one decimal",
+      "model": "muse-spark-open",
+      "benchmark": "Terminal-Bench 2.1, Terminus 2 agent",
+      "value": 76.4,
+      "unit": "pct",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 41",
+      "model": "muse-spark-open",
+      "benchmark": "ZeroBench (w/ tools)",
+      "value": 50,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 85.7",
+      "model": "muse-spark-open",
+      "benchmark": "BabyVision (w/ tools)",
+      "value": 80.2,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 71.9",
+      "model": "muse-spark-open",
+      "benchmark": "SimpleVQA (w/ tools)",
+      "value": 73.6,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 51",
+      "model": "muse-spark-open",
+      "benchmark": "WorldVQA (w/ tools)",
+      "value": 49.4,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 60.3",
+      "model": "muse-spark-open",
+      "benchmark": "IntPhys2",
+      "value": 68.3,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "Muse Spark Open card; best open-weight rival in Meta's table: Kimi K3 (max) 65.4",
+      "model": "muse-spark-open",
+      "benchmark": "VideoMMEv2",
+      "value": 61.5,
+      "unit": "pct",
+      "reporter": "Meta",
+      "kind": "claim",
+      "source": "metaOpen"
+    },
+    {
+      "setting": "xhigh",
+      "note": "AA leaderboard data, read 26 Oct 2026; Meta's card reports Terminal-Bench 2.1 instead",
+      "model": "muse-spark-open",
+      "benchmark": "Terminal-Bench 4.0",
+      "value": 8.1,
+      "unit": "pct",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard"
     },
     {
       "setting": "low",
@@ -3677,7 +4943,7 @@
     },
     {
       "setting": "max",
-      "note": "cost per index task USD 4.52",
+      "note": "cost per index task USD 4.54",
       "model": "muse-wonder",
       "benchmark": "AA Intelligence Index v4.3",
       "value": 52,
@@ -3685,7 +4951,7 @@
       "reporter": "Artificial Analysis",
       "kind": "independent",
       "source": "aaBoard",
-      "cost_per_task_usd": 4.52
+      "cost_per_task_usd": 4.54
     },
     {
       "setting": "max",
@@ -3698,6 +4964,18 @@
       "kind": "independent",
       "source": "aaBoard",
       "cost_per_task_usd": 1.6
+    },
+    {
+      "setting": "xhigh",
+      "note": "cost per index task USD 0.84",
+      "model": "muse-spark-open",
+      "benchmark": "AA Intelligence Index v4.3",
+      "value": 39,
+      "unit": "pts",
+      "reporter": "Artificial Analysis",
+      "kind": "independent",
+      "source": "aaBoard",
+      "cost_per_task_usd": 0.84
     },
     {
       "setting": "max",
@@ -3778,6 +5056,17 @@
     },
     {
       "setting": null,
+      "note": "Meta card",
+      "model": "claude-fable-5-1",
+      "benchmark": "OSWorld 2.1 binary",
+      "value": 43.1,
+      "unit": "pct",
+      "reporter": "Meta card",
+      "kind": "variant-map",
+      "source": null
+    },
+    {
+      "setting": null,
       "note": "Anthropic, Haiku page",
       "model": "claude-haiku-5-5",
       "benchmark": "OSWorld 2.1 offline subset",
@@ -3789,12 +5078,12 @@
     },
     {
       "setting": null,
-      "note": "OpenAI via OfficeChai; Google table. Vellum lists 73.5",
+      "note": "OpenAI's Astra page; Google table. Vellum lists 73.5",
       "model": "gpt-6-astra",
       "benchmark": "OSWorld 2.0 offline subset",
       "value": 72.6,
       "unit": "pct",
-      "reporter": "OpenAI via OfficeChai",
+      "reporter": "OpenAI's Astra page",
       "kind": "variant-map",
       "source": null
     },
@@ -3804,6 +5093,17 @@
       "model": "gpt-6-astra",
       "benchmark": "OSWorld 2.1 partial",
       "value": 75.8,
+      "unit": "pct",
+      "reporter": "Meta card",
+      "kind": "variant-map",
+      "source": null
+    },
+    {
+      "setting": null,
+      "note": "Meta card",
+      "model": "gpt-6-astra",
+      "benchmark": "OSWorld 2.1 binary",
+      "value": 34.3,
       "unit": "pct",
       "reporter": "Meta card",
       "kind": "variant-map",
@@ -3856,9 +5156,31 @@
     {
       "setting": null,
       "note": "Meta card",
+      "model": "muse-wonder-full",
+      "benchmark": "OSWorld 2.1 binary",
+      "value": 39.4,
+      "unit": "pct",
+      "reporter": "Meta card",
+      "kind": "variant-map",
+      "source": null
+    },
+    {
+      "setting": null,
+      "note": "Meta card",
       "model": "muse-wonder",
       "benchmark": "OSWorld 2.1 partial",
       "value": 72.6,
+      "unit": "pct",
+      "reporter": "Meta card",
+      "kind": "variant-map",
+      "source": null
+    },
+    {
+      "setting": null,
+      "note": "Meta card",
+      "model": "muse-wonder",
+      "benchmark": "OSWorld 2.1 binary",
+      "value": 34.3,
       "unit": "pct",
       "reporter": "Meta card",
       "kind": "variant-map",
@@ -3903,6 +5225,17 @@
       "model": "claude-fable-5-1",
       "benchmark": "CursorBench 4.0",
       "value": 51.8,
+      "unit": "pct",
+      "reporter": "Cursor",
+      "kind": "independent",
+      "source": "cursorBoard"
+    },
+    {
+      "setting": "Max",
+      "note": "Max effort. On the board 26 Oct; not on it when read 13 Oct",
+      "model": "muse-wonder",
+      "benchmark": "CursorBench 4.0",
+      "value": 50.4,
       "unit": "pct",
       "reporter": "Cursor",
       "kind": "independent",
@@ -4067,6 +5400,20 @@
       "retrieved_directly": true
     },
     {
+      "id": "googleCard",
+      "title": "Google DeepMind · Gemini 4 Argon model card, 13 Oct 2026",
+      "url": "https://deepmind.google/models/model-cards/gemini-4-argon/",
+      "type": "lab",
+      "retrieved_directly": true
+    },
+    {
+      "id": "googleMethod",
+      "title": "Google DeepMind · Gemini 4 Argon evaluation methodology (PDF)",
+      "url": "https://deepmind.google/models/evals-methodology/gemini-4-argon/",
+      "type": "lab",
+      "retrieved_directly": true
+    },
+    {
       "id": "cursor",
       "title": "Cursor · Grok 4.7 page",
       "url": "https://cursor.com/grok",
@@ -4082,17 +5429,38 @@
     },
     {
       "id": "oaiSol",
-      "title": "OpenAI · Introducing GPT-6.1 Sol (not retrievable)",
+      "title": "OpenAI · Introducing GPT-6.1 Sol (text read 26 Oct; chart values not transcribed)",
       "url": "https://openai.com/index/introducing-gpt-6-1-sol/",
       "type": "lab",
-      "retrieved_directly": false
+      "retrieved_directly": true
     },
     {
       "id": "oaiAstra",
-      "title": "OpenAI · GPT-6 Astra (not retrievable)",
+      "title": "OpenAI · GPT-6 Astra launch page (read in a browser, 26 Oct)",
       "url": "https://openai.com/index/gpt-6-astra/",
       "type": "lab",
-      "retrieved_directly": false
+      "retrieved_directly": true
+    },
+    {
+      "id": "metaCard",
+      "title": "Meta · Muse Wonder model card (PDF)",
+      "url": "https://research.meta.ai/static/muse-wonder-model-card",
+      "type": "lab",
+      "retrieved_directly": true
+    },
+    {
+      "id": "metaOpen",
+      "title": "Meta · Muse Spark Open model card, Hugging Face",
+      "url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+      "type": "lab",
+      "retrieved_directly": true
+    },
+    {
+      "id": "metaOpenBlog",
+      "title": "Meta · Introducing Muse Spark Open",
+      "url": "https://research.meta.ai/blog/muse-spark-open",
+      "type": "lab",
+      "retrieved_directly": true
     },
     {
       "id": "aaBoard",
