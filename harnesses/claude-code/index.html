@@ -233,10 +233,10 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
   <header class="mast">
     <div class="rowline">
       <span class="eyebrow"><a href="../../">Atlas hub</a> · Claude Code compilation · vendor claims against independent runs</span>
-      <span class="stamp">Snapshot · 26 Oct 2026 · 5 labs · 21 models</span>
+      <span class="stamp">Snapshot · 12 Nov 2026 · 5 labs · 27 models</span>
     </div>
     <h1>Frontier Benchmark Atlas</h1>
-    <p class="lede">Between 1 September and 15 October 2026, Anthropic, OpenAI, Google, SpaceXAI and Meta each shipped a frontier model alongside a launch table. In three of the five tables, the publisher's model leads most rows where a rival lab appears. This atlas places those tables beside independent runs of the same tests. Where the two agree, the claim holds. Where they part, the gap usually traces back to effort settings, test harnesses, or benchmark versions.</p>
+    <p class="lede">Between 1 September and 12 November 2026, Anthropic, OpenAI, Google, SpaceXAI and Meta shipped fifteen models, most with a launch table. In seven of the nine tables collected here, the publisher's model leads most rows where a rival lab appears. This atlas places those tables beside independent runs of the same tests. Where the two agree, the claim holds. Where they part, the gap usually traces back to effort settings, test harnesses, or benchmark versions.</p>
   </header>
 </div>
 
@@ -266,7 +266,7 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
         <div>
           <span class="eyebrow">What an independent evaluator measured</span>
           <h2>One shared yardstick</h2>
-          <p class="sub">Artificial Analysis Intelligence Index v4.3, each model at its highest tested effort. Eight models sit between 52 and 58.</p>
+          <p class="sub">Artificial Analysis Intelligence Index v5.0.1, each model at its highest tested effort, read 12 Nov. Version 5 replaced v4.3 on 27 October, and the two scales cannot be compared.</p>
         </div>
       </div>
       <div class="ladder" id="ladder" role="img" aria-label="Ladder of Artificial Analysis Intelligence Index scores"></div>
@@ -274,10 +274,10 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
   </section>
 
   <div class="finds" id="finds">
-    <div class="find"><span class="k">20 of 26</span><p><b>Most launch tables favor their publisher.</b> OpenAI's GPT-6 Astra table leads in 20 of 26 rows where another lab's model appears. Meta's Muse Wonder card leads in 7 of 15, and SpaceXAI's Grok 4.7 table in 2 of 7.</p></div>
-    <div class="find"><span class="k">6 points</span><p><b>Independent runs compress the field.</b> Claude Opus 5.5 tops the Artificial Analysis index at 58, and the next seven models fall within six points of it.</p></div>
-    <div class="find"><span class="k">−11.8</span><p><b>Independent runs land below most claims.</b> On Terminal-Bench 4.0, Artificial Analysis measured Grok 4.7 at 25.8% against SpaceXAI's 37.6% at the same xHigh label. Opus 5.5 lands 6.8 points under the 66.4% Anthropic reports from its own setup.</p></div>
-    <div class="find"><span class="k">6.1</span><p><b>OpenAI's 6.1 generation shipped only as Sol.</b> GPT-6.1 Astra was shelved after it scored worse than GPT-6 Astra on alignment evaluations.</p></div>
+    <div class="find"><span class="k">15 of 17</span><p><b>The newest tables lean hardest toward their publisher.</b> Google's Gemini 4 Carbon table leads in 15 of 17 rows where another lab's model appears, and Anthropic's Fable 5.2 table in 10 of 11. Seven of the nine tables lead most such rows. Meta's Muse Wonder card (7 of 15) and SpaceXAI's Grok 4.7 table (2 of 7) do not.</p></div>
+    <div class="find"><span class="k">65</span><p><b>A new index and a new leader.</b> Artificial Analysis replaced Intelligence Index v4.3 with v5 on 27 October. Claude Fable 5.2 at max effort now leads at 65, ahead of Gemini 4 Carbon at 60 and Claude Opus 5.5 at 59.</p></div>
+    <div class="find"><span class="k">−11.8</span><p><b>Independent runs land below most claims.</b> On Terminal-Bench 4.0, Artificial Analysis measured Grok 4.7 at 25.8% against SpaceXAI's 37.6% at the same xHigh label. GPT-6.1 Terra goes the other way: 55.6% measured against OpenAI's 50.3%.</p></div>
+    <div class="find"><span class="k">6.1</span><p><b>OpenAI's 6.1 generation has Sol and Terra, but no Astra.</b> GPT-6.1 Astra was shelved after it scored worse than GPT-6 Astra on alignment evaluations. GPT-6.1 Terra, the low-cost model, followed on 26 October.</p></div>
   </div>
 
   <nav class="toc" aria-label="Sections">
@@ -288,17 +288,18 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
     <div class="tblock">
       <div>
         <span class="eyebrow">The field</span>
-        <h2>Ten launches in seven weeks</h2>
+        <h2>Fifteen launches in ten weeks</h2>
         <p class="sub">Release dates and list prices in US dollars per million input / output tokens. Order matters: a launch table can only compare against models that already exist.</p>
       </div>
-      <div class="meta">Aug 29 – Oct 28, 2026<br>prices: lab pricing pages</div>
+      <div class="meta">Aug 29 – Nov 16, 2026<br>prices: lab pricing pages</div>
     </div>
     <div class="legend" id="tl-legend"></div>
     <div class="scrollx" id="timeline"></div>
     <div class="notes">
       <p class="note"><b>Astra's table is older than Opus 5.5.</b> OpenAI published GPT-6 Astra on 3 September, so its table compares against Claude Opus 5 and Fable 5.1. Opus 5.5 arrived 19 days later.</p>
       <p class="note"><b>Grok 4.7 is measured against the previous OpenAI generation.</b> The table on Cursor's Grok page uses GPT-5.6 Sol rather than GPT-6 Astra or GPT-6.1 Sol.</p>
-      <p class="note"><b>GPT-6.1 Astra never shipped.</b> OpenAI told The Register it performed worse than GPT-6 Astra on alignment evaluations. The 6.1 generation exists only as Sol.</p>
+      <p class="note"><b>GPT-6.1 Astra never shipped.</b> OpenAI told The Register it performed worse than GPT-6 Astra on alignment evaluations. The 6.1 generation is Sol and, since 26 October, Terra.</p>
+      <p class="note"><b>Newer tables pick rivals from the same tier.</b> Anthropic's Fable 5.2 table, published 9 November, compares against Gemini 4 Carbon a day before Carbon reached developers. Google's Hydrogen table compares against Claude Sonnet 5.5 and GPT-6.1 Terra, and Meta's Ember table against Claude Haiku 5.5 and GPT-6 Luna.</p>
     </div>
   </section>
 
@@ -307,11 +308,11 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
       <div>
         <span class="eyebrow">Vendor claims</span>
         <h2>Each lab's own table</h2>
-        <p class="sub">The full launch table for each lab, as published. The shaded column is the publisher's model. The last column compares it with the best model from any other lab in that row.</p>
+        <p class="sub">Nine launch tables, each in full as published. The shaded column is the publisher's model. The last column compares it with the best model from any other lab in that row.</p>
       </div>
       <div class="meta" id="x-meta"></div>
     </div>
-    <div class="tabs" role="tablist" aria-label="Lab tables" id="x-tabs"></div>
+    <div class="tabs" role="tablist" aria-label="Launch tables" id="x-tabs"></div>
     <div id="x-panel" role="tabpanel" style="display:grid; gap:14px; min-width:0"></div>
     <div class="panel" id="open-card" data-model="sparkopen"></div>
   </section>
@@ -334,7 +335,7 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
       <div>
         <span class="eyebrow">Discrepancies</span>
         <h2>Same model, different numbers</h2>
-        <p class="sub">Ten cases where two or more published sources disagree about one model on one benchmark. Marks take the color of the lab that published the figure; dark marks are independent runs.</p>
+        <p class="sub">Fourteen cases where two or more published sources disagree about one model on one benchmark. Marks take the color of the lab that published the figure; dark marks are independent runs.</p>
       </div>
       <div class="meta">each strip has its own scale</div>
     </div>
@@ -364,9 +365,9 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
       <div>
         <span class="eyebrow">Independent measurement</span>
         <h2>The price of a point</h2>
-        <p class="sub">Artificial Analysis runs each model through the same ten evaluations at every effort setting. Each line traces one model from its lowest to its highest effort. The stepped line marks the best score available at each price.</p>
+        <p class="sub">Artificial Analysis runs each model through the same nine evaluations at every effort setting. Each line traces one model from its lowest to its highest effort. The stepped line marks the best score available at each price.</p>
       </div>
-      <div class="meta">Intelligence Index v4.3.x<br>cost = USD per index task</div>
+      <div class="meta">Intelligence Index v5.0.1<br>cost = USD per index task</div>
     </div>
     <div class="two">
       <div class="panel">
@@ -375,7 +376,7 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
       </div>
       <div class="panel">
         <h3>Cost per index task, top effort</h3>
-        <p class="small">Fable 5.1 costs about ten times as much per task as GPT-6.1 Sol for one more point. Muse Wonder Full is not priced per token.</p>
+        <p class="small">Fable 5.2 at max costs about 21 times as much per task as GPT-6.1 Sol for ten more points. Gemini 4 Carbon reaches 60 for $7.76. Muse Wonder Full is not priced per token.</p>
         <div id="costbars"></div>
       </div>
     </div>
@@ -394,12 +395,12 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
       <div class="panel">
         <h3>CursorBench 4.0, Cursor's public board</h3>
         <div id="cursorbars"></div>
-        <p class="small">Each model at its highest listed effort, board read 26 Oct 2026. Muse Wonder (50.4% at Max) joined the board after the 13 Oct read. Cursor's own Composer 2.5 scores 27.7% with no effort setting listed. Its 63.2% launch figure was on the older CursorBench v3.1.</p>
+        <p class="small">Each model at its highest listed effort, board read 12 Nov 2026. Gemini 4 Carbon (60.4% at High), Claude Fable 5.2 (60.0% at Max) and Gemini 4 Hydrogen (54.3% at High) joined the board after the 26 Oct read. GPT-6.1 Terra and Muse Ember are not on it. Cursor's own Composer 2.5 scores 27.7% with no effort setting listed. Its 63.2% launch figure was on the older CursorBench v3.1.</p>
       </div>
       <div class="panel">
         <h3>Coding Agents Index, Artificial Analysis</h3>
         <div id="agentbars"></div>
-        <p class="small">Only the five harness and model pairs Artificial Analysis published with the Muse Wonder release.</p>
+        <p class="small">Only the five harness and model pairs Artificial Analysis published with the Muse Wonder release on 12 Oct. Artificial Analysis has since moved this index to v2.0, where Claude Code with Opus 5.5 scores 62 and Antigravity CLI with Gemini 4 Carbon 59. Those scores are on a different scale from the bars.</p>
       </div>
     </div>
     <div class="panel">
@@ -434,19 +435,20 @@ footer{margin-top:28px; font-family:var(--f-mono); font-size:.72rem; color:var(-
     </div>
     <ul class="method">
       <li>A <b>claim</b> is a figure a lab published about its own model. A <b>rival table</b> figure is one a lab published about another lab's model. <b>Independent</b> means an Artificial Analysis run, including runs that Meta's model card reproduces.</li>
-      <li>Primary pages were read for Anthropic's four launches, OpenAI's GPT-6 Astra page, Google DeepMind's Argon model card and methodology, Meta's Muse Wonder and Muse Spark Open model cards, Cursor's Grok 4.7 page and board, and the Artificial Analysis leaderboard. The chart values in OpenAI's GPT-6.1 Sol post still come from Vellum and DataCamp. Tooltips name the source for each figure.</li>
-      <li>Google's announcement post contains no table; its model card and methodology PDF do. Emergent's earlier reproduction matches them row for row.</li>
-      <li>Index scores are Intelligence Index v4.3.x. Launch-day figures under v4.1.x, such as Fable 5.1 at 65.7 and GPT-6 Astra at 61.2, are not comparable with them.</li>
-      <li>Gemini 4 Argon: trackers date the announcement and a limited rollout to 30 September. Google's post describing API and app availability is dated 13 October.</li>
-      <li>Muse Spark 1.3 no longer appears on the Artificial Analysis leaderboard, which now lists it as deprecated. Its index and cost figures are from the 13 October read.</li>
-      <li>All numbers are as published by 26 October 2026 and will move as evaluators rerun models.</li>
+      <li>Primary pages were read for Anthropic's five launches, OpenAI's GPT-6 Astra page and GPT-6.1 Terra post, Google DeepMind's Argon, Carbon and Hydrogen model cards and methodology PDFs, Meta's Muse Wonder and Muse Spark Open model cards and Muse Ember post, Cursor's Grok 4.7 page and board, and the Artificial Analysis leaderboard. The chart values in OpenAI's GPT-6.1 Sol and Terra posts are not transcribed; Sol's still come from Vellum and DataCamp, and Terra's only figure here is the 50.3% Terminal-Bench 4.0 score stated in the text. Tooltips name the source for each figure.</li>
+      <li>Google's announcement posts show their tables as images or not at all; the model cards print them as text. Emergent's earlier reproduction of the Argon table matches the card row for row.</li>
+      <li>Index scores are Intelligence Index v5.0.1, read 12 November. Artificial Analysis replaced v4.3 with v5 on 27 October, so the v4.3 figures in revisions 1 to 3 and launch-day figures under v4.1.x, such as Fable 5.1 at 65.7, are not comparable with them. Google's Carbon card and AA's Carbon article print v5.0 values, a point lower for some models (Carbon 59, Opus 5.5 58).</li>
+      <li>Claude Fable 5.1 and Muse Spark 1.3 are listed as deprecated on the Artificial Analysis leaderboard and have no v5 score, so they are out of the index charts.</li>
+      <li>Gemini 4 Argon: trackers date the announcement and a limited rollout to 30 September. Google's post describing API and app availability is dated 13 October. Gemini 4 Carbon: announced 28 October for selected cyber defenders and Fairwind Program partners; Google opened the paid API tier to developers on 10 November.</li>
+      <li>All numbers are as published by 12 November 2026 and will move as evaluators rerun models.</li>
       <li>Revision 2, 13 October 2026: GPT-6 Astra's own Terminal-Bench 4.0 figure corrected from 57.7 to 57.9, and the CursorBench chart rebuilt from Cursor's public board, which adds Gemini 4 Argon, Claude Haiku 5.5, Muse Spark 1.3 and Composer 2.5. Both errors surfaced when this compilation was compared with Cursor's.</li>
       <li>Revision 3, 26 October 2026 (Monday check-in): Muse Spark Open added (15 October). OpenAI's table was rebuilt from OpenAI's own page; the earlier reproduction had put Claude Fable 5's Agents' Last Exam score under Fable 5.1, repeated Fable 5.1's FrontierMath score for Fable 5, and printed different HealthBench figures for Opus 5 and Fable 5.1. OpenAI prints 52.6 for Opus 5 on Terminal-Bench 4.0, which settles the open question from revision 2. Google and Meta tables now cite their own cards, which match. CursorBench adds Muse Wonder; Artificial Analysis adds Terminal-Bench runs for Haiku 5.5 and Grok 4.7.</li>
+      <li>Revision 4, 12 November 2026: adds GPT-6.1 Terra (26 October, released the day revision 3 was checked but missed by it), Gemini 4 Carbon (28 October), Claude Fable 5.2 and Mythos 5.2 (9 November), Muse Ember (9 November) and Gemini 4 Hydrogen (12 November). New launch tables for Carbon, Hydrogen, Fable 5.2 and Ember, transcribed from Google DeepMind's model cards and Anthropic's and Meta's posts. The independent index, cost ladders and speeds are re-read on Intelligence Index v5.0.1, which replaces v4.3. CursorBench adds Carbon, Fable 5.2 and Hydrogen. Four new disagreement cases, two updated.</li>
     </ul>
     <div class="srcs" id="srclist"></div>
   </section>
 
-  <footer>Frontier Benchmark Atlas · compiled 13 Oct 2026, updated 26 Oct 2026 · revision 3 · figures belong to their publishers</footer>
+  <footer>Frontier Benchmark Atlas · compiled 13 Oct 2026, updated 12 Nov 2026 · revision 4 · figures belong to their publishers</footer>
 </main>
 
 <div id="tip" hidden></div>
@@ -462,17 +464,31 @@ const SRC = {
   anthSonnet:{t:"Anthropic · Claude Sonnet 5.5 launch page", u:"https://www.anthropic.com/claude-sonnet-5-5", k:"lab"},
   anthHaiku:{t:"Anthropic · Claude Haiku 5.5 launch page", u:"https://www.anthropic.com/claude-haiku-5-5", k:"lab"},
   anthFable:{t:"Anthropic · Claude Fable 5.1 and Mythos 5.1", u:"https://www.anthropic.com/claude-fable-and-mythos-5-1", k:"lab"},
+  anthFable52:{t:"Anthropic · Claude Fable 5.2 and Mythos 5.2, 9 Nov 2026", u:"https://www.anthropic.com/claude-fable-and-mythos-5-2", k:"lab"},
   google:{t:"Google · Gemini 4 Argon post", u:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/", k:"lab"},
   googleCard:{t:"Google DeepMind · Gemini 4 Argon model card, 13 Oct 2026", u:"https://deepmind.google/models/model-cards/gemini-4-argon/", k:"lab"},
   googleMethod:{t:"Google DeepMind · Gemini 4 Argon evaluation methodology (PDF)", u:"https://deepmind.google/models/evals-methodology/gemini-4-argon/", k:"lab"},
+  googleCarbon:{t:"Google · Gemini 4 Carbon announcement, 28 Oct 2026", u:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/", k:"lab"},
+  googleCarbonDev:{t:"Google · Gemini 4 Carbon opens to developers, 10 Nov 2026", u:"https://blog.google/innovation-and-ai/technology/developers-tools/gemini-4-carbon-developers/", k:"lab"},
+  googleCarbonCard:{t:"Google DeepMind · Gemini 4 Carbon model card, 10 Nov 2026", u:"https://deepmind.google/models/model-cards/gemini-4-carbon/", k:"lab"},
+  googleCarbonMethod:{t:"Google DeepMind · Gemini 4 Carbon evaluation methodology (PDF)", u:"https://deepmind.google/models/evals-methodology/gemini-4-carbon/", k:"lab"},
+  googleHydrogen:{t:"Google · Gemini 4 Hydrogen announcement, 12 Nov 2026", u:"https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/", k:"lab"},
+  googleHydrogenCard:{t:"Google DeepMind · Gemini 4 Hydrogen model card, 12 Nov 2026", u:"https://deepmind.google/models/model-cards/gemini-4-hydrogen/", k:"lab"},
+  googleHydrogenMethod:{t:"Google DeepMind · Gemini 4 Hydrogen evaluation methodology (PDF)", u:"https://deepmind.google/models/evals-methodology/gemini-4-hydrogen/", k:"lab"},
   cursor:{t:"Cursor · Grok 4.7 page", u:"https://cursor.com/grok", k:"lab"},
   cursorBoard:{t:"Cursor · CursorBench 4.0 public board", u:"https://cursor.com/cursorbench", k:"ind"},
   oaiSol:{t:"OpenAI · Introducing GPT-6.1 Sol (text read 26 Oct; chart values not transcribed)", u:"https://openai.com/index/introducing-gpt-6-1-sol/", k:"lab"},
   oaiAstra:{t:"OpenAI · GPT-6 Astra launch page (read in a browser, 26 Oct)", u:"https://openai.com/index/gpt-6-astra/", k:"lab"},
+  oaiTerra:{t:"OpenAI · Introducing GPT-6.1 Terra (text read in a browser, 12 Nov; chart values not transcribed)", u:"https://openai.com/index/introducing-gpt-6-1-terra/", k:"lab"},
+  oaiChangelog:{t:"OpenAI · API changelog, GPT-6.1 Terra entry dated 26 Oct 2026", u:"https://developers.openai.com/api/docs/changelog", k:"lab"},
   metaCard:{t:"Meta · Muse Wonder model card (PDF)", u:"https://research.meta.ai/static/muse-wonder-model-card", k:"lab"},
   metaOpen:{t:"Meta · Muse Spark Open model card, Hugging Face", u:"https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B", k:"lab"},
   metaOpenBlog:{t:"Meta · Introducing Muse Spark Open", u:"https://research.meta.ai/blog/muse-spark-open", k:"lab"},
-  aaBoard:{t:"Artificial Analysis · model leaderboard", u:"https://artificialanalysis.ai/leaderboards/models", k:"ind"},
+  metaEmber:{t:"Meta · Introducing Muse Ember, 9 Nov 2026", u:"https://research.meta.ai/blog/muse-ember", k:"lab"},
+  aaBoard:{t:"Artificial Analysis · model leaderboard (Intelligence Index v5.0.1 when read 12 Nov 2026)", u:"https://artificialanalysis.ai/leaderboards/models", k:"ind"},
+  aaV5:{t:"Artificial Analysis · Announcing Intelligence Index v5", u:"https://artificialanalysis.ai/articles/artificial-analysis-intelligence-index-v5", k:"ind"},
+  aaCarbon:{t:"Artificial Analysis · Gemini 4 Carbon article", u:"https://artificialanalysis.ai/articles/gemini-4-carbon-new-number-1", k:"ind"},
+  aaTerra:{t:"Artificial Analysis · GPT-6.1 Terra article", u:"https://artificialanalysis.ai/articles/gpt-6-1-terra-pushes-the-cost-efficiency-frontier", k:"ind"},
   aaMuse:{t:"Artificial Analysis · Muse Wonder article", u:"https://artificialanalysis.ai/articles/muse-wonder", k:"ind"},
   aaSonnet:{t:"Artificial Analysis · Claude Sonnet 5.5 article", u:"https://artificialanalysis.ai/es/articles/claude-sonnet-5-5", k:"ind"},
   emGoogle:{t:"Emergent · Gemini 4 Argon benchmarks (reproduces Google's table)", u:"https://emergent.sh/learn/gemini-4-argon-benchmarks", k:"sec"},
@@ -506,14 +522,19 @@ const M = {
   haiku55:{n:"Claude Haiku 5.5", s:"Haiku 5.5", lab:"anthropic"},
   fable51:{n:"Claude Fable 5.1", s:"Fable 5.1", lab:"anthropic"},
   mythos51:{n:"Claude Mythos 5.1", s:"Mythos 5.1", lab:"anthropic"},
+  fable52:{n:"Claude Fable 5.2", s:"Fable 5.2", lab:"anthropic"},
+  mythos52:{n:"Claude Mythos 5.2", s:"Mythos 5.2", lab:"anthropic"},
   opus5:{n:"Claude Opus 5", s:"Opus 5", lab:"anthropic"},
   fable5:{n:"Claude Fable 5", s:"Fable 5", lab:"anthropic"},
   astra:{n:"GPT-6 Astra", s:"GPT-6 Astra", lab:"openai"},
   sol61:{n:"GPT-6.1 Sol", s:"GPT-6.1 Sol", lab:"openai"},
+  terra:{n:"GPT-6.1 Terra", s:"GPT-6.1 Terra", lab:"openai"},
   luna:{n:"GPT-6 Luna", s:"GPT-6 Luna", lab:"openai"},
   astra61:{n:"GPT-6.1 Astra", s:"GPT-6.1 Astra", lab:"openai"},
   gpt56sol:{n:"GPT-5.6 Sol", s:"GPT-5.6 Sol", lab:"openai"},
   argon:{n:"Gemini 4 Argon", s:"Gemini 4 Argon", lab:"google"},
+  carbon:{n:"Gemini 4 Carbon", s:"Gemini 4 Carbon", lab:"google"},
+  hydrogen:{n:"Gemini 4 Hydrogen", s:"Gemini 4 Hydrogen", lab:"google"},
   flash38:{n:"Gemini 3.8 Flash", s:"Gemini 3.8 Flash", lab:"google"},
   grok47:{n:"Grok 4.7", s:"Grok 4.7", lab:"xai"},
   grok46:{n:"Grok 4.6", s:"Grok 4.6", lab:"xai"},
@@ -521,7 +542,8 @@ const M = {
   wonderfull:{n:"Muse Wonder Full", s:"Wonder Full", lab:"meta"},
   wonder:{n:"Muse Wonder", s:"Muse Wonder", lab:"meta"},
   spark13:{n:"Muse Spark 1.3", s:"Muse Spark 1.3", lab:"meta"},
-  sparkopen:{n:"Muse Spark Open", s:"Spark Open", lab:"meta"}
+  sparkopen:{n:"Muse Spark Open", s:"Spark Open", lab:"meta"},
+  ember:{n:"Muse Ember", s:"Muse Ember", lab:"meta"}
 };
 
 /* ---------- lab launch tables ---------- */
@@ -578,6 +600,26 @@ const TABLES = {
       ["OSWorld 2.1 (partial)","pct",[81.8,80.7,74.0,null,null],"Anthropic-reported"],
       ["Chartography (with tools)","pct",[89.0,88.4,83.4,null,null],"Anthropic-reported"]
     ]},
+  fable52:{lab:"anthropic", model:"fable52", date:"9 Nov 2026", title:"Claude Fable 5.2 launch table",
+    src:["anthFable52"], cols:["fable52","fable51","opus55","astra","carbon"],
+    note:"Read from Anthropic's launch page on 12 Nov 2026. Each model at its highest available effort unless marked, with safeguards on for the Claude models. Fable and Mythos 5.2 are the same underlying model with different safeguards, so rows Anthropic ran on Mythos appear in the Fable columns and say so. On CyScenarioBench each lab scored its own set of tasks, and OpenAI's 61% there is for GPT-6 Cyber rather than GPT-6 Astra, so it is left out. AA-Briefcase is printed both as a rubric score and as an Elo rating; both are shown.",
+    rows:[
+      ["FrontierCode 2.0","pct",[49.1,32.4,45.5,42.8,41.1],"Anthropic-reported; Fables at xhigh, Carbon at medium"],
+      ["FrontierSWE v2","pct",[69.9,56.3,62.3,65.5,61.2],"Anthropic-reported"],
+      ["AutomationBench","pct",[51.4,31.4,42.5,41.4,53.9],"Anthropic-reported"],
+      ["Terminal-Bench-Science 0.1","pct",[74.6,52.6,58.7,68.1,64.8],"Anthropic-reported; Mythos 5.2 scores 75.3"],
+      ["CyScenarioBench","pct",[76.3,61.7,67.6,null,null],"Mythos 5.2 and 5.1; Opus without safeguards"],
+      ["CVE Rediscovery","pct",[89.6,78.3,81.3,null,null],"Anthropic internal; Mythos models; Opus without safeguards",true],
+      ["De novo binder design (24 hr)","pts",[85.1,79.1,82.6,null,null],"Mythos 5.2 and 5.1; Opus without safeguards"],
+      ["WANDR (relaxed score)","pct",[82.1,68.7,72.3,null,null],"Perplexity's benchmark; Anthropic-reported"],
+      ["OSWorld 2.1 (offline set, partial)","pct",[89.3,83.5,87.2,79.5,81.5],"Anthropic-reported"],
+      ["RoboDojo Sim","pct",[64.9,27.6,39.4,29.8,null],"Anthropic ran all models internally"],
+      ["AA-Briefcase v1.1 (rubric)","pct",[66.1,61.5,61.2,52.0,61.8],"Artificial Analysis"],
+      ["AA-Briefcase v1.1 (Elo)","elo",[1785,1669,1800,1569,1611],"Artificial Analysis"],
+      ["Remote Labor Index","pct",[41.3,17.9,21.3,20.8,null],"Anthropic-reported; Fable 5.2 at high effort"],
+      ["Humanity's Last Exam (with tools)","pct",[74.2,65.6,67.7,57.2,null],"Anthropic-reported"],
+      ["Chartography (no tools)","pct",[73.4,44.8,64.4,71.0,72.5],"Anthropic-reported"]
+    ]},
   google:{lab:"google", model:"argon", date:"30 Sep 2026", title:"Gemini 4 Argon comparison table",
     src:["googleCard","googleMethod"], cols:["argon","astra","fable51","opus55"],
     note:"From Google DeepMind's model card and evaluation methodology, read 26 Oct 2026. Emergent's reproduction, used in revisions 1 and 2, matches every row. Google reports rivals at their maximum setting where published. Third-party rows do not guarantee matched harnesses or settings.",
@@ -602,6 +644,43 @@ const TABLES = {
       ["LVBench","pct",[91.7,87.5,79.7,83.7],"Google ran all models"],
       ["CWE-bench v1","pct",[68.0,68.0,58.0,67.0],"Third party (CWE-bench)"]
     ]},
+  carbon:{lab:"google", model:"carbon", date:"28 Oct 2026", title:"Gemini 4 Carbon model card table",
+    src:["googleCarbonCard","googleCarbonMethod","googleCarbon"], cols:["carbon","argon","astra","opus55","fable51"],
+    note:"From Google DeepMind's Carbon model card (published 10 Nov 2026, results as of October) and its methodology PDF, read 12 Nov 2026. The 28 Oct announcement shows the same table as an image. Google ran Gemini at its highest thinking setting and otherwise takes rivals' self-reported figures at maximum effort. Rows marked AA are Artificial Analysis runs that Google quotes for every column. Cybersecurity rows reflect Carbon accessed through Google's Fairwind Program, evaluated without guardrails.",
+    rows:[
+      ["AA Intelligence Index v5.0","pts",[59,50,57,58,49],"Artificial Analysis"],
+      ["Vals Index v2.2","pct",[70.4,69.2,65.0,70.2,null],"Third party (Vals AI)"],
+      ["SWE-sweep","pct",[9.6,4.3,9.5,3.6,2.9],"Google ran Carbon; rivals from public leaderboard"],
+      ["FrontierSWE 2","pct",[61.2,55.0,65.5,62.3,56.3],"Third party (Proximal leaderboard)"],
+      ["Terminal-Bench 4.0 (AA)","pct",[65.2,57.1,59.1,59.6,52.0],"Artificial Analysis"],
+      ["Agents' Last Exam v1.1 (score)","pct",[77.4,69.0,73.1,71.6,null],"Google ran Gemini; rivals from public leaderboard"],
+      ["OSWorld 2.1 (offline subset, partial)","pct",[81.5,74.7,80.9,87.2,76.8],"Google ran Gemini; rivals from their labs' cards"],
+      ["AutomationBench (private set)","pct",[53.9,51.3,41.4,42.5,31.4],"Third party (Zapier leaderboard)"],
+      ["Vending-Bench 2 (bank balance)","usd",[16484,13718,15515,9235,5422],"Third party (Andon Labs leaderboard)"],
+      ["Chartography (no tools)","pct",[72.5,71.6,71.0,66.3,46.2],"Third party (Surge leaderboard)"],
+      ["Blueprint-Bench 2 (similarity)","pct",[58.6,54.4,49.7,51.2,41.9],"Third party (Andon Labs leaderboard)"],
+      ["GraphWalks 256K–1M (BFS F1)","pct",[96.2,84.2,71.8,66.8,65.0],"Google ran all models"],
+      ["RiemannBench","pct",[80.0,76.0,72.0,69.6,65.6],"Third party (Surge leaderboard)"],
+      ["Terminal-Bench-Science 0.1 (AA)","pct",[64.8,52.9,63.3,59.0,43.3],"Artificial Analysis"],
+      ["CWE-bench v1","pct",[71.0,68.0,68.0,67.0,58.0],"Third party (Collinear leaderboard)"],
+      ["ExploitGym","pct",[54.8,42.0,42.4,34.5,null],"Google ran Gemini; rivals from their labs' cards"],
+      ["SEC-bench Pro","pct",[88.2,83.4,85.4,null,null],"Google ran Gemini; Astra from OpenAI"]
+    ]},
+  hydrogen:{lab:"google", model:"hydrogen", date:"12 Nov 2026", title:"Gemini 4 Hydrogen model card table",
+    src:["googleHydrogenCard","googleHydrogenMethod","googleHydrogen"], cols:["hydrogen","sonnet55","terra"],
+    note:"From Google DeepMind's Hydrogen model card and methodology PDF, read 12 Nov 2026. Google compares Hydrogen, at its highest thinking setting, with Claude Sonnet 5.5 and GPT-6.1 Terra at theirs, and ran Sonnet 5.5 itself on OSWorld and Agents' Last Exam. The Terminal-Bench row is version 4.1 with cheating-adjusted accuracy, so it is not the Terminal-Bench 4.0 used elsewhere in this atlas. Artificial Analysis measured Hydrogen at 54.0% on version 4.0 at high effort.",
+    rows:[
+      ["SWE-sweep","pct",[13.5,3.1,5.8],"Google ran Hydrogen; rivals from public leaderboard"],
+      ["Terminal-Bench 4.1 (cheating-adjusted)","pct",[57.0,63.9,null],"Google ran Hydrogen at high effort; Sonnet from public leaderboard"],
+      ["Agents' Last Exam v1.1 (score)","pct",[71.6,60.4,69.8],"Google ran Hydrogen and Sonnet; Terra from public leaderboard"],
+      ["AutomationBench-AA","pct",[76.1,71.8,60.2],"Artificial Analysis leaderboard"],
+      ["Vending-Bench 2 (bank balance)","usd",[14549,11165,9107],"Third party (Andon Labs leaderboard)"],
+      ["OSWorld 2.1 (offline subset, partial)","pct",[77.6,83.9,74.2],"Google ran Hydrogen and Sonnet; Terra from OpenAI's system card"],
+      ["MKA (Climb WSR accuracy)","pct",[53.4,52.0,43.8],"Google ran Hydrogen; rivals from Artificial Analysis"],
+      ["Chartography (no tools)","pct",[66.6,61.6,63.2],"Google ran Hydrogen and Terra; Sonnet from Anthropic's card"],
+      ["Terminal-Bench-Science 0.1","pct",[51.4,59.9,58.3],"Google ran Hydrogen; rivals from public leaderboard"],
+      ["HLE-Diamond","pct",[58.8,53.3,47.3],"Artificial Analysis leaderboard"]
+    ]},
   meta:{lab:"meta", model:"wonderfull", date:"12 Oct 2026", title:"Muse Wonder model card table",
     src:["metaCard"], cols:["wonderfull","wonder","fable51","astra","opus55"],
     note:"Read from Meta's model card on 26 Oct 2026, where the table is an image; revisions 1 and 2 used DEV Community and MindStudio reproductions, which match every row. All models at max effort. Meta's card says competitor runs are best-effort. Rows marked internal are Meta's own benchmarks. SWE-Marathon ran competitors in different harnesses, and Wonder Full at xhigh.",
@@ -622,6 +701,22 @@ const TABLES = {
       ["ProgramBench","pct",[59.0,50.0,55.5,52.5,70.5],"All models in mini-swe-agent"],
       ["AA Intelligence Index","pts",[56,52,53,53,58],"Artificial Analysis (independent)"]
     ]},
+  ember:{lab:"meta", model:"ember", date:"9 Nov 2026", title:"Muse Ember launch table",
+    src:["metaEmber"], cols:["ember","haiku55","luna"],
+    note:"Read from Meta's Muse Ember post on 12 Nov 2026. Every model at max effort. Meta compares Ember only with the small models from Anthropic and OpenAI. Rows suffixed AA are Artificial Analysis versions; Meta labels its AutomationBench-AA figures strict pass@1. Terminal-Bench uses each model's best published harness, and Agents' Last Exam is Meta's own run on the Linux subset. OSWorld 2.1 is printed as partial and binary scores; both are shown.",
+    rows:[
+      ["AutomationBench-AA (strict pass@1)","pct",[37.8,13.9,20.2],"Artificial Analysis"],
+      ["Agents' Last Exam (Linux subset)","pct",[61.6,57.0,57.1],"Meta ran all models"],
+      ["Personal Superintelligence Index","pct",[46.8,36.1,37.0],"Meta internal",true],
+      ["Terminal-Bench 4.0","pct",[40.9,39.2,16.4],"Best published harness for each model"],
+      ["Coding Agent Index-AA","pts",[46,37,31],"Artificial Analysis"],
+      ["FrontierCode 2.0-AA","pct",[27.2,34.9,25.2],"Artificial Analysis"],
+      ["GDP.pdf-AA","pct",[22.8,20.8,22.8],"Artificial Analysis"],
+      ["OSWorld 2.1 (partial)","pct",[69.5,68.9,50.5],"Meta-reported"],
+      ["OSWorld 2.1 (binary)","pct",[33.8,27.8,17.0],"Meta-reported"],
+      ["PerceptionBench (with tools)","pct",[80.6,78.6,62.8],"Meta-reported"],
+      ["AA Intelligence Index","pts",[36,36,28],"Artificial Analysis"]
+    ]},
   xai:{lab:"xai", model:"grok47", date:"21 Sep 2026", title:"Grok 4.7 launch table",
     src:["cursor","marktech"], cols:["grok47","grok46","gpt56sol","fable51"],
     note:"Grok 4.7 at xHigh (DeepSWE at high), Grok 4.6 at High, GPT-5.6 Sol and Fable 5.1 at Max. Compares against the previous OpenAI generation.",
@@ -635,11 +730,11 @@ const TABLES = {
       ["HealthBench Professional","pct",[56.7,48.5,60.5,62.1],"SpaceXAI-reported"]
     ]}
 };
-const TABLE_ORDER = ["openai","anthropic","google","meta","xai"];
+const TABLE_ORDER = ["openai","anthropic","fable52","google","carbon","hydrogen","meta","ember","xai"];
 
 /* ---------- Muse Spark Open card (rivals outside this atlas) ---------- */
 const OPEN = {model:"sparkopen", date:"15 Oct 2026", setting:"xhigh", src:["metaOpen","metaOpenBlog"],
-  note:"Meta compares Muse Spark Open, its open-weight model, only with other open-weight models: Inkling, Nemotron 3 Ultra, Beam, Mistral Large 4, Qwen3.8-2.4T-A95B, GLM 5.3 and Kimi K3. None of those is in this atlas, so the card sits apart from the lab tables. The two safety rows, where lower is better, are left out. Artificial Analysis values are from its leaderboard data, read 26 Oct 2026, rounded to one decimal.",
+  note:"Meta compares Muse Spark Open, its open-weight model, only with other open-weight models: Inkling, Nemotron 3 Ultra, Beam, Mistral Large 4, Qwen3.8-2.4T-A95B, GLM 5.3 and Kimi K3. None of those is in this atlas, so the card sits apart from the lab tables. The two safety rows, where lower is better, are left out. Artificial Analysis values are from its leaderboard data, read 26 Oct 2026 when the index was v4.3, rounded to one decimal.",
   rows:[
     // [benchmark as printed, unit, Spark Open, best open-weight rival in Meta's table, its value, Artificial Analysis run of the same test]
     ["AA Intelligence Index","pts",39,"GLM 5.3 (max)",45,38.9],
@@ -685,39 +780,47 @@ function scoreRows(t){
 Object.values(TABLES).forEach(t=>{ t.scored=scoreRows(t); const c=s=>t.scored.filter(r=>r.status===s).length;
   t.lead=c("lead"); t.tie=c("tie"); t.trail=c("trail"); t.norival=c("norival"); t.contested=t.lead+t.tie+t.trail; });
 
-/* ---------- independent index (AA v4.3, top effort) ---------- */
+/* ---------- independent index (AA v5.0.1, top effort, read 12 Nov 2026) ---------- */
+// Fable 5.1 and Muse Spark 1.3 are deprecated on the leaderboard and have no v5 score
 const INDEX = [
-  {m:"opus55",v:58},{m:"sonnet55",v:56},{m:"wonderfull",v:56},{m:"fable51",v:53},{m:"astra",v:53},{m:"argon",v:53,eff:"high"},
-  {m:"sol61",v:52},{m:"wonder",v:52},{m:"spark13",v:48},{m:"grok47",v:46,eff:"xhigh"},{m:"haiku55",v:43},{m:"flash38",v:41,eff:"high"},{m:"sparkopen",v:39,eff:"xhigh"},{m:"luna",v:38}
+  {m:"fable52",v:65},{m:"carbon",v:60,eff:"high"},{m:"opus55",v:59},{m:"astra",v:57},{m:"sol61",v:55},{m:"sonnet55",v:55},{m:"hydrogen",v:54,eff:"xhigh"},
+  {m:"terra",v:51},{m:"argon",v:50,eff:"high"},{m:"wonderfull",v:50},{m:"wonder",v:44},{m:"haiku55",v:36},{m:"ember",v:36},{m:"grok47",v:35,eff:"xhigh"},
+  {m:"flash38",v:31,eff:"high"},{m:"luna",v:28},{m:"sparkopen",v:25,eff:"xhigh"}
 ];
 const LADDERS = {
-  opus55:[["low",42,0.55],["medium",51,1.34],["high",54,1.82],["xhigh",56,3.46],["max",58,5.98]],
-  sonnet55:[["low",36,0.35],["medium",41,0.48],["high",47,0.88],["xhigh",52,2.01],["max",56,5.46]],
-  haiku55:[["low",29,0.02],["medium",34,0.05],["high",38,0.08],["xhigh",41,0.12],["max",43,0.21]],
-  fable51:[["low",47,2.37],["medium",49,2.98],["high",51,3.91],["xhigh",53,5.98],["max",53,7.63]],
-  astra:[["low",46,0.82],["medium",50,1.54],["high",51,1.73],["xhigh",52,2.31],["max",53,3.26]],
-  sol61:[["low",42,0.13],["medium",48,0.21],["high",50,0.32],["xhigh",51,0.39],["max",52,0.72]],
-  luna:[["non-reasoning",18,0.01],["low",22,0.0045],["medium",30,0.02],["high",33,0.03],["xhigh",35,0.04],["max",38,0.07]],
-  argon:[["high",53,1.99]],
-  flash38:[["medium",40,0.93],["high",41,1.24]],
-  grok47:[["low",42,1.25],["high",46,2.73],["xhigh",46,3.74]],
-  wonder:[["max",52,4.54]],
-  spark13:[["max",48,1.60]],
-  sparkopen:[["xhigh",39,0.84]]
+  fable52:[["low",54,3.10],["medium",56,3.80],["high",62,9.08],["xhigh",62,14.83],["max",65,26.54]],
+  opus55:[["low",35,0.98],["medium",48,2.45],["high",52,3.46],["xhigh",57,6.05],["max",59,10.04]],
+  sonnet55:[["low",26,0.51],["medium",31,0.78],["high",42,1.64],["xhigh",50,4.09],["max",55,10.02]],
+  haiku55:[["low",19,0.04],["medium",25,0.09],["high",30,0.16],["xhigh",35,0.25],["max",36,0.41]],
+  astra:[["low",43,1.42],["medium",52,2.73],["high",55,3.24],["xhigh",55,3.66],["max",57,6.24]],
+  sol61:[["low",35,0.16],["medium",46,0.36],["high",50,0.59],["xhigh",52,0.76],["max",55,1.27]],
+  terra:[["non-reasoning",31,0.23],["low",29,0.07],["medium",38,0.17],["high",42,0.26],["xhigh",45,0.40],["max",51,0.96]],
+  luna:[["non-reasoning",9,0.07],["low",10,0.01],["medium",18,0.04],["high",21,0.07],["xhigh",23,0.10],["max",28,0.15]],
+  carbon:[["low",54,7.19],["medium",58,6.59],["high",60,7.76]],
+  hydrogen:[["low",27,0.29],["medium",41,0.80],["high",51,1.87],["xhigh",54,3.16]],
+  argon:[["high",50,9.95]],
+  flash38:[["medium",30,6.26],["high",31,7.77]],
+  grok47:[["low",31,2.92],["high",35,6.18],["xhigh",35,7.77]],
+  wonder:[["high",41,4.56],["max",44,6.95]],
+  ember:[["xhigh",34,0.12],["max",36,0.14]],
+  sparkopen:[["xhigh",25,2.02]]
 };
-// median output tokens per second at each model's top effort, AA leaderboard read 26 Oct 2026
-const SPEED = {opus55:98,sonnet55:141,haiku55:234,fable51:70,astra:67,sol61:66,luna:135,argon:81,flash38:132,grok47:89,wonder:190,sparkopen:167};
+// median output tokens per second at each model's top effort, AA leaderboard data read 12 Nov 2026
+const SPEED = {fable52:98,carbon:76,opus55:115,sonnet55:144,haiku55:256,astra:35,sol61:51,terra:70,luna:108,argon:64,hydrogen:198,flash38:111,grok47:63,wonder:113,ember:451,sparkopen:154};
 
 /* ---------- Terminal-Bench 4.0 ---------- */
 const TB4 = [
   {m:"sonnet55", self:{v:70.6,n:"Anthropic, Sonnet 5.5 page"}, rivals:[], aa:{v:63.6,n:"max effort · AA article and tosea.ai"}},
-  {m:"opus55", self:{v:66.4,n:"Anthropic, xhigh effort, ±2.6 SE"}, rivals:[{by:"google",v:66.4,n:"Google table, from leaderboard"}], aa:{v:59.6,n:"max effort"}},
-  {m:"astra", self:{v:57.9,n:"OpenAI's page; Anthropic's page says high effort; Anthropic cites the same figure"}, rivals:[{by:"anthropic",v:57.9,n:"Anthropic table, 'as reported by OpenAI'"},{by:"google",v:58.2,n:"Google table, from the public leaderboard"}], aa:{v:59.1,n:"AA run, quoted in Meta's card"}},
-  {m:"argon", self:{v:57.4,n:"Google ran Argon"}, rivals:[], aa:{v:57.1,n:"high effort, AA leaderboard data (the Muse article prints 57)",src:"aaBoard"}},
+  {m:"opus55", self:{v:66.4,n:"Anthropic, xhigh effort, ±2.6 SE"}, rivals:[{by:"google",v:66.4,n:"Google Argon table, from leaderboard"},{by:"google",v:59.6,n:"Google Carbon table, quoting the AA run"}], aa:{v:59.6,n:"max effort"}},
+  {m:"carbon", self:{v:65.2,n:"Google's Carbon card quotes the AA run"}, rivals:[], aa:{v:65.2,n:"high effort, AA leaderboard data, read 12 Nov (AA's 28 Oct article printed 64)",src:"aaBoard"}},
+  {m:"astra", self:{v:57.9,n:"OpenAI's page; Anthropic's page says high effort; Anthropic cites the same figure"}, rivals:[{by:"anthropic",v:57.9,n:"Anthropic table, 'as reported by OpenAI'"},{by:"google",v:58.2,n:"Google Argon table, from the public leaderboard"},{by:"google",v:59.1,n:"Google Carbon table, quoting the AA run"}], aa:{v:59.1,n:"AA run, quoted in Meta's card"}},
+  {m:"argon", self:{v:57.4,n:"Google ran Argon"}, rivals:[], aa:{v:57.1,n:"high effort, AA leaderboard data (the Muse article prints 57; Google's Carbon card quotes 57.1)",src:"aaBoard"}},
   {m:"wonderfull", self:{v:57.1,n:"Meta's card quotes the AA run"}, rivals:[], aa:{v:57.1,n:"AA run"}},
-  {m:"fable51", self:{v:55.8,n:"Anthropic, Fable 5.1 page"}, rivals:[{by:"openai",v:55.8,n:"OpenAI Astra table"},{by:"google",v:57.9,n:"Google table"},{by:"xai",v:57.9,n:"SpaceXAI table, Max effort"}], aa:{v:52.0,n:"AA run, quoted in Meta's card"}},
+  {m:"fable51", self:{v:55.8,n:"Anthropic, Fable 5.1 page"}, rivals:[{by:"openai",v:55.8,n:"OpenAI Astra table"},{by:"google",v:57.9,n:"Google Argon table"},{by:"xai",v:57.9,n:"SpaceXAI table, Max effort"},{by:"google",v:52.0,n:"Google Carbon table, quoting the AA run"}], aa:{v:52.0,n:"AA run, quoted in Meta's card"}},
   {m:"wonder", self:{v:52.0,n:"Meta's card quotes the AA run"}, rivals:[], aa:{v:52.0,n:"AA run"}},
-  {m:"haiku55", self:{v:39.2,n:"Anthropic, Haiku 5.5 page"}, rivals:[], aa:{v:32.8,n:"max effort, AA leaderboard data, read 26 Oct",src:"aaBoard"}},
+  {m:"terra", self:{v:50.3,n:"OpenAI's Terra post, max effort"}, rivals:[], aa:{v:55.6,n:"max effort, AA leaderboard data, read 12 Nov",src:"aaBoard"}},
+  {m:"ember", self:{v:40.9,n:"Meta's Ember post, max effort, best published harness"}, rivals:[], aa:{v:40.9,n:"max effort, AA leaderboard data, read 12 Nov",src:"aaBoard"}},
+  {m:"haiku55", self:{v:39.2,n:"Anthropic, Haiku 5.5 page"}, rivals:[{by:"meta",v:39.2,n:"Meta Ember table, best published harness"}], aa:{v:32.8,n:"max effort, AA leaderboard data, read 26 Oct and 12 Nov",src:"aaBoard"}},
   {m:"grok47", self:{v:37.6,n:"Cursor page, xHigh (some outlets print 38.0)"}, rivals:[], aa:{v:25.8,n:"xhigh effort, AA leaderboard data, read 26 Oct",src:"aaBoard"}}
 ];
 
@@ -727,8 +830,16 @@ const CASES = [
     pts:[{by:"anthropic",v:55.8,l:"Anthropic (own)"},{by:"openai",v:55.8,l:"OpenAI table"},{by:"google",v:57.9,l:"Google table"},{by:"xai",v:57.9,l:"SpaceXAI table, Max"},{by:"indep",v:52.0,l:"Artificial Analysis"}]},
   {m:"astra", b:"Terminal-Bench 4.0", unit:"pct", why:"The one flagship whose independent run came in above every published claim.",
     pts:[{by:"openai",v:57.9,l:"OpenAI (own)"},{by:"anthropic",v:57.9,l:"Anthropic table"},{by:"google",v:58.2,l:"Google table"},{by:"indep",v:59.1,l:"Artificial Analysis"}]},
-  {m:"opus55", b:"Terminal-Bench Science 0.1", unit:"pct", why:"A rival printed a higher score than the lab itself. Anthropic gives a standard error of ±3.5 to 5 points on this test.",
-    pts:[{by:"anthropic",v:58.7,l:"Anthropic (own)"},{by:"google",v:63.3,l:"Google table"}]},
+  {m:"opus55", b:"Terminal-Bench 4.0", unit:"pct", why:"Google's two tables, sixteen days apart, print different figures for the same model. The Argon table repeats Anthropic's own 66.4. The Carbon table quotes Artificial Analysis's run, 59.6, for every column.",
+    pts:[{by:"anthropic",v:66.4,l:"Anthropic (own), xhigh"},{by:"google",v:66.4,l:"Google Argon table"},{by:"google",v:59.6,l:"Google Carbon table"},{by:"indep",v:59.6,l:"Artificial Analysis, max"}]},
+  {m:"opus55", b:"Terminal-Bench Science 0.1", unit:"pct", why:"In its Argon table a rival printed a higher score than the lab itself. Google's Carbon table switched to Artificial Analysis's run, 59.0, which sits within the ±3.5 to 5 point standard error Anthropic gives for this test.",
+    pts:[{by:"anthropic",v:58.7,l:"Anthropic (own)"},{by:"google",v:63.3,l:"Google Argon table"},{by:"google",v:59.0,l:"Google Carbon table (AA run)"},{by:"indep",v:59.0,l:"Artificial Analysis"}]},
+  {m:"fable51", b:"Terminal-Bench Science 0.1", unit:"pct", why:"Anthropic, OpenAI and Google's Argon table all print 52.6. Artificial Analysis's run, which Google's Carbon table quotes, is 9.3 points lower.",
+    pts:[{by:"anthropic",v:52.6,l:"Anthropic (own)"},{by:"openai",v:52.6,l:"OpenAI Astra table"},{by:"google",v:52.6,l:"Google Argon table"},{by:"google",v:43.3,l:"Google Carbon table (AA run)"}]},
+  {m:"fable51", b:"OSWorld 2.1 (offline subset, partial)", unit:"pct", why:"Google says it took rivals' offline-subset scores from their labs' published evaluations, yet prints 6.7 points less than Anthropic's own Fable 5.2 table does for the same variant. GPT-6 Astra differs by 1.4 points between the same two tables.",
+    pts:[{by:"anthropic",v:83.5,l:"Anthropic Fable 5.2 table"},{by:"google",v:76.8,l:"Google Carbon table"}]},
+  {m:"ember", b:"AutomationBench-AA", unit:"pct", why:"Meta labels its figure strict pass@1. Artificial Analysis's leaderboard data lists 68.1 for the same model and effort and does not say how that field is scored. Haiku 5.5 shows the same split: 13.9 in Meta's table, 35.4 on the leaderboard.",
+    pts:[{by:"meta",v:37.8,l:"Meta (own), strict pass@1"},{by:"indep",v:68.1,l:"Artificial Analysis leaderboard data"}]},
   {m:"astra", b:"Terminal-Bench Science 0.1", unit:"pct", why:"OpenAI's later Sol post gives Astra a higher score than Astra's own launch did. Google's table uses the newer figure.",
     pts:[{by:"openai",v:64.6,l:"OpenAI, Astra launch"},{by:"anthropic",v:64.6,l:"Anthropic table"},{by:"openai",v:68.1,l:"OpenAI, 6.1 Sol post"},{by:"google",v:68.1,l:"Google table"}]},
   {m:"fable51", b:"DeepSWE v1.1", unit:"pct", why:"Three rival tables agree on 67.4. SpaceXAI ran Fable 5.1 at Max effort and got 70.0.",
@@ -737,8 +848,8 @@ const CASES = [
     pts:[{by:"anthropic",v:40.0,l:"Anthropic (own), via Zapier"},{by:"google",v:42.5,l:"Google table"},{by:"openai",v:33.2,l:"≈33.2 implied by OpenAI, medium",derived:true}]},
   {m:"opus55", b:"Chartography", unit:"pct", why:"Tool access alone moves this score by about 25 points.",
     pts:[{by:"anthropic",v:89.0,l:"Anthropic, with tools"},{by:"anthropic",v:64.4,l:"Anthropic, no tools"},{by:"google",v:66.3,l:"Google table"}]},
-  {m:"fable51", b:"AA Intelligence Index", unit:"pts", why:"Artificial Analysis rebased the index between versions. Both numbers are right for their version and cannot be compared.",
-    pts:[{by:"openai",v:65.7,l:"v4.1.1, quoted by OpenAI"},{by:"indep",v:53,l:"v4.3, Artificial Analysis"}]},
+  {m:"fable51", b:"AA Intelligence Index", unit:"pts", why:"Artificial Analysis has rebased the index twice since Fable 5.1 launched. Each number is right for its version, and none can be compared with the others.",
+    pts:[{by:"openai",v:65.7,l:"v4.1.1, quoted by OpenAI"},{by:"indep",v:53,l:"v4.3, Artificial Analysis"},{by:"google",v:49,l:"v5.0, quoted by Google"}]},
   {m:"opus5", b:"FrontierCode v1.1 (Main)", unit:"pct", why:"OpenAI's Astra table gives Claude Opus 5 5.4 points more than Anthropic's own Opus 5.5 table does. Neither page says who ran the Opus 5 figure. Fable 5.1 differs less: 50.3 from Anthropic, 50.9 from OpenAI.",
     pts:[{by:"anthropic",v:48.0,l:"Anthropic (own)"},{by:"openai",v:53.4,l:"OpenAI table"}]},
   {m:"fable51", b:"HealthBench Professional", unit:"pct", why:"Meta takes Fable 5.1's score from Anthropic's system card. OpenAI ran Fable 5.1 itself with a GPT-5.4 grader and fell back to Opus 5 when Fable refused, and got 4 points less.",
@@ -748,22 +859,30 @@ const CASES = [
 /* ---------- OSWorld variants ---------- */
 const OSW_COLS = ["2.0 offline subset","2.0 partial","2.0 strict","2.1 partial","2.1 binary","2.1 offline subset"];
 const OSW = [
-  {m:"opus55", c:{"2.1 partial":[81.8,"Anthropic; Meta's card agrees"]}},
-  {m:"sonnet55", c:{"2.1 partial":[80.1,"Anthropic, Sonnet page"],"2.1 offline subset":[83.9,"Anthropic, Haiku page"]}},
-  {m:"fable51", c:{"2.0 partial":[77.9,"Anthropic, Fable page"],"2.0 strict":[41.7,"Anthropic, Fable page"],"2.1 partial":[80.7,"Anthropic Opus page; Meta card"],"2.1 binary":[43.1,"Meta card"]}},
-  {m:"haiku55", c:{"2.1 offline subset":[72.4,"Anthropic, Haiku page"]}},
-  {m:"astra", c:{"2.0 offline subset":[72.6,"OpenAI's Astra page; Google table. Vellum lists 73.5"],"2.1 partial":[75.8,"Meta card"],"2.1 binary":[34.3,"Meta card"]}},
+  {m:"fable52", c:{"2.1 offline subset":[89.3,"Anthropic, Fable 5.2 page"]}},
+  {m:"opus55", c:{"2.1 partial":[81.8,"Anthropic; Meta's card agrees"],"2.1 offline subset":[87.2,"Anthropic Fable 5.2 table; Google's Carbon table agrees"]}},
+  {m:"sonnet55", c:{"2.1 partial":[80.1,"Anthropic, Sonnet page"],"2.1 offline subset":[83.9,"Anthropic, Haiku page; Google's own run in the Hydrogen table agrees"]}},
+  {m:"fable51", c:{"2.0 partial":[77.9,"Anthropic, Fable page"],"2.0 strict":[41.7,"Anthropic, Fable page"],"2.1 partial":[80.7,"Anthropic Opus page; Meta card"],"2.1 binary":[43.1,"Meta card"],"2.1 offline subset":[83.5,"Anthropic Fable 5.2 table; Google's Carbon table prints 76.8"]}},
+  {m:"haiku55", c:{"2.1 partial":[68.9,"Meta Ember post"],"2.1 binary":[27.8,"Meta Ember post"],"2.1 offline subset":[72.4,"Anthropic, Haiku page"]}},
+  {m:"astra", c:{"2.0 offline subset":[72.6,"OpenAI's Astra page; Google table. Vellum lists 73.5"],"2.1 partial":[75.8,"Meta card"],"2.1 binary":[34.3,"Meta card"],"2.1 offline subset":[80.9,"Google Carbon table, from OpenAI's published evaluations; Anthropic's Fable 5.2 table prints 79.5"]}},
   {m:"sol61", c:{"2.0 offline subset":[71.4,"OpenAI via Vellum, max effort"]}},
-  {m:"luna", c:{"2.1 offline subset":[48.9,"Anthropic, Haiku page"]}},
-  {m:"argon", c:{"2.0 offline subset":[69.2,"Google table"]}},
+  {m:"terra", c:{"2.1 offline subset":[74.2,"Google Hydrogen table, from OpenAI's system card"]}},
+  {m:"luna", c:{"2.1 partial":[50.5,"Meta Ember post"],"2.1 binary":[17.0,"Meta Ember post"],"2.1 offline subset":[48.9,"Anthropic, Haiku page"]}},
+  {m:"carbon", c:{"2.1 offline subset":[81.5,"Google Carbon card; Anthropic's Fable 5.2 table agrees"]}},
+  {m:"argon", c:{"2.0 offline subset":[69.2,"Google Argon table"],"2.1 offline subset":[74.7,"Google Carbon table"]}},
+  {m:"hydrogen", c:{"2.1 offline subset":[77.6,"Google Hydrogen card"]}},
   {m:"wonderfull", c:{"2.1 partial":[78.4,"Meta card"],"2.1 binary":[39.4,"Meta card"]}},
-  {m:"wonder", c:{"2.1 partial":[72.6,"Meta card"],"2.1 binary":[34.3,"Meta card"]}}
+  {m:"wonder", c:{"2.1 partial":[72.6,"Meta card"],"2.1 binary":[34.3,"Meta card"]}},
+  {m:"ember", c:{"2.1 partial":[69.5,"Meta Ember post"],"2.1 binary":[33.8,"Meta Ember post"]}}
 ];
 
 /* ---------- coding ---------- */
 const CURSOR = [
+  {m:"carbon",v:60.4,e:"High",n:"High effort, the highest listed. Medium scores 60.1. New on the board since 26 Oct"},
+  {m:"fable52",v:60.0,e:"Max",n:"Max effort. High scores 56.9 for less than a third of the cost. New on the board since 26 Oct"},
   {m:"opus55",v:57.8,e:"Max",n:"Max effort. Anthropic's table prints the same figure"},
   {m:"sonnet55",v:55.5,e:"Max",n:"Max effort. Anthropic's table prints the same figure"},
+  {m:"hydrogen",v:54.3,e:"High",n:"High effort, the highest listed. New on the board since 26 Oct"},
   {m:"argon",v:52.9,e:"High",n:"High effort"},
   {m:"fable51",v:51.8,e:"Max",n:"Max effort. Anthropic and SpaceXAI tables print the same figure"},
   {m:"wonder",v:50.4,e:"Max",n:"Max effort. On the board 26 Oct; not on it when read 13 Oct"},
@@ -784,18 +903,23 @@ const AGENTS = [
 
 /* ---------- timeline ---------- */
 const EVENTS = [
-  {lab:"anthropic",d:"2026-09-01",m:"fable51",l:"Claude Fable 5.1",s:"$10 / $50 · + Mythos 5.1 (trusted access)",pos:"up"},
+  {lab:"anthropic",d:"2026-09-01",m:"fable51",l:"Claude Fable 5.1",s:"$10 / $50 · + Mythos 5.1",pos:"up"},
   {lab:"anthropic",d:"2026-09-22",m:"opus55",l:"Claude Opus 5.5",s:"$4 / $20",pos:"up"},
   {lab:"anthropic",d:"2026-09-28",m:"sonnet55",l:"Claude Sonnet 5.5",s:"$2 / $10",pos:"down"},
-  {lab:"anthropic",d:"2026-10-07",m:"haiku55",l:"Claude Haiku 5.5",s:"$0.10 / $0.50",pos:"up",anchor:"end"},
+  {lab:"anthropic",d:"2026-10-07",m:"haiku55",l:"Claude Haiku 5.5",s:"$0.10 / $0.50",pos:"up"},
+  {lab:"anthropic",d:"2026-11-09",m:"fable52",l:"Claude Fable 5.2",s:"$8 / $40 · + Mythos 5.2",pos:"down",anchor:"end"},
   {lab:"openai",d:"2026-09-03",m:"astra",l:"GPT-6 Astra",s:"$10 / $50",pos:"up"},
   {lab:"openai",d:"2026-09-29",m:"sol61",l:"GPT-6.1 Sol",s:"$2 / $10",pos:"up"},
   {lab:"openai",d:"2026-09-29",m:"astra61",l:"GPT-6.1 Astra shelved",s:"reported 29 Sep",pos:"down",kind:"cancel"},
+  {lab:"openai",d:"2026-10-26",m:"terra",l:"GPT-6.1 Terra",s:"$1 / $5",pos:"up"},
   {lab:"google",d:"2026-09-30",m:"argon",l:"Gemini 4 Argon announced",s:"limited access",pos:"up"},
   {lab:"google",d:"2026-10-13",m:"argon",l:"Broad availability",s:"$2 / $10 intro, $4 / $20 from Dec",pos:"down",anchor:"end",kind:"mile"},
+  {lab:"google",d:"2026-10-28",m:"carbon",l:"Gemini 4 Carbon",s:"limited · API from 10 Nov",pos:"down"},
+  {lab:"google",d:"2026-11-12",m:"hydrogen",l:"Gemini 4 Hydrogen",s:"$1.50 / $7.50 · all tiers",pos:"up",anchor:"end"},
   {lab:"xai",d:"2026-09-21",m:"grok47",l:"Grok 4.7",s:"$2 / $6 · in Cursor's model pool",pos:"up"},
   {lab:"meta",d:"2026-10-12",m:"wonder",l:"Muse Wonder + Wonder Full",s:"$4 / $20 · Full via Muse Code only",pos:"up",anchor:"end"},
-  {lab:"meta",d:"2026-10-15",m:"sparkopen",l:"Muse Spark Open",s:"open weights · 816B total, 42B active",pos:"down",anchor:"end"}
+  {lab:"meta",d:"2026-10-15",m:"sparkopen",l:"Muse Spark Open",s:"open weights · 816B total, 42B active",pos:"down",anchor:"end"},
+  {lab:"meta",d:"2026-11-09",m:"ember",l:"Muse Ember",s:"$0.10 / $0.50",pos:"up",anchor:"end"}
 ];
 
 /* ---------- reference rows ---------- */
@@ -805,27 +929,33 @@ const REF = [
   {m:"haiku55",rel:"2026-10-07",acc:"API, apps",pin:0.10,pout:0.50},
   {m:"fable51",rel:"2026-09-01",acc:"API, apps",pin:10,pout:50},
   {m:"mythos51",rel:"2026-09-01",acc:"Trusted access only"},
+  {m:"fable52",rel:"2026-11-09",acc:"API, apps, AWS, Google Cloud, Azure",pin:8,pout:40},
+  {m:"mythos52",rel:"2026-11-09",acc:"Cyber and Life Sciences Verification Programs"},
   {m:"astra",rel:"2026-09-03",acc:"API, ChatGPT",pin:10,pout:50},
   {m:"sol61",rel:"2026-09-29",acc:"API, ChatGPT",pin:2,pout:10},
+  {m:"terra",rel:"2026-10-26",acc:"API, ChatGPT Work, Codex",pin:1,pout:5},
   {m:"luna",rel:"2026-09-22",acc:"API",pin:0.10,pout:0.50},
   {m:"astra61",rel:null,acc:"Shelved, never released"},
   {m:"argon",rel:"2026-09-30",acc:"API, Gemini app (intro price)",pin:2,pout:10},
+  {m:"carbon",rel:"2026-10-28",acc:"Fairwind Program; paid API from 10 Nov (intro price)",pin:2,pout:10},
+  {m:"hydrogen",rel:"2026-11-12",acc:"API (all tiers), Gemini app, Search",pin:1.5,pout:7.5},
   {m:"flash38",rel:null,acc:"API"},
   {m:"grok47",rel:"2026-09-21",acc:"API, Cursor",pin:2,pout:6},
   {m:"composer25",rel:"2026-05-18",acc:"Cursor plans"},
   {m:"wonder",rel:"2026-10-12",acc:"Meta Model API",pin:4,pout:20},
   {m:"wonderfull",rel:"2026-10-12",acc:"Muse Code subscription"},
   {m:"spark13",rel:null,acc:"Meta Model API",pin:1.25,pout:4.25},
-  {m:"sparkopen",rel:"2026-10-15",acc:"Open weights (Muse Model License); hosted APIs"}
+  {m:"sparkopen",rel:"2026-10-15",acc:"Open weights (Muse Model License); hosted APIs"},
+  {m:"ember",rel:"2026-11-09",acc:"Meta Model API",pin:0.10,pout:0.50}
 ];
 
 /* ---------- state + helpers ---------- */
-const state = {labs:new Set(LAB_ORDER), focus:null, tab:"openai", trace:0};
+const state = {labs:new Set(LAB_ORDER), focus:null, tab:"carbon", trace:0};
 const labVar = lab => lab==="indep" ? "var(--indep)" : `var(--lab-${lab})`;
 const symPath = (lab,size) => d3.symbol(lab==="indep"?d3.symbolCircle:LABS[lab].sym, size)();
 const glyph = (lab,size=46) => `<svg class="g" viewBox="-7 -7 14 14" aria-hidden="true"><path d="${symPath(lab,size)}" style="fill:${labVar(lab)}"/></svg>`;
 const vis = m => state.labs.has(M[m].lab);
-const fmt = (v,u) => v==null ? "—" : u==="elo" ? d3.format(",")(Math.round(v)) : u==="pts" ? (Number.isInteger(v)?String(v):v.toFixed(1)) : v.toFixed(1);
+const fmt = (v,u) => v==null ? "—" : u==="usd" ? "$"+d3.format(",")(Math.round(v)) : u==="elo" ? d3.format(",")(Math.round(v)) : u==="pts" ? (Number.isInteger(v)?String(v):v.toFixed(1)) : v.toFixed(1);
 const unitSuffix = u => u==="pct" ? "%" : u==="elo" ? " Elo" : "";
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const cw = el => Math.max(280, Math.floor(el.getBoundingClientRect().width));
@@ -948,18 +1078,19 @@ function renderHero(){
 /* ---------- hero: independent ladder ---------- */
 function renderLadder(){
   const el = document.getElementById("ladder");
-  const W = cw(el), H = 400, x0 = 46;
-  const y = d3.scaleLinear().domain([36,60]).range([H-14,14]);
+  const lo = 24, hi = 66, step = 14;
+  const W = cw(el), H = (hi-lo)*step + 28, x0 = 46;
+  const y = d3.scaleLinear().domain([lo,hi]).range([H-14,14]);
   el.innerHTML = "";
   const svg = d3.select(el).append("svg").attr("viewBox",`0 0 ${W} ${H}`).attr("width",W).attr("height",H);
-  svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",y(60)).attr("y2",y(36)).style("stroke","var(--ink-2)").style("stroke-width",1.2);
-  d3.range(36,61).forEach(v=>{
+  svg.append("line").attr("x1",x0).attr("x2",x0).attr("y1",y(hi)).attr("y2",y(lo)).style("stroke","var(--ink-2)").style("stroke-width",1.2);
+  d3.range(lo,hi+1).forEach(v=>{
     const major = v%5===0;
     svg.append("line").attr("x1",x0-(major?9:4)).attr("x2",x0).attr("y1",y(v)).attr("y2",y(v)).style("stroke","var(--ink-2)").style("stroke-width",major?1.2:.8);
     if(major) svg.append("text").attr("class","tk").attr("x",x0-13).attr("y",y(v)+3.5).attr("text-anchor","end").text(v);
   });
   const groups = d3.groups(INDEX.filter(d=>vis(d.m)), d=>d.v).sort((a,b)=>b[0]-a[0]);
-  const TINY = {opus55:"Opus 5.5",sonnet55:"Sonnet 5.5",wonderfull:"Wonder Full",fable51:"Fable 5.1",astra:"Astra",argon:"Argon",sol61:"6.1 Sol",wonder:"Wonder",spark13:"Spark 1.3",sparkopen:"Spark Open",grok47:"Grok 4.7",haiku55:"Haiku 5.5",flash38:"3.8 Flash",luna:"Luna"};
+  const TINY = {opus55:"Opus 5.5",sonnet55:"Sonnet 5.5",wonderfull:"Wonder Full",fable51:"Fable 5.1",fable52:"Fable 5.2",astra:"Astra",argon:"Argon",carbon:"Carbon",hydrogen:"Hydrogen",sol61:"6.1 Sol",terra:"6.1 Terra",wonder:"Wonder",spark13:"Spark 1.3",sparkopen:"Spark Open",ember:"Ember",grok47:"Grok 4.7",haiku55:"Haiku 5.5",flash38:"3.8 Flash",luna:"Luna"};
   groups.forEach(([v,items])=>{
     const g = svg.append("g").attr("transform",`translate(0,${y(v)})`);
     g.append("line").attr("x1",x0).attr("x2",x0+16).attr("y1",0).attr("y2",0).style("stroke","var(--ink)").style("stroke-width",1.4);
@@ -987,12 +1118,12 @@ function renderLadder(){
 function renderTimeline(){
   const el = document.getElementById("timeline");
   const lanes = LAB_ORDER.filter(l=>state.labs.has(l));
-  const W = Math.max(cw(el), 780), laneH = 84, top = 30, left = 128, right = 22;
+  const W = Math.max(cw(el), 960), laneH = 84, top = 30, left = 128, right = 22;
   const H = top + lanes.length*laneH + 8;
-  const x = d3.scaleTime().domain([new Date("2026-08-29"), new Date("2026-10-28")]).range([left, W-right]);
+  const x = d3.scaleTime().domain([new Date("2026-08-29"), new Date("2026-11-16")]).range([left, W-right]);
   el.innerHTML = "";
   document.getElementById("tl-legend").innerHTML = `<span><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="5.5" style="fill:var(--ink-2)"/></svg>Release</span><span><svg width="14" height="14" viewBox="-7 -7 14 14"><circle r="5" style="fill:var(--sheet);stroke:var(--ink-2);stroke-width:1.5"/><path d="M-3,-3L3,3M3,-3L-3,3" style="stroke:var(--ink-2);stroke-width:1.5"/></svg>Shelved before release</span><span><svg width="14" height="14" viewBox="-7 -7 14 14"><path d="${d3.symbol(d3.symbolDiamond,46)()}" style="fill:var(--ink-2)"/></svg>Availability milestone</span><span class="mono" style="font-size:.74rem">$ input / output per 1M tokens</span>`;
-  const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Release timeline by lab, 29 August to 28 October 2026");
+  const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Release timeline by lab, 29 August to 16 November 2026");
   const ax = svg.append("g").attr("transform",`translate(0,${top-8})`).call(d3.axisTop(x).ticks(d3.timeMonday.every(1)).tickFormat(d3.timeFormat("%-d %b")).tickSize(-(lanes.length*laneH)).tickPadding(6));
   ax.select(".domain").remove();
   ax.selectAll(".tick line").style("stroke","var(--grid)");
@@ -1004,13 +1135,14 @@ function renderTimeline(){
     lg.append("text").attr("x",16).attr("y",4).style("font-size","12.5px").style("font-weight",700).text(LABS[l].n.replace(" + Cursor",""));
     if(l==="xai") lg.append("text").attr("x",16).attr("y",19).style("font-size","11px").style("fill","var(--muted)").text("+ Cursor");
   });
-  const today = x(new Date("2026-10-26"));
+  const today = x(new Date("2026-11-12"));
   svg.append("line").attr("x1",today).attr("x2",today).attr("y1",top-6).attr("y2",H-6).style("stroke","var(--ink)").style("stroke-width",1);
-  svg.append("text").attr("x",today-4).attr("y",H-10).attr("text-anchor","end").attr("class","tk").style("fill","var(--ink-2)").text("snapshot 26 Oct");
-  // Argon limited-access span
+  svg.append("text").attr("x",today-4).attr("y",H-10).attr("text-anchor","end").attr("class","tk").style("fill","var(--ink-2)").text("snapshot 12 Nov");
+  // Argon and Carbon limited-access spans
   if(state.labs.has("google")){
     const cy = top + lanes.indexOf("google")*laneH + laneH/2;
-    svg.append("line").attr("x1",x(new Date("2026-09-30"))).attr("x2",x(new Date("2026-10-13"))).attr("y1",cy).attr("y2",cy).style("stroke",labVar("google")).style("stroke-width",3).style("opacity",.45);
+    [["2026-09-30","2026-10-13"],["2026-10-28","2026-11-10"]].forEach(([a,b])=>
+      svg.append("line").attr("x1",x(new Date(a))).attr("x2",x(new Date(b))).attr("y1",cy).attr("y2",cy).style("stroke",labVar("google")).style("stroke-width",3).style("opacity",.45));
   }
   const ev = EVENTS.filter(e=>state.labs.has(e.lab));
   const g = svg.selectAll("g.ev").data(ev).join("g").attr("class","ev").attr("data-model",d=>d.m)
@@ -1031,13 +1163,13 @@ function renderTimeline(){
     if(d.m!=="astra61") focusable(t1);
     s.append("circle").attr("r",12).style("fill","transparent");
   });
-  bindTip(g, d=>`<div class="tt">${glyph(d.lab)}${esc(d.l)}</div><div class="tm">${d3.timeFormat("%-d %B %Y")(new Date(d.d+"T00:00"))}</div><div class="tv">${esc(d.s)}</div>${d.m==="argon"?`<div class="tm" style="margin-top:4px">Announcement date from ${SRC.tracker.t}; availability from Google's post dated 13 Oct.</div>`:""}${d.kind==="cancel"?`<div class="tm" style="margin-top:4px">${SRC.register.t}</div>`:""}`);
+  bindTip(g, d=>`<div class="tt">${glyph(d.lab)}${esc(d.l)}</div><div class="tm">${d3.timeFormat("%-d %B %Y")(new Date(d.d+"T00:00"))}</div><div class="tv">${esc(d.s)}</div>${d.m==="argon"?`<div class="tm" style="margin-top:4px">Announcement date from ${SRC.tracker.t}; availability from Google's post dated 13 Oct.</div>`:""}${d.m==="carbon"?`<div class="tm" style="margin-top:4px">Announced 28 Oct for selected cyber defenders and Fairwind Program partners; paid API tier and AI Ultra from 10 Nov. $2 / $10 introductory, $4 / $20 standard.</div>`:""}${d.kind==="cancel"?`<div class="tm" style="margin-top:4px">${SRC.register.t}</div>`:""}`);
 }
 
 /* ---------- explorer ---------- */
 function renderExplorerTabs(){
   const box = document.getElementById("x-tabs");
-  box.innerHTML = TABLE_ORDER.map(k=>`<button class="btn" role="tab" type="button" id="tab-${k}" data-k="${k}" aria-selected="${state.tab===k}" tabindex="${state.tab===k?0:-1}">${glyph(TABLES[k].lab,56)}${LABS[TABLES[k].lab].n}</button>`).join("");
+  box.innerHTML = TABLE_ORDER.map(k=>`<button class="btn" role="tab" type="button" id="tab-${k}" data-k="${k}" aria-selected="${state.tab===k}" tabindex="${state.tab===k?0:-1}">${glyph(TABLES[k].lab,56)}${esc(M[TABLES[k].model].n)}</button>`).join("");
   const btns = [...box.querySelectorAll("[role=tab]")];
   btns.forEach((b,i)=>{
     b.onclick=()=>{ state.tab=b.dataset.k; renderExplorer(); };
@@ -1114,7 +1246,8 @@ function renderTB4(){
   const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Terminal-Bench 4.0 claims, rival-table figures and independent runs by model");
   const ax = svg.append("g").attr("transform",`translate(0,${top-6})`).call(d3.axisTop(x).ticks(narrow?5:9).tickFormat(d=>d+"%").tickSize(-(rows.length*rowH)).tickPadding(6));
   ax.select(".domain").remove();
-  svg.append("text").attr("x",W-right+dxD).attr("y",top-12).attr("class","tk").text(narrow?"AA−claim":"AA − claim");
+  if(narrow) svg.append("text").attr("x",W-2).attr("y",top-12).attr("text-anchor","end").attr("class","tk").text("AA−claim");
+  else svg.append("text").attr("x",W-right+dxD).attr("y",top-12).attr("class","tk").text("AA − claim");
   const g = svg.selectAll("g.r").data(rows).join("g").attr("class","r").attr("data-model",d=>d.m).attr("transform",(d,i)=>`translate(0,${top + i*rowH + rowH/2})`);
   g.each(function(d){
     const s = d3.select(this), lab = M[d.m].lab;
@@ -1283,12 +1416,13 @@ function renderScatter(){
   const el = document.getElementById("scatter");
   const models = Object.keys(LADDERS).filter(vis);
   const W = Math.max(cw(el), 620), H = 440, mg = {t:16,r:132,b:44,l:46};
-  const x = d3.scaleLog().domain([0.003,12]).range([mg.l, W-mg.r]);
-  const y = d3.scaleLinear().domain([15,61]).range([H-mg.b, mg.t]);
+  const cMax = 40;
+  const x = d3.scaleLog().domain([0.006,cMax]).range([mg.l, W-mg.r]);
+  const y = d3.scaleLinear().domain([5,67]).range([H-mg.b, mg.t]);
   document.getElementById("sc-legend").innerHTML = LAB_ORDER.filter(l=>state.labs.has(l)).map(l=>`<span>${glyph(l,52)}${LABS[l].n}</span>`).join("") + `<span><svg width="22" height="10"><path d="M1,8 H8 V3 H21" style="fill:none;stroke:var(--ink-2);stroke-width:1.2"/></svg>Best score at each price</span>`;
   el.innerHTML = "";
   const svg = d3.select(el).append("svg").attr("width",W).attr("height",H).attr("viewBox",`0 0 ${W} ${H}`).attr("role","img").attr("aria-label","Artificial Analysis Intelligence Index against cost per task, by effort setting");
-  const ticks = [0.01,0.03,0.1,0.3,1,3,10];
+  const ticks = [0.01,0.03,0.1,0.3,1,3,10,30];
   const gx = svg.append("g").attr("transform",`translate(0,${H-mg.b})`).call(d3.axisBottom(x).tickValues(ticks).tickFormat(d=>"$"+(d<1?d:d.toFixed(0))).tickSize(-(H-mg.b-mg.t)).tickPadding(8));
   gx.select(".domain").remove();
   const gy = svg.append("g").attr("transform",`translate(${mg.l},0)`).call(d3.axisLeft(y).ticks(9).tickSize(-(W-mg.l-mg.r)).tickPadding(8));
@@ -1301,7 +1435,7 @@ function renderScatter(){
   const sorted = pts.slice().sort((a,b)=>a.c-b.c); let best=-1; const fr=[];
   sorted.forEach(p=>{ if(p.v>best){ best=p.v; fr.push(p); } });
   if(fr.length>1){
-    fr.push({c:12, v:best});
+    fr.push({c:cMax, v:best});
     svg.append("path").datum(fr).attr("d",d3.line().x(d=>x(d.c)).y(d=>y(d.v)).curve(d3.curveStepAfter)).style("fill","none").style("stroke","var(--ink-2)").style("stroke-width",1.2).style("opacity",.8);
   }
   const line = d3.line().x(d=>x(d[2])).y(d=>y(d[1]));
@@ -1314,7 +1448,8 @@ function renderScatter(){
   });
   // labels: right-column for costly models, adjacent for the rest
   const ends = models.map(m=>{ const top = LADDERS[m].reduce((a,b)=> b[1]>a[1]||(b[1]===a[1]&&b[2]>a[2])?b:a); return {m, v:top[1], c:top[2]}; });
-  const col = ends.filter(d=>d.c>=2.5).sort((a,b)=>b.v-a.v);
+  const toCol = d => d.c>=2.5 || d.m==="terra"; // Terra's top point sits in the densest part of the plot
+  const col = ends.filter(toCol).sort((a,b)=>b.v-a.v);
   let lastY=-Infinity; col.forEach(d=>{ d.ly=Math.max(y(d.v), lastY+15); lastY=d.ly; });
   const lx = W-mg.r+10;
   col.forEach(d=>{
@@ -1322,8 +1457,8 @@ function renderScatter(){
     g.append("path").attr("d",`M${x(d.c)+6},${y(d.v)} L${lx-4},${d.ly}`).style("stroke","var(--muted)").style("stroke-width",.8).style("fill","none");
     focusable(g.append("text").attr("x",lx).attr("y",d.ly+4).attr("class","halo").style("font-size","12px").style("font-weight",600).text(M[d.m].s).datum(d.m));
   });
-  const place = {sol61:[0,-12,"middle"], argon:[0,-12,"middle"], spark13:[0,18,"middle"], sparkopen:[0,17,"middle"], flash38:[8,14,"start"], haiku55:[-9,4,"end"], luna:[-9,4,"end"]};
-  ends.filter(d=>d.c<2.5).forEach(d=>{
+  const place = {sol61:[0,-12,"middle"], spark13:[0,18,"middle"], sparkopen:[0,17,"middle"], haiku55:[0,-11,"middle"], ember:[-9,4,"end"], luna:[12,25,"middle"]};
+  ends.filter(d=>!toCol(d)).forEach(d=>{
     const [dx,dy,an] = place[d.m]||[8,4,"start"];
     const g = svg.append("g").attr("data-model",d.m);
     focusable(g.append("text").attr("x",x(d.c)+dx).attr("y",y(d.v)+dy).attr("text-anchor",an).attr("class","halo").style("font-size","12px").style("font-weight",600).text(M[d.m].s).datum(d.m));
@@ -1367,7 +1502,7 @@ function hbars(elId, rows, {max, unit, labelW=170, labelOf, tipOf}){
 }
 function renderBars(){
   const cost = INDEX.filter(d=>LADDERS[d.m]).map(d=>{ const l=LADDERS[d.m]; const top=l[l.length-1]; return {m:d.m, v: l.reduce((a,b)=>b[1]>a[1]||(b[1]===a[1]&&b[2]>a[2])?b:a)[2]}; }).sort((a,b)=>b.v-a.v);
-  hbars("costbars", cost, {max:8.2, unit:"$", labelW:140, labelOf:d=>M[d.m].s, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">$${d.v.toFixed(2)} per index task</div><div class="tm">${SPEED[d.m]?SPEED[d.m]+" output tokens/s · ":""}${SRC.aaBoard.t}</div>`});
+  hbars("costbars", cost, {max:28, unit:"$", labelW:140, labelOf:d=>M[d.m].s, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">$${d.v.toFixed(2)} per index task</div><div class="tm">${SPEED[d.m]?SPEED[d.m]+" output tokens/s · ":""}${SRC.aaBoard.t}</div>`});
   hbars("cursorbars", CURSOR, {max:62, unit:"%", labelW:150, tipOf:d=>`<div class="tt">${glyph(M[d.m].lab)}${esc(M[d.m].n)}</div><div class="tv">${d.v.toFixed(1)}%</div><div class="tm">${esc(d.n)} · ${SRC.cursorBoard.t}</div>`});
   hbars("agentbars", AGENTS, {max:72, unit:"", labelW:190, labelOf:d=>d.l, tipOf:d=>`<div class="tt">${esc(d.l)}</div><div class="tv">Coding Agents Index ${d.v}</div><div class="tm">${SRC.aaMuse.t}</div>`});
 }

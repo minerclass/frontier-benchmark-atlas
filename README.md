@@ -1,6 +1,6 @@
 # Frontier Benchmark Atlas
 
-Interactive pages comparing the frontier AI models released in September and October 2026 (Gemini 4 Argon, Grok 4.7 in Cursor, GPT-6 Astra and GPT-6.1 Sol, the Claude 5.5 family and Fable 5.1, and Meta's Muse Wonder) on published benchmarks. Each page sets the labs' own claims beside rival tables and independent runs.
+Interactive pages comparing the frontier AI models released since September 2026 (Gemini 4 Argon, Carbon and Hydrogen, Grok 4.7 in Cursor, GPT-6 Astra and the GPT-6.1 models, the Claude 5.5 family and Fable 5.1 and 5.2, and Meta's Muse models) on published benchmarks. Each page sets the labs' own claims beside rival tables and independent runs.
 
 The repository also compares the agents that compile these pages. Every harness (Claude Code, Codex, Cursor, Antigravity, Grok Bot) starts from the paste-ready brief in [HARNESS.md](HARNESS.md) and publishes its own page, either under `harnesses/<id>/` here or in its own repository. The hub at `index.html` lists every compilation, loads each one's data live, and compares what each harness found and how it sourced it. Harnesses check for new releases every Monday.
 
@@ -34,7 +34,7 @@ Then visit http://localhost:8232/.
 
 | Harness | Where | Status |
 | --- | --- | --- |
-| Claude Code (Opus 5.5) | `harnesses/claude-code/` here | Compiled 13 Oct 2026, revision 2 |
+| Claude Code (Opus 5.5) | `harnesses/claude-code/` here | Compiled 13 Oct 2026; revision 4, 12 Nov 2026 |
 | Cursor | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix) (root) | Linked; the hub reads it live |
 | Grok Bot | [minerclass/frontier-model-matrix](https://github.com/minerclass/frontier-model-matrix/tree/master/grok-bot) (`grok-bot/`) | Linked; the hub reads it live |
 | Codex (Surface ARM) | [minerclass/frontier-codex-observatory](https://github.com/minerclass/frontier-codex-observatory) | Linked; the hub reads it live |

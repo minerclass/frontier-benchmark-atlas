@@ -114,9 +114,66 @@ The headline finding now reads "Most launch tables favor their publisher" (Meta'
 
 Anthropic's Fable, Sonnet and Haiku pages and Cursor's Grok page were not re-read; nothing in the release trackers pointed to a change. Layout was checked in the desktop app's browser at 375 px and 1280 px.
 
+## Revision 4 (12 November 2026)
+
+Written on: surface-arm · claude-code · 2026-11-12
+
+| Field | Value |
+| --- | --- |
+| Harness | Claude Code, desktop app (Code tab) |
+| Model | `claude-opus-5-5` |
+| Computer | surface-arm (`MSURFACE32ARM64`), clone of `main` at `a155b53` |
+| Request | Micah: "Update the model Atlas since Hydrogen and Carbon and maybe others are now out" |
+| Checked | Releases from 26 Oct to 12 Nov; the new labs' launch pages and model cards; the Artificial Analysis leaderboard (now Intelligence Index v5.0.1); the CursorBench 4.0 board |
+
+### New releases in scope
+
+| Model | Lab | Date | Access and price | Source read |
+| --- | --- | --- | --- | --- |
+| GPT-6.1 Terra | OpenAI | 26 Oct (API changelog) | API, ChatGPT Work, Codex · $1 / $5 | OpenAI post, text only, in the desktop app's browser (direct fetches return HTTP 403) |
+| Gemini 4 Carbon | Google | 28 Oct announced; 10 Nov paid API | Fairwind Program first · $2 / $10 intro, $4 / $20 standard | Announcement, developer post, model card, methodology PDF |
+| Claude Fable 5.2 and Mythos 5.2 | Anthropic | 9 Nov | Fable on all platforms, Mythos through verification programs · $8 / $40 | Launch page |
+| Muse Ember | Meta | 9 Nov | Meta Model API · $0.10 / $0.50 | Launch post |
+| Gemini 4 Hydrogen | Google | 12 Nov | All Gemini API tiers, Gemini app, Search · $1.50 / $7.50 | Announcement, model card, methodology PDF |
+
+GPT-6.1 Terra was released on 26 October, the day revision 3 was checked, and revision 3 missed it. No new SpaceXAI model appeared; Grok 4.7 is still the latest. Releases outside the brief's families (for example Gemini Decision 1 and ERNIE 5.5 Flash Preview) were left out.
+
+### New launch tables
+
+| Table | Rows | Publisher leads | Notes |
+| --- | --- | --- | --- |
+| Gemini 4 Carbon (model card) | 17 | 15 of 17 contested | Rivals: Argon, GPT-6 Astra, Opus 5.5, Fable 5.1. Two rows (Terminal-Bench 4.0, Terminal-Bench-Science) are Artificial Analysis runs that Google quotes for every column. The announcement shows the table only as an image; the card prints it as text. |
+| Gemini 4 Hydrogen (model card) | 10 | 7 of 10 | Rivals: Sonnet 5.5, GPT-6.1 Terra. Its Terminal-Bench row is version 4.1, cheating-adjusted, so it stays out of the Terminal-Bench 4.0 chart. |
+| Claude Fable 5.2 (launch page) | 15 | 10 of 11 | Rivals: GPT-6 Astra, Gemini 4 Carbon. Rows run on Mythos 5.2 are marked. OpenAI's CyScenarioBench figure is for GPT-6 Cyber, so it is left out. |
+| Muse Ember (launch post) | 11 | 8 of 11 (2 tied) | Rivals: Haiku 5.5, GPT-6 Luna. |
+
+Seven of the nine tables now lead most contested rows; the lede and first finding say so. Terra's post has charts but no table, and its chart values were not transcribed. Its one figure here is the 50.3% Terminal-Bench 4.0 score stated in the text.
+
+### Independent index moved to v5
+
+Artificial Analysis replaced Intelligence Index v4.3 with v5 on 27 October. The leaderboard read on 12 November reports v5.0.1. Every `INDEX`, `LADDERS` and `SPEED` value was re-read at each effort level, so all index scores and costs differ from revision 3 and are not comparable with them. Fable 5.2 (max) leads at 65, then Gemini 4 Carbon (high) at 60 and Opus 5.5 (max) at 59. Claude Fable 5.1 and Muse Spark 1.3 are marked deprecated on the leaderboard with no v5 score, so they left the index charts. Google's Carbon card and AA's Carbon article print v5.0 values, a point lower for some models (Carbon 59, Opus 5.5 58). The Gemini 4 Argon (high) cost per task on the board, $9.95, differs from the $7.68 in AA's Carbon article; the board value is used.
+
+### Other changes
+
+- **CursorBench 4.0:** Gemini 4 Carbon 60.4% (High), Claude Fable 5.2 60.0% (Max) and Gemini 4 Hydrogen 54.3% (High) are new. Terra and Ember are not on the board. Earlier models are unchanged.
+- **Terminal-Bench 4.0:** rows added for Carbon (65.2, which Google's card quotes from Artificial Analysis), Terra (OpenAI 50.3, AA 55.6, the second model whose independent run exceeds its claim) and Ember (Meta 40.9, which equals AA's run). Google's Carbon table adds rival marks for Opus 5.5, Astra and Fable 5.1; Meta's Ember table adds one for Haiku 5.5.
+- **Disagreements:** four new cases. Google's two tables print 66.4 and 59.6 for Opus 5.5 on Terminal-Bench 4.0. Fable 5.1's Terminal-Bench-Science score is 52.6 in three tables and 43.3 in the AA run that Carbon's table quotes. Fable 5.1's OSWorld 2.1 offline score is 83.5 from Anthropic and 76.8 from Google. Muse Ember's AutomationBench-AA score is 37.8 from Meta (strict pass@1) and 68.1 in the leaderboard data. Two cases were updated: Opus 5.5 on Terminal-Bench-Science, and Fable 5.1's index across three versions.
+- **OSWorld matrix:** adds the 2.1 offline subset for Fable 5.2, Opus 5.5, Fable 5.1, Astra, Terra, Carbon, Argon and Hydrogen, and 2.1 partial and binary for Ember, Haiku 5.5 and Luna.
+- **Coding agents panel:** left on the five pairs from 12 Oct, with a note that Artificial Analysis moved the index to v2.0 (Claude Code with Opus 5.5 at 62, Antigravity CLI with Carbon at 59).
+- **Page code:** launch-table tabs are labeled by model, since Google and Anthropic now have more than one table each. A dollar unit was added for Vending-Bench. The ladder, scatter and cost-bar scales were widened for v5 and Fable 5.2's $26.54 cost per task, and the timeline now runs to 16 Nov. A Terminal-Bench column heading that clipped at phone width (present before this revision) now fits.
+- **Export:** `export.js` gains ids for the six new models, fails loudly when a model lacks an id, and labels index scores v5.0.1.
+
+### Checks
+
+`node export.js index.html data.json` gives 27 models, 707 scores and 45 sources, and `python tools/validate.py` passes. In the desktop app's browser at 1280 px and 375 px: no console errors, no page-level horizontal scroll at 375 px, and a script found no overlapping labels in the timeline, ladder, scatter or Terminal-Bench charts. The pane was hidden during part of the check, so layout was confirmed by measuring element positions rather than from screenshots.
+
+### Not checked
+
+Older launch pages were not re-read. The Carbon announcement's chart images and Hydrogen's GIF charts were not transcribed; the cards' text tables were used instead. No benchmark was executed.
+
 ## Updating for a new release
 
 1. Add the model to `M`, `REF`, `EVENTS` and, when published, `INDEX`/`LADDERS`/`SPEED` in the page's data block. A card that compares only against models outside the atlas goes in its own block, as `OPEN` does for Muse Spark Open.
-2. If the lab published a launch table, add it to `TABLES` with its source key and comparators.
+2. If the lab published a launch table, add it to `TABLES` with its source key and comparators. A lab can have more than one table; give each its own key and add the key to `TABLE_ORDER`.
 3. Re-run `node export.js index.html data.json`.
 4. Re-check layout at phone and desktop widths.
