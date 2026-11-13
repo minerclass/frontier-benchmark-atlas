@@ -1,38 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Frontier Benchmark Atlas</title>
 <meta name="description" content="Frontier AI model benchmarks, vendor claims against independent runs, compiled separately by several AI agent harnesses from one brief.">
+<script>
+(function(){
+  try{
+    var saved=localStorage.getItem("fba-theme");
+    document.documentElement.setAttribute("data-theme", saved==="light"?"light":"dark");
+  }catch(e){
+    document.documentElement.setAttribute("data-theme","dark");
+  }
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
 <style>
-/* Layout: same drafting-sheet identity as the harness pages. Hub = harness cards, then a cross-harness comparison sheet. */
-:root{
+/* Layout: same drafting-sheet identity as the harness pages. Hub = harness cards, then a cross-harness comparison sheet. Default dark; light via toggle. */
+:root, :root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
+  --rule:#263244; --grid:#172030; --wash:#1a2431;
+  --k-claim:#3987e5; --k-rival:#b98a00; --k-indep:#e6ecf3; --k-variant:#3c4c62;
+  --s-lab:#3987e5; --s-indep:#e6ecf3; --s-sec:#b98a00;
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
+}
+:root[data-theme="light"]{
   color-scheme:light;
   --paper:#edf1f5; --sheet:#fbfcfd; --ink:#122033; --ink-2:#44526a; --muted:#66748a;
   --rule:#d3dbe5; --grid:#e2e8ef; --wash:#e8edf3;
   --k-claim:#2a78d6; --k-rival:#eda100; --k-indep:#122033; --k-variant:#b3bfcd;
   --s-lab:#2a78d6; --s-indep:#122033; --s-sec:#eda100;
-  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
-  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
-  --f-mono:"IBM Plex Mono",ui-monospace,"Cascadia Mono",Consolas,monospace;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
-    --rule:#263244; --grid:#172030; --wash:#1a2431;
-    --k-claim:#3987e5; --k-rival:#b98a00; --k-indep:#e6ecf3; --k-variant:#3c4c62;
-    --s-lab:#3987e5; --s-indep:#e6ecf3; --s-sec:#b98a00; color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --paper:#0c1219; --sheet:#131b26; --ink:#e6ecf3; --ink-2:#a9b5c4; --muted:#8592a5;
-  --rule:#263244; --grid:#172030; --wash:#1a2431;
-  --k-claim:#3987e5; --k-rival:#b98a00; --k-indep:#e6ecf3; --k-variant:#3c4c62;
-  --s-lab:#3987e5; --s-indep:#e6ecf3; --s-sec:#b98a00; color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{margin:0; background-color:var(--paper); color:var(--ink);
@@ -84,12 +87,28 @@ td.diff{outline:2px solid var(--k-rival); outline-offset:-2px}
 .empty{border:1px dashed var(--rule); padding:16px; color:var(--ink-2); font-size:.95rem}
 ol{margin:0; padding-left:20px; display:grid; gap:6px; color:var(--ink-2); max-width:75ch}
 footer{font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
+.mast-top{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:10px 16px}
+.theme-btn{display:inline-flex; align-items:center; gap:7px; font-family:var(--f-mono); font-size:.76rem; font-weight:500; color:var(--ink); background:var(--sheet); border:1px solid var(--rule); border-radius:999px; padding:5px 12px; cursor:pointer}
+.theme-btn:hover{border-color:var(--ink)}
+.theme-btn svg{width:14px; height:14px; flex-shrink:0}
+@media print{
+  :root, :root[data-theme="dark"], :root[data-theme="light"]{
+    color-scheme:light;
+    --paper:#ffffff; --sheet:#ffffff; --ink:#000000; --ink-2:#222222; --muted:#444444;
+    --rule:#cccccc; --grid:#eeeeee; --wash:#f5f5f5;
+  }
+  body{background-image:none}
+  .theme-btn{display:none!important}
+}
 </style>
 </head>
 <body>
 <main class="wrap">
   <header class="mast">
-    <span class="eyebrow">One brief · several AI harnesses · frontier models since Sept 2026</span>
+    <div class="mast-top">
+      <span class="eyebrow">One brief · several AI harnesses · frontier models since Sept 2026</span>
+      <button type="button" id="theme-toggle" class="theme-btn" aria-label="Dark mode" aria-pressed="true" onclick="window.__fbaToggleTheme&&window.__fbaToggleTheme()">Dark mode</button>
+    </div>
     <h1>Frontier Benchmark Atlas</h1>
     <p class="lede">Each AI agent harness gets the same request: chart the frontier models released since September 2026 against their makers' benchmark claims, and add new releases at each Monday check-in. Each publishes its own page here. This hub sets the compilations side by side, so you can see which numbers the agents agree on, where they differ, and how each one sourced its figures.</p>
     <p class="small">New to these labs and chips? Start with the <a href="https://minerclass.github.io/ai-systems-atlas/">AI Systems Atlas</a>, whose fourth station, <a href="https://minerclass.github.io/ai-systems-atlas/#scoreboard">Read the scoreboard</a>, introduces this comparison. <a href="https://minerclass.github.io/labs-on-silicon/">The Stack</a> is the one-screen sketch.</p>
@@ -132,6 +151,27 @@ footer{font-family:var(--f-mono); font-size:.72rem; color:var(--muted)}
 <script>
 (function(){
 "use strict";
+const THEME_KEY = "fba-theme";
+const themeNow = () => document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+const syncThemeBtn = (btn, theme) => {
+  if(!btn) return;
+  const dark = theme === "dark";
+  btn.setAttribute("aria-pressed", dark ? "true" : "false");
+  btn.setAttribute("aria-label", dark ? "Dark mode" : "Light mode");
+  btn.setAttribute("title", dark ? "Switch to light mode" : "Switch to dark mode");
+  const icon = dark
+    ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>'
+    : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+  btn.innerHTML = icon + "<span>" + (dark ? "Dark mode" : "Light mode") + "</span>";
+};
+window.__fbaToggleTheme = () => {
+  const next = themeNow() === "dark" ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", next);
+  try { localStorage.setItem(THEME_KEY, next); } catch(e){}
+  syncThemeBtn(document.getElementById("theme-toggle"), next);
+  return next;
+};
+syncThemeBtn(document.getElementById("theme-toggle"), themeNow());
 const esc = s => String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const norm = s => String(s==null?"":s).toLowerCase().replace(/[^a-z0-9]+/g,"");
 const slug = s => String(s==null?"":s).toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
